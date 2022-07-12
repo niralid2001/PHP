@@ -86,16 +86,16 @@ if (isset($_GET['id']))
         Name : <input type="text" name="nm" value="<?php echo $name ; ?>" ><br>
          <input type="hidden" name="id" value="<?php echo $id; ?>"><br>
         Age : <input type="text" name="age" value="<?php echo $age ;?>"><br>
-        gender : <input type="radio" name="gender" value="male" >male
-        <input type="radio" name="gender" value="female">female<br>
-        hobbies : <input type="checkbox" name="hobbies[]" value="playing">Playing
-        <input type="checkbox" name="hobbies[]" value="singing">singing
-        <input type="checkbox" name="hobbies[]" value= "dancing">dancing<br>
-        city : <select name="city" id="city">
-                            <option value="rajkot">Rajkot</option>
-                            <option value="surat">Surat</option>
-                            <option value="ahemdabad">Ahemdabad</option>
-                            <option value="vadodra">Vadodra</option>
+        gender : <input type="radio" name="gender" value="male" checked>male
+        <input type="radio" name="gender" value="female" checked>female<br>
+        hobbies : <input type="checkbox" name="hobbies[]" value="playing" checked>Playing
+        <input type="checkbox" name="hobbies[]" value="singing" checked="1">singing
+        <input type="checkbox" name="hobbies[]" value= "dancing" checked="1">dancing<br>
+        city : <select name="city" id="city" >
+                            <option value="rajkot" selected="1" >Rajkot</option>
+                            <option value="surat" selected="1">Surat</option>
+                            <option value="ahemdabad" selected="1">Ahemdabad</option>
+                            <option value="vadodra" selected="1">Vadodra</option>
                         </select><br>
         file : <input type="file" name="file" value="<?php echo $file_name ;?>">
         <td><img src="photo/<?php echo $file_name;?>" width="100"></td>
