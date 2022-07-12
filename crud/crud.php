@@ -18,7 +18,7 @@ if(isset($_POST['submit']))
       		$chk="";  
 		foreach($hobbies as $chk1)  
    		{  
-      	$chk .= $chk1.",";  
+      	$chk .= $chk1."";  
    		}
 
 		$qry = "INSERT INTO  `crud`(`name` ,  `age` ,`gender` ,`hobbies` ,`city` , `file`) VALUES ('$name','$age','$gender','$chk','$city','$file_name')";
@@ -33,7 +33,7 @@ if(isset($_POST['submit']))
 				" . mysqli_error($conn);
 		}
 		
-	header('Location:view.php');
+	header('Location:view1.php');
 	}
 ?>
 <!DOCTYPE html>
