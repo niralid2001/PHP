@@ -27,25 +27,13 @@
 </body>
 </html>
 
-<!-- <script type="text/javascript">
-	
-        function dueDate(){
-            var date1=document.getElementById("date1").value;
-            var date2=document.getElementById("date2").value;
-            var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
-            alert(diffDays);  
-
-        }
-        //document.getElementById('button1').addEventListener('click', dueDate);
- </script> -->
-
 <?php
  
   if(isset($_POST['submit']))
   {
 	  	if($_POST['date1'] > $_POST['date2'])
 	  	{
-	  		echo "plzzz...select date2 is grater than date1";
+	  		echo "plzzz...select End-date is grater than start-date";
 	  	}
 	  	else
 	  	{
