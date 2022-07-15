@@ -32,15 +32,13 @@ if ($result->num_rows > 0) {
                     <td><?php echo $user['hobbies']; ?></td>
                     <td><?php echo $user['city']; ?></td>
                     <?php echo"<td><img src='photo/".$user["file"]."'  width='100'></td>";?>
-                    <!-- <td><a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are yosure?')" >Delete</a></td>
-                      <td><a href="update.php?id=<?php echo $user["id"]; ?>">Update</a></td>  -->
-                    </tr>
-                    
             <?php } ?>
-        <?php } ?>
         
-                     
-                
+                    <td><a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are yosure?')" >Delete</a></td>
+                      <td><a href="update.php?id=<?php echo $user["id"]; ?>">Update</a></td> 
+                    </tr>
+        <?php } ?>       
+                    
     </tbody>
 </table>
 
