@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2022 at 04:18 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: Jul 15, 2022 at 02:49 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,7 +53,8 @@ INSERT INTO `crud` (`id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VA
 (9, 'desert', 18, 'male', 'playing,dancing,', 'surat', 'Desert.jpg1657619019'),
 (10, 'penguins', 19, 'male', 'playing,dancing,', 'rajkot', 'Penguins.jpg1657619084'),
 (11, 'bell off', 20, 'female', 'singing,', 'ahemdabad', 'off.png1657619131'),
-(12, 'bell on', 20, 'female', 'singing,', 'ahemdabad', 'on.png1657619159');
+(12, 'bell on', 20, 'female', 'singing,', 'ahemdabad', 'on.png1657619159'),
+(17, 'hiii', 22, 'male', 'playing,singing,', 'surat', 'Desert.jpg1657880940');
 
 --
 -- Indexes for dumped tables
@@ -73,7 +74,7 @@ ALTER TABLE `crud`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
