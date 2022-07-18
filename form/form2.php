@@ -1,6 +1,6 @@
 <?php 
 include_once'formdb.php';
-
+session_start();
 if(isset($_POST['next2']))
 {
 	$twitter = $_POST['twitter'];

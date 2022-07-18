@@ -1,6 +1,6 @@
 <?php 
 include_once'formdb.php';
-
+session_start();
 if(isset($_POST['next1']))
 {
 	$email = $_POST['email'];
@@ -37,13 +37,6 @@ if(isset($_POST['next1']))
 		<fieldset >
 			<h3>Create Account...</h3>
 			<h4>This is step-1</h4>
-			<?php
- 				if (!empty($_SESSION['error'])) 
- 				{
- 				echo $_SESSION['error'];
- 				unset($_SESSION['error']);
- 				}
- 			?>
 			<input type="text" name="email" placeholder="Email"><br><br>
 			<input type="password" name="password" placeholder="Password"><br><br>
 			<input type="submit" name="next1" value="Next">

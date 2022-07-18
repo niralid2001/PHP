@@ -1,6 +1,5 @@
 <?php 
 include_once'formdb.php';
-
 if(isset($_POST['sub']))
 {
 	$firstname = $_POST['firstname'];
@@ -10,7 +9,7 @@ if(isset($_POST['sub']))
 	$qry = "INSERT INTO  `form`(`firstname` ,  `lastname` , `phone`) VALUES ('$firstname','$lastname','$phone')";
 		if (mysqli_query($conn, $qry)) 
 		{
-			echo "record created successfully !";
+			echo "record created successfully!";
 	 	} 
 	 	else 
 	 	{
