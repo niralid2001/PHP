@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
 	for($i=0;$i<$totalfiles;$i++){
 		$file_name=$_FILES['files']['name'][$i];}
 		$file_name=$file_name. time();
-   	 	//$tmp_name=$_FILES['files']['tmp_name'];
+   	 	$tmp_name=$_FILES['files']['tmp_name'];
    	 	$hobbies = implode(",",$hobbies);
       	 	//$hobbies = explode(",",$hobbies);
   //     	$chk="";  
@@ -50,23 +50,23 @@ if(isset($_POST['submit']))
 </head>
 <body>
 	<form method="POST" enctype="multipart/form-data">
-
-		Name : <input type="text" name="nm"><br>
-		Age : <input type="text" name="age"><br>
-		gender : <input type="radio" name="gender" value="male">male
-		<input type="radio" name="gender" value="female" >female<br>
-		hobbies : <input type="checkbox" name="hobbies[]" value="playing" >Playing
+		<table align="center">
+		<tr><td>Name :</td><td> <input type="text" name="nm"></td></tr><br>
+		<tr><td>Age :</td><td> <input type="text" name="age"></td></tr><br>
+		<tr><td>gender :</td><td> <input type="radio" name="gender" value="male">male
+		<input type="radio" name="gender" value="female" >female</td></tr><br>
+		<tr><td>hobbies : </td><td><input type="checkbox" name="hobbies[]" value="playing" >Playing
 		<input type="checkbox" name="hobbies[]" value="singing">singing
-		<input type="checkbox" name="hobbies[]" value="dancing">dancing<br>
-		city :  <select name="city" id="city">
+		<input type="checkbox" name="hobbies[]" value="dancing">dancing</td></tr><br>
+		<tr><td>city : </td><td> <select name="city" id="city">
   							<option value="rajkot">Rajkot</option>
   							<option value="surat">Surat</option>
   							<option value="ahemdabad">Ahemdabad</option>
   							<option value="vadodra">Vadodra</option>
-						</select><br>
-		file : <input type="file" name="files[]" value="<?php echo "$file_name"?>" multiple ><br>
-		<input type="submit" name="submit" >
-		
+						</select></td></tr><br>
+		<tr><td>file : </td><td><input type="file" name="files[]" value="<?php echo "$file_name"?>" multiple ></td></tr><br>
+		<tr><td><input type="submit" name="submit" ></td></tr>
+		</table>
 		
 </form>
 

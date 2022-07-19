@@ -37,6 +37,7 @@ if ($result->num_rows > 0) {
                     <td><a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are yosure?')" >Delete</a></td>
                       <td><a href="update.php?id=<?php echo $user["id"]; ?>">Update</a></td> 
                     </tr>
+
         <?php } ?>       
                     
     </tbody>
