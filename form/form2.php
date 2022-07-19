@@ -1,24 +1,27 @@
-<?php 
-include_once'formdb.php';
+<?php
 session_start();
-if(isset($_POST['next2']))
+if (isset($_POST['email']))
 {
-	$twitter = $_POST['twitter'];
-	$github = $_POST['github'];
-	$website = $_POST['website'];
-
-	$qry = "INSERT INTO  `form`(`twitter` ,  `github` , `website`) VALUES ('$twitter','$github','$website')";
-		if (mysqli_query($conn, $qry)) 
-		{
-			echo "record created successfully !";
-	 	} 
-	 	else 
-	 	{
-			echo "Error: " . $qry . "
-				" . mysqli_error($conn);
-		}
-		
-	 header('Location:form3.php');
+ if (empty($_POST['email'])|| empty($_POST['password']))
+ { 
+ 
+ 	$_SESSION['error'] = "Mandatory field(s) are missing, Please fill it again";
+ 	header("location: form1.php");
+ } 
+  else 
+ {
+ 	foreach ($_POST as $key => $value) 
+ 	{
+ 		$_SESSION['post'][$key] = $value;
+ 	}
+ }
+} 
+else 
+{
+ if (empty($_SESSION['error_page2'])) 
+ {
+ 	header("location: form1.php");//redirecting to first page
+ }
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +34,7 @@ if(isset($_POST['next2']))
 <body>
 
 <center>
-	<form style="width: 20px;" method="POST">
+	<form style="width: 20px;" method="POST" action="form3.php">
 		<!-- <ul>
 			<li>Account setup</li>
 			<li>social Account</li>
@@ -39,6 +42,14 @@ if(isset($_POST['next2']))
 		<fieldset>
 			<h3>Social Account...</h3>
 			<h4>This is step-2</h4>
+			<?php
+
+				if (!empty($_SESSION['error_page2'])) 
+				{
+ 					echo $_SESSION['error_page2'];
+ 					unset($_SESSION['error_page2']);
+				}
+?>
 			<input type="text" name="twitter" placeholder="twitter link address"><br><br>
 			<input type="text" name="github" placeholder="github link address"><br><br>
 			<input type="text" name="website" placeholder="your website link address"><br><br>

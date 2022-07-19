@@ -1,23 +1,5 @@
-<?php 
-include_once'formdb.php';
+<?php
 session_start();
-if(isset($_POST['next1']))
-{
-	$email = $_POST['email'];
-	$password = $_POST['password'];
-	$qry = "INSERT INTO  `form`(`email` ,  `password`) VALUES ('$email','$password')";
-		if (mysqli_query($conn, $qry)) 
-		{
-			echo "record created successfully !";
-	 	} 
-	 	else 
-	 	{
-			echo "Error: " . $qry . "
-				" . mysqli_error($conn);
-		}
-		
-	 	header('Location:form2.php');
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,14 +11,17 @@ if(isset($_POST['next1']))
 <body>
 
 <center>
-	<form style="width: 20px;" method="POST">
-		<!-- <ul>
-			<li>Account setup</li>
-			<li>social Account</li>
-		</ul> -->
+	<form style="width: 20px;" method="POST" action="form2.php">
 		<fieldset >
 			<h3>Create Account...</h3>
 			<h4>This is step-1</h4>
+			<?php
+				 if (!empty($_SESSION['error'])) 
+				 {
+					 echo $_SESSION['error'];
+					 unset($_SESSION['error']);
+ 				}
+ 			?>
 			<input type="text" name="email" placeholder="Email"><br><br>
 			<input type="password" name="password" placeholder="Password"><br><br>
 			<input type="submit" name="next1" value="Next">
