@@ -72,7 +72,7 @@ if(isset($_POST['submit']))
   							<option value="vadodra">Vadodra</option>
 						</select></td></tr><br>
 		<tr><td>file : </td><td><input type="file" name="files[]" value="<?php echo "$file_name"?>" multiple required></td></tr><br>
-		<tr><td><input type="submit" name="submit" ></td></tr>
+		<tr><td><input type="reset" ></td><td><input type="submit" name="submit" ></td></tr>
 		</table>
 		
 </form>
