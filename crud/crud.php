@@ -13,11 +13,17 @@ if(isset($_POST['submit']))
 		$hobbies = $_POST['hobbies'];
 		$city = $_POST['city'];
 		$totalfiles = count($_FILES['files']['name']);
-
-	for($i=0;$i<$totalfiles;$i++){
-		$file_name=$_FILES['files']['name'][$i];}
-		$file_name=$file_name. time();
-   	 	$tmp_name=$_FILES['files']['tmp_name'];
+		$file = array();
+	for($i=0;$i<$totalfiles;$i++)
+	{
+		$file_name=$_FILES['files']['name'][$i];
+		$file_name = explode(".",$file_name);
+		$file_name[0]=$file_name[0]. time();
+		$file_name = implode(".", $file_name);
+		$file[] = $file_name;
+		move_uploaded_file($_FILES['files']['tmp_name'][$i],"photo/".$file_name);
+	}
+   	 	$tmp_name=$_FILES['files']['tmp_name'][$i];   
    	 	$hobbies = implode(",",$hobbies);
       	 	//$hobbies = explode(",",$hobbies);
   //     	$chk="";  
@@ -26,10 +32,10 @@ if(isset($_POST['submit']))
   //     	$chk .= $chk1.",";  
   //  		}
 
-		$qry = "INSERT INTO  `crud`(`name` ,  `age` ,`gender` ,`hobbies` ,`city` , `file`) VALUES ('$name','$age','$gender','$hobbies','$city','$file_name')";
+		$qry = "INSERT INTO  `crud`(`name` ,  `age` ,`gender` ,`hobbies` ,`city` , `file`) VALUES ('$name','$age','$gender','$hobbies','$city','".implode(",",$file)."')";
 		if (mysqli_query($conn, $qry)) 
 		{
-			move_uploaded_file($_FILES["files"]["tmp_name"][$i],"photo/".$file_name);
+			
 			echo "record created successfully !";
 	 	} 
 	 	else 

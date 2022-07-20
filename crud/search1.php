@@ -7,7 +7,7 @@ if(isset($_GET['search']))
     if(!empty($_GET['record']))
     {
         $search = $_GET['record'];
-        $stmt = $conn->prepare("select * from crud where id like '%$id%' or name like '%$search%'");
+        $stmt = $conn->prepare("select * from crud where id like '%$id%' or name like '%$search%'" );
         $stmt->execute();
         $employee_details = $stmt->fetchAll(PDO::FETCH_ASSOC);
          

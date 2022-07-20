@@ -19,7 +19,7 @@ if ($result->num_rows > 0) {
         <th>hobbies</th>
         <th>city</th>
         <th>file</th>
-        <th colspan="8" align="center"> action </th>
+        <th align="center"> action </th>
     </thead>
     <tbody>
         <?php if(!empty($arr_users)) { ?>
@@ -31,12 +31,22 @@ if ($result->num_rows > 0) {
                     <td><?php echo $user['gender']; ?></td>
                     <td><?php echo $user['hobbies']; ?></td>
                     <td><?php echo $user['city']; ?></td>
-                    <?php echo"<td><img src='photo/".$user["file"]."'  width='100'></td>";?>
+                     <td>
+                           <?php  $images=explode(',',$user["file"]); 
+                              foreach($images as $image) {
+                           ?>
+                          <img src="<?php echo 'photo/'.$image; ?>" width="100" />
+                          <?php } ?>
+                     </td>
+                     <td>
+                        <a href="update.php?id=<?php echo $user["id"]; ?>">Update</a>
+                        <a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are yosure?')" >Delete</a>
+                    </td>
+                </tr>
             <?php } ?>
         
-                    <td><a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are yosure?')" >Delete</a></td>
-                      <td><a href="update.php?id=<?php echo $user["id"]; ?>">Update</a></td> 
-                    </tr>
+                    <!-- <td></td>
+                      <td><a href="update.php?id=<?php echo $user["id"]; ?>">Update</a></td>  -->
 
         <?php } ?>       
                     
