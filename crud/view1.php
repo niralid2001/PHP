@@ -44,9 +44,6 @@ if ($result->num_rows > 0) {
                     </td>
                 </tr>
             <?php } ?>
-        
-                    <!-- <td></td>
-                      <td><a href="update.php?id=<?php echo $user["id"]; ?>">Update</a></td>  -->
 
         <?php } ?>       
                     
