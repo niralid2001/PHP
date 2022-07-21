@@ -4,7 +4,7 @@ include_once'db.php';
 
     if (isset($_POST['update'])) 
     {
-       
+
 
         $id = $_POST['id'];
         $name = $_POST['nm'];
@@ -51,6 +51,7 @@ include_once'db.php';
 
     } 
 
+
 if (isset($_GET['id'])) 
 {
 
@@ -76,6 +77,8 @@ if (isset($_GET['id']))
             $id = $row['id'];
             $hobbies = explode(",",$hobbies);
            
+       //       print_r($hobbies);
+       // exit();
 
         } 
     }
@@ -98,18 +101,24 @@ if (isset($_GET['id']))
         <tr><td>Age :</td><td>  <input type="text" name="age" value="<?php echo $age ;?>"></td></tr><br>
         <tr><td>gender :</td><td>  <input type="radio" name="gender" value="male" <?php if($gender == "male" ) {echo "checked";} ?>>male
             <input type="radio" name="gender" value="female" <?php if($gender == "female" ) {echo "checked";} ?>>female</td></tr><br>
-        <tr><td>hobbies : </td><td> <input type="checkbox" name="hobbies[]" value="playing" <?php if(isset($hobbies[0]) && $hobbies[0] == "playing" ) {echo "checked";} ?>>Playing
-            <input type="checkbox" name="hobbies[]" value="singing" <?php if(isset($hobbies[1])&& $hobbies[1] == "singing" ) {echo "checked";} ?>>singing
-            <input type="checkbox" name="hobbies[]" value= "dancing" <?php if(isset($hobbies[2] ) && $hobbies[2]== "dancing" ) {echo "checked";} ?>>dancing</td></tr><br>
+        <tr><td>hobbies : </td><td> <input type="checkbox" name="hobbies[]" value="playing" <?php if(in_array("playing", $hobbies) ) {echo "checked";} ?>>Playing
+            <input type="checkbox" name="hobbies[]" value="singing" <?php if(in_array("singing", $hobbies) ) {echo "checked";} ?>>singing
+            <input type="checkbox" name="hobbies[]" value= "dancing" <?php if(in_array("dancing", $hobbies) ) {echo "checked";} ?>>dancing </td></tr><br>
         <tr><td>city : </td><td> <select name="city" id="city">
-            <option></option>
-                            <option value="rajkot">Rajkot</option>
-                            <option value="surat">Surat</option>
-                            <option value="ahemdabad">Ahemdabad</option>
-                            <option value="vadodra">Vadodra</option>
+            <option disabled></option>
+                            <option value="rajkot" <?php if( $city == "rajkot" ) {echo "selected";}?>>Rajkot</option>
+                            <option value="surat" <?php if( $city == "surat" ) {echo "selected";}?>>Surat</option>
+                            <option value="ahemdabad" <?php if( $city == "ahemdabad" ) {echo "selected";}?>>Ahemdabad</option>
+                            <option value="vadodra" <?php if( $city == "vadodra" ) {echo "selected";}?>>Vadodra</option>
                         </select></td></tr><br>
         <tr><td>file : </td><td> <input type="file" name="files[]" value="<?php echo $file_name ;?>" multiple>
-        <td><img src="photo/<?php echo $file_name;?>" width="100"></td></td></tr>
+        <td><!-- <img src="photo/<?php echo $file_name;?>" width="100"> -->
+            <?php  $images=explode(',',$file_name); 
+                              foreach($images as $image) {
+                           ?>
+                          <img src="<?php echo 'photo/'.$image; ?>" width="100" />
+                          <?php } ?>
+        </td></td></tr>
         <tr><td><input type="submit" name="update" value="update"></td></tr>
         </table>
 </form>

@@ -61,11 +61,11 @@ if(isset($_POST['submit']))
 		<tr><td>Age :</td><td> <input type="text" name="age" required></td></tr><br>
 		<tr><td>gender :</td><td> <input type="radio" name="gender" value="male" required>male
 		<input type="radio" name="gender" value="female" >female</td></tr><br>
-		<tr><td>hobbies : </td><td><input type="checkbox" name="hobbies[]" value="playing" required>Playing
-		<input type="checkbox" name="hobbies[]" value="singing">singing
-		<input type="checkbox" name="hobbies[]" value="dancing">dancing</td></tr><br>
+		<tr><td>hobbies : </td><td><input type="checkbox" name="hobbies[]" value="playing">Playing
+		<input type="checkbox" name="hobbies[]" value="singing" >singing
+		<input type="checkbox" name="hobbies[]" value="dancing" >dancing</td></tr><br>
 		<tr><td>city : </td><td> <select name="city" id="city" required>
-							<option></option>
+							<option disabled selected></option>
   							<option value="rajkot">Rajkot</option>
   							<option value="surat">Surat</option>
   							<option value="ahemdabad">Ahemdabad</option>
@@ -74,7 +74,7 @@ if(isset($_POST['submit']))
 		<tr><td>file : </td><td><input type="file" name="files[]" value="<?php echo "$file_name"?>" multiple required></td></tr><br>
 		<tr><td><input type="reset" ></td><td><input type="submit" name="submit" ></td></tr>
 		</table>
-		
+		 
 </form>
 
 </body>
