@@ -53,15 +53,30 @@ if(isset($_POST['submit']))
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CRUD</title>
+<script src="\jquery-3.6.0.min.js"></script> 
 </head>
 <body>
+	<script type="text/javascript">
+$(document).ready(function () {
+    $('#button').click(function() {
+      checked = $("input[type=checkbox]:checked").length;
+
+      if(!checked) {
+        alert("You must check at least one checkbox.");
+        return false;
+      }
+
+    });
+});
+
+</script>
 	<form method="POST" enctype="multipart/form-data">
 		<table align="center">
 		<tr><td>Name :</td><td> <input type="text" name="nm" required></td></tr><br>
 		<tr><td>Age :</td><td> <input type="text" name="age" required></td></tr><br>
 		<tr><td>gender :</td><td> <input type="radio" name="gender" value="male" required>male
 		<input type="radio" name="gender" value="female" >female</td></tr><br>
-		<tr><td>hobbies : </td><td><input type="checkbox" name="hobbies[]" value="playing">Playing
+		<tr><td>hobbies : </td><td><input type="checkbox" name="hobbies[]" value="playing" required>Playing
 		<input type="checkbox" name="hobbies[]" value="singing" >singing
 		<input type="checkbox" name="hobbies[]" value="dancing" >dancing</td></tr><br>
 		<tr><td>city : </td><td> <select name="city" id="city" required>
@@ -72,7 +87,7 @@ if(isset($_POST['submit']))
   							<option value="vadodra">Vadodra</option>
 						</select></td></tr><br>
 		<tr><td>file : </td><td><input type="file" name="files[]" value="<?php echo "$file_name"?>" multiple required></td></tr><br>
-		<tr><td><input type="reset" ></td><td><input type="submit" name="submit" ></td></tr>
+		<tr><td><input type="reset" ></td><td><input type="submit" name="submit" id="button"></td></tr>
 		</table>
 		 
 </form>
