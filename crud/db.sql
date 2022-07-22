@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2022 at 02:15 PM
+-- Generation Time: Jul 22, 2022 at 03:19 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -40,7 +40,8 @@ INSERT INTO `category` (`catid`, `catname`) VALUES
 (3, 'cakes'),
 (4, 'cookies'),
 (5, 'cold-drinks'),
-(6, 'ice-cream');
+(6, 'ice-cream'),
+(7, 'pizza');
 
 -- --------------------------------------------------------
 
@@ -63,18 +64,68 @@ CREATE TABLE `crud` (
 --
 
 INSERT INTO `crud` (`id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
-(1, 'hiii', 11, 'male', 'playing,singing,', 'vadodra', 'umiya temple.jpeg1657618650'),
-(2, 'hello', 12, 'female', 'playing,singing,dancing,', 'surat', 'ma umiya.jpeg1657618688'),
-(3, 'world', 13, 'male', 'playing,', 'ahemdabad', 'linkedin.jpg1657618738'),
-(4, 'earth', 14, 'female', 'dancing,', 'rajkot', 'admin dashboard.jpg1657618794'),
-(5, 'flower', 15, 'male', 'singing,', 'ahemdabad', 'Tulips.jpg1657618864'),
-(6, 'koala', 15, 'male', 'playing,dancing,', 'ahemdabad', 'Koala.jpg1657618904'),
-(7, 'red flower', 16, 'female', 'singing,', 'vadodra', 'Chrysanthemum.jpg1657618942'),
-(8, 'jellyfish', 17, 'female', 'playing,', 'surat', 'Jellyfish.jpg1657618985'),
-(9, 'desert', 18, 'male', 'playing,dancing,', 'surat', 'Desert.jpg1657619019'),
-(10, 'penguins', 19, 'male', 'playing,dancing,', 'rajkot', 'Penguins.jpg1657619084'),
-(11, 'bell off', 20, 'female', 'singing,', 'ahemdabad', 'off.png1657619131'),
-(12, 'bell on', 20, 'female', 'singing,', 'ahemdabad', 'on.png1657619159');
+(45, 'hello', 78, 'male', 'dancing', 'surat', 'Lighthouse1658398108.jpg,Penguins1658398109.jpg,Tulips1658398109.jpg'),
+(46, 'land', 23, 'male', 'playing', 'vadodra', 'Hydrangeas1658313608.jpg,Tulips1658313608.jpg'),
+(47, 'aaaa', 23, 'male', 'playing', 'surat', 'Hydrangeas1658317232.jpg,Jellyfish1658317232.jpg,Koala1658317232.jpg'),
+(54, 'cghfchg', 45, 'male', 'dancing', 'surat', 'Koala1658489870.jpg,Penguins1658489870.jpg,Tulips1658489870.jpg,Chrysanthemum1658493317.jpg,Desert1658493317.jpg,Hydrangeas1658493441.jpg'),
+(55, 'hello', 34, 'male', 'playing,singing,dancing', 'vadodra', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `csv`
+--
+
+CREATE TABLE `csv` (
+  `emp_id` varchar(50) NOT NULL,
+  `firstname` varchar(30) NOT NULL,
+  `lastname` varchar(30) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `reg_date` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `csv`
+--
+
+INSERT INTO `csv` (`emp_id`, `firstname`, `lastname`, `email`, `reg_date`) VALUES
+('101', 'hii', 'heloo', '123@gmail.com', '14-Jul-22'),
+('102', 'world', 'hiii', 'world@gmail.com', '15-Jul-22'),
+('103', 'india', 'ind', 'india@gmail.com', '13-Aug-22'),
+('104', 'russia', 'rus', 'russia@gmail.com', '22-Oct-19'),
+('105', 'china', 'chi', 'china@gmail.com', '01-Jan-01'),
+('106', 'america', 'usa', 'america@gmail.com', '02-Jun-02'),
+('107', 'england', 'eng', 'eng@gmail.com', '30-Apr-22'),
+('108', 'pak', 'pak', 'pak@gmail.com', '25-Dec-21'),
+('109', 'shri-lanka', 'slnk', 'slnk@gmail.com', '26-Apr-18'),
+('200', 'dubai', 'dub', 'dun@gmail.com', '05-Sep-30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `form`
+--
+
+CREATE TABLE `form` (
+  `id` int(10) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `twitter` varchar(100) NOT NULL,
+  `github` varchar(100) NOT NULL,
+  `website` varchar(100) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `phone` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `form`
+--
+
+INSERT INTO `form` (`id`, `email`, `password`, `twitter`, `github`, `website`, `firstname`, `lastname`, `phone`) VALUES
+(39, 'user@gmail.com', '12344', 'twitter.com', 'githun.com', 'https://website.com', 'hiii', 'hello', 1234567890),
+(40, 'user@gmail.com', '12345', 'twitter.com', 'githun.com', 'https://website.com', 'hiii', 'hello', 1234567895),
+(41, 'user@gmail.com', '1234', 'twitter.com', 'githun.com', 'https://website.com', 'hiii', 'hello', 1234567890);
 
 -- --------------------------------------------------------
 
@@ -96,7 +147,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`proid`, `catid`, `proname`, `proprice`, `prodesc`, `proimg`) VALUES
-(11, 3, 'red velvate', 550, 'decilious', 'upload/images.jpg');
+(11, 3, 'red velvate', 550, 'decilious', 'upload/images.jpg'),
+(12, 3, 'oreo', 300, 'tastfully....!', 'upload/images.jpg');
 
 --
 -- Indexes for dumped tables
@@ -115,6 +167,18 @@ ALTER TABLE `crud`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `csv`
+--
+ALTER TABLE `csv`
+  ADD PRIMARY KEY (`emp_id`);
+
+--
+-- Indexes for table `form`
+--
+ALTER TABLE `form`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -128,19 +192,25 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `catid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `catid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+
+--
+-- AUTO_INCREMENT for table `form`
+--
+ALTER TABLE `form`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `proid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `proid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
