@@ -2,6 +2,7 @@
 
 include_once'db.php';
 
+    
     if (isset($_POST['update'])) 
     {
         $id = $_POST['id'];
@@ -122,6 +123,28 @@ if (isset($_GET['id']))
                            ?>
                            <input type="hidden" name="images[]" value="<?php echo $image;?>">
                           <img src="<?php echo 'photo/'.$image;?>" width="100" />
+                          <input type="button" name="btn" value="remove" 
+                              <?php 
+                                    unlink($images);
+                                
+                              // include_once'db.php';
+
+                              //  if(isset($_POST['btn']))
+                              //   {
+                              //       $images = $_GET['images'];
+
+                              //   $sql1 = "DELETE FROM `crud` WHERE `images`='$images'";
+                              //   $result = $conn->query($sql1);
+
+                                //  if ($result == TRUE) {
+
+                                //     alert
+
+                                // }
+                                //}
+ 
+                              ?>
+                          >
                           <?php } ?>
         </td></td></tr>
         <tr><td><input type="submit" name="update" value="update"></td></tr>
