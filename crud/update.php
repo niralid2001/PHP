@@ -4,8 +4,6 @@ include_once'db.php';
 
     if (isset($_POST['update'])) 
     {
-
-
         $id = $_POST['id'];
         $name = $_POST['nm'];
         $age = $_POST['age'];
@@ -14,15 +12,23 @@ include_once'db.php';
         $city = $_POST['city'];
         $totalfiles = count($_FILES['files']['name']);
         $file = array();
+        echo "<pre>";
+        print_r($_POST);
+        print_r($_FILES);
+        exit();
     for($i=0;$i<$totalfiles;$i++)
     {
         $file_name=$_FILES['files']['name'][$i];
-        $file_name = explode(".",$file_name);
-        $file_name[0]=$file_name[0]. time();
-        $file_name = implode(".", $file_name);
-        $file[] = $file_name;
-        move_uploaded_file($_FILES['files']['tmp_name'][$i],"photo/".$file_name);
+        if($file_name!="")
+        {
+            $file_name = explode(".",$file_name);
+            $file_name[0]=$file_name[0]. time();
+            $file_name = implode(".", $file_name);
+            $file[] = $file_name;
+            move_uploaded_file($_FILES['files']['tmp_name'][$i],"photo/".$file_name); 
+        }
     }
+    implode(",",$file)
         $tmp_name=$_FILES['files']['tmp_name'][$i];
         $hobbies=implode(",", $hobbies);
         // $chk="";  
@@ -31,7 +37,7 @@ include_once'db.php';
         // $chk .= $chk1.",";  
         // }  
 
-       $sql = "UPDATE `crud` SET `name`='$name',`age`='$age',`gender`='$gender',`hobbies`='$hobbies',`city`='$city', `file`='".implode(",",$file)."' WHERE `id`='$id'"; 
+       $sql = "UPDATE `crud` SET `name`='$name',`age`='$age',`gender`='$gender',`hobbies`='$hobbies',`city`='$city', `file`='".."' WHERE `id`='$id'"; 
         $result = $conn->query($sql); 
 
         if ($result == TRUE) 
@@ -111,12 +117,13 @@ if (isset($_GET['id']))
                             <option value="ahemdabad" <?php if( $city == "ahemdabad" ) {echo "selected";}?>>Ahemdabad</option>
                             <option value="vadodra" <?php if( $city == "vadodra" ) {echo "selected";}?>>Vadodra</option>
                         </select></td></tr><br>
-        <tr><td>file : </td><td> <input type="file" name="files[]" value="<?php echo $file_name ;?>" multiple>
+        <tr><td>file : </td><td> <input type="file" name="files[]" value="<?php echo $file_name ;?>" multiple id="files">
         <td><!-- <img src="photo/<?php echo $file_name;?>" width="100"> -->
             <?php  $images=explode(',',$file_name); 
                               foreach($images as $image) {
                            ?>
-                          <img src="<?php echo 'photo/'.$image; ?>" width="100" />
+                           <input type="hidden" name="images[]" value="<?php echo $image;?>">
+                          <img src="<?php echo 'photo/'.$image;?>" width="100" />
                           <?php } ?>
         </td></td></tr>
         <tr><td><input type="submit" name="update" value="update"></td></tr>

@@ -53,40 +53,83 @@ if(isset($_POST['submit']))
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CRUD</title>
-<script src="\jquery-3.6.0.min.js"></script> 
+	<!-- form validation link-->
+     <script src="http://localhost/PHP-Training/crud/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+	<!-- form validation -->
 	<script type="text/javascript">
-$(document).ready(function () {
-    $('#button').click(function() {
-      checked = $("input[type=checkbox]:checked").length;
+$(document).ready(function () 
+{
+    $('#button').click(function() 
+    {
 
-      if(!checked) {
-        alert("You must check at least one checkbox.");
-        return false;
-      }
+    	if( document.form.nm.value == "" ) 
+    	{
+            alert( "Please provide your name!" );
+            document.form.nm.focus() ;
+            return false;
+        }
+
+        if( document.form.age.value == "" ) 
+    	{
+            alert( "Please provide your age!" );
+            document.form.age.focus() ;
+            return false;
+        }
+
+        checked = $("input[type=radio]:checked").length;
+      	if(!checked) 
+     	{
+       		alert("You must check at least gender.");
+       	
+        	return false;
+      	}
+      
+      	checked = $("input[type=checkbox]:checked").length;
+      	if(!checked) 
+     	{
+       		alert("You must check at least one checkbox.");
+       
+        	return false;
+      	}
+
+      	if( document.form.city.value == "-1" ) 
+      	{
+            alert( "Please provide your city!" );
+             document.form.city.focus() ;
+            return false;
+        }
+
+     	if($('#files')[0].files.length === 0)
+     	{
+	        alert("Please attact files!");
+	        $('#files').focus();
+
+	        return false;
+   		}
 
     });
 });
 
 </script>
-	<form method="POST" enctype="multipart/form-data">
+	<form method="POST" enctype="multipart/form-data" name="form">
 		<table align="center">
-		<tr><td>Name :</td><td> <input type="text" name="nm" required></td></tr><br>
-		<tr><td>Age :</td><td> <input type="text" name="age" required></td></tr><br>
-		<tr><td>gender :</td><td> <input type="radio" name="gender" value="male" required>male
+		<tr><td>Name :</td><td> <input type="text" name="nm" ></td></tr><br>
+		<tr><td>Age :</td><td> <input type="text" name="age" ></td></tr><br>
+		<tr><td>gender :</td><td> <input type="radio" name="gender" value="male" >male
 		<input type="radio" name="gender" value="female" >female</td></tr><br>
-		<tr><td>hobbies : </td><td><input type="checkbox" name="hobbies[]" value="playing" required>Playing
+		<tr><td>hobbies : </td><td><input type="checkbox" name="hobbies[]" value="playing">Playing
 		<input type="checkbox" name="hobbies[]" value="singing" >singing
 		<input type="checkbox" name="hobbies[]" value="dancing" >dancing</td></tr><br>
-		<tr><td>city : </td><td> <select name="city" id="city" required>
-							<option disabled selected></option>
+		<tr><td>city : </td><td> <select name="city">
+							<option disabled selected value="-1">[select city]</option>
   							<option value="rajkot">Rajkot</option>
   							<option value="surat">Surat</option>
   							<option value="ahemdabad">Ahemdabad</option>
   							<option value="vadodra">Vadodra</option>
 						</select></td></tr><br>
-		<tr><td>file : </td><td><input type="file" name="files[]" value="<?php echo "$file_name"?>" multiple required></td></tr><br>
+		<tr><td>file : </td><td><input type="file" name="files[]" value="<?php echo "$file_name"?>" multiple id="files"></td></tr><br>
 		<tr><td><input type="reset" ></td><td><input type="submit" name="submit" id="button"></td></tr>
 		</table>
 		 
