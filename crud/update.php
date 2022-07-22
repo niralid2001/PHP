@@ -12,10 +12,7 @@ include_once'db.php';
         $city = $_POST['city'];
         $totalfiles = count($_FILES['files']['name']);
         $file = array();
-        echo "<pre>";
-        print_r($_POST);
-        print_r($_FILES);
-        exit();
+
     for($i=0;$i<$totalfiles;$i++)
     {
         $file_name=$_FILES['files']['name'][$i];
@@ -28,7 +25,8 @@ include_once'db.php';
             move_uploaded_file($_FILES['files']['tmp_name'][$i],"photo/".$file_name); 
         }
     }
-    implode(",",$file)
+    $images = array_merge($_POST['images'],$file);
+    $images = implode(",",$images);
         $tmp_name=$_FILES['files']['tmp_name'][$i];
         $hobbies=implode(",", $hobbies);
         // $chk="";  
@@ -37,7 +35,7 @@ include_once'db.php';
         // $chk .= $chk1.",";  
         // }  
 
-       $sql = "UPDATE `crud` SET `name`='$name',`age`='$age',`gender`='$gender',`hobbies`='$hobbies',`city`='$city', `file`='".."' WHERE `id`='$id'"; 
+       $sql = "UPDATE `crud` SET `name`='$name',`age`='$age',`gender`='$gender',`hobbies`='$hobbies',`city`='$city', `file`='".$images."' WHERE `id`='$id'"; 
         $result = $conn->query($sql); 
 
         if ($result == TRUE) 
