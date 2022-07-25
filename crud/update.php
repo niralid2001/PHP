@@ -123,28 +123,51 @@ if (isset($_GET['id']))
                            ?>
                            <input type="hidden" name="images[]" value="<?php echo $image;?>">
                           <img src="<?php echo 'photo/'.$image;?>" width="100" />
-                          <input type="button" name="btn" value="remove" 
+                           <a href="remove.php?id=<?php echo $image; ?>" >Remove</a>   
+                          <!-- <input type="button" name="btn" value="remove" >  -->
                               <?php 
-                                    unlink($images);
-                                
-                              // include_once'db.php';
+                               // if(isset($_POST['btn']))
+                          //  {         
+                             //   $image=unlink('files');    
+                              //  if($image){  
+                              //  echo "File deleted successfully";    
+                              //  }else{  
+                              //  echo "error!";    
+                              //  }  
+                            //}
 
-                              //  if(isset($_POST['btn']))
-                              //   {
-                              //       $images = $_GET['images'];
 
-                              //   $sql1 = "DELETE FROM `crud` WHERE `images`='$images'";
-                              //   $result = $conn->query($sql1);
+                               // if(isset($_POST['btn']))
+                               //  {
+                               //      $images = $_GET['images'];
+                                //        $id = $_POST['id'];
+                               //      sql1="UPDATE `crud` SET `file`='".$images."' WHERE `id`='$id'";
+                               //      $result = $conn->query($sql1);
 
-                                //  if ($result == TRUE) {
+                               //       if ($result == TRUE) 
+                               //       {
 
-                                //     alert
+                               //          echo "deleted";
 
-                                // }
-                                //}
+                               //      }
+                               //  }
+
+                            // if (isset($_POST['btn'])) 
+                            // {
+                            // $file = $_POST['image'];
+                            // if (!unlink($file))
+                            //   {
+                            //   echo ("Error deleting $file");
+                            //   }
+                            // else
+                            //   {
+                            //   echo ("Deleted $file");
+                            //   }
+                            // }
+
  
                               ?>
-                          >
+                          
                           <?php } ?>
         </td></td></tr>
         <tr><td><input type="submit" name="update" value="update"></td></tr>
