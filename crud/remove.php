@@ -27,10 +27,10 @@ include_once'db.php';
 //} 
 if(isset($_POST['id']))
 {
-    //$images = $_GET['images'];
-    $file_name=$_FILES['files']['name']
+    $images = $_GET['images'];
+   // $file_name=$_FILES['files']['name'];
     $id = $_POST['id'];
-    $sql1 = "UPDATE `crud` SET `file`='".$file_name."' WHERE `id`='$id'";
+    $sql1 = "UPDATE `crud` SET `file`='".$images."' WHERE `id`='$id'";
     $result = $conn->query($sql1);
 
     if ($result == TRUE) 
