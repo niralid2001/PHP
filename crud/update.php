@@ -123,7 +123,7 @@ if (isset($_GET['id']))
                            ?>
                            <input type="hidden" name="images[]" value="<?php echo $image;?>">
                           <img src="<?php echo 'photo/'.$image;?>" width="100" />
-                           <a href="remove.php?id=<?php echo $image; ?>" >Remove</a>   
+                           <a href="remove.php?image=<?php echo $image; ?>id=<?php echo $id; ?>" >Remove</a>   
                           <!-- <input type="button" name="btn" value="remove" >  -->
                               <?php 
                                // if(isset($_POST['btn']))

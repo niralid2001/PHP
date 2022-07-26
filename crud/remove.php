@@ -2,7 +2,7 @@
 
 <?php 
 
-include_once'db.php'; 
+ include_once'db.php'; 
 
 // if (isset($_GET['id'])) {
 
@@ -22,9 +22,9 @@ include_once'db.php';
 //         echo "Error:" . $sql . "<br>" . $conn->error;
 
 //     }
-    //header('Location:view1.php');
+//     //header('Location:view1.php');
 
-//} 
+// } 
 // if(isset($_POST['id']))
 // {
 //     $images = $_GET['images'];
@@ -40,25 +40,62 @@ include_once'db.php';
 
 //     }
 // }
-$filename = isset($_GET['id']) ? $_GET['id'] : NULL;
+// $filename = isset($_GET['id']) ? $_GET['id'] : NULL;
 
-if (!empty($filename)) {
-    $delete = unlink("photo/" . $filename);
-    if($delete){
-        $result = mysql_query("DELETE FROM crud where file="'. mysql_real_escape_string($filename)."' limit 1;")";
-        //header("Location:succes_page.php");
-            echo "success";
-    }else{
-        //header("Location:failure_page.php");
-        echo "error";
+// if (!empty($filename)) {
+//     $delete = unlink("photo/" . $filename);
+//     if($delete){
+//         $result = mysql_query("DELETE `file` FROM `crud` where `file`="$filename limit 1;")";
+//         //header("Location:succes_page.php");
+//             echo "success";
+//     }else{
+//         //header("Location:failure_page.php");
+//         echo "error";
+//     }
+// }
+// else
+// {
+//      //header("Location:failure_page.php");
+//     echo "......error....";
+// }
+
+
+
+ 
+ 
+if(isset($_GET['id']) && $_GET['image'])
+    {
+        $getIamgeName = $_GET['image'];
+        $getId = $_GET['id'];
+        $selectSql = "SELECT * FROM `crud` WHERE `id`='$getId' , `file`='$file'";
+        $result1 = $conn->query($selectSql);
+        $result1->fetch_assoc();
+        
+        
+                    $createDeletePath = "photo/".$getIamgeName;
+        
+                    if(unlink($createDeletePath))
+                    {
+                        $deleteSql = "UPDATE `crud` SET `file`='$getImageName' WHERE `id`='$getId'";
+                        //$deleteSql = "DELETE  FROM `crud` where `file`='$getIamgeName' ";
+                        $rsDelete = mysqli_query($conn, $deleteSql);    
+                        
+                        if ($rsDelete == TRUE) 
+                        {
+
+                            echo "Remove file successfully.";
+
+                        }
+                        else
+                        {
+
+                            echo "Error:" . $deleteSql . "<br>" . $conn->error;
+
+                        }
+                    }
+           
+        
     }
-}
-else
-{
-     //header("Location:failure_page.php");
-    echo "......error....";
-}
-
 
 ?> 
 
