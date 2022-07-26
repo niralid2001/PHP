@@ -62,15 +62,16 @@
 
 
  
- 
+
 if(isset($_GET['id']) && $_GET['image'])
     {
         $getIamgeName = $_GET['image'];
         $getId = $_GET['id'];
-        $selectSql = "SELECT * FROM `crud` WHERE `id`='$getId' , `file`='$file'";
+        $selectSql = "SELECT * FROM `crud` WHERE `id`='$getId' ";
         $result1 = $conn->query($selectSql);
-        $result1->fetch_assoc();
-        
+        $result=$result1->fetch_assoc();
+        // print_r($result);
+        // exit();
         
                     $createDeletePath = "photo/".$getIamgeName;
         
