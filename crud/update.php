@@ -123,52 +123,11 @@ if (isset($_GET['id']))
                            ?>
                            <input type="hidden" name="images[]" value="<?php echo $image;?>">
                           <img src="<?php echo 'photo/'.$image;?>" width="100" />
-                           <a href="remove.php?image=<?php echo $image; ?>&id=<?php echo $id; ?>" >Remove</a>   
+                           <a href="remove.php?image=<?php echo "$image"; ?>&id=<?php echo $id; ?>" onclick="return confirm('Are you sure to remove all files ?')">Remove</a>   
                           <!-- <input type="button" name="btn" value="remove" >  -->
-                              <?php 
-                               // if(isset($_POST['btn']))
-                          //  {         
-                             //   $image=unlink('files');    
-                              //  if($image){  
-                              //  echo "File deleted successfully";    
-                              //  }else{  
-                              //  echo "error!";    
-                              //  }  
-                            //}
 
-
-                               // if(isset($_POST['btn']))
-                               //  {
-                               //      $images = $_GET['images'];
-                                //        $id = $_POST['id'];
-                               //      sql1="UPDATE `crud` SET `file`='".$images."' WHERE `id`='$id'";
-                               //      $result = $conn->query($sql1);
-
-                               //       if ($result == TRUE) 
-                               //       {
-
-                               //          echo "deleted";
-
-                               //      }
-                               //  }
-
-                            // if (isset($_POST['btn'])) 
-                            // {
-                            // $file = $_POST['image'];
-                            // if (!unlink($file))
-                            //   {
-                            //   echo ("Error deleting $file");
-                            //   }
-                            // else
-                            //   {
-                            //   echo ("Deleted $file");
-                            //   }
-                            // }
-
- 
-                              ?>
-                          
                           <?php } ?>
+                          
         </td></td></tr>
         <tr><td><input type="submit" name="update" value="update"></td></tr>
         </table>

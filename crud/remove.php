@@ -77,14 +77,16 @@ if(isset($_GET['id']) && $_GET['image'])
         
                     if(unlink($createDeletePath))
                     {
-                        $deleteSql = "UPDATE `crud` SET `file`='$getImageName' WHERE `id`='$getId'";
-                        //$deleteSql = "DELETE  FROM `crud` where `file`='$getIamgeName' ";
+                         $deleteSql = "UPDATE `crud` SET `file`='$getImageName' WHERE `id`='$getId'";
                         $rsDelete = mysqli_query($conn, $deleteSql);    
                         
                         if ($rsDelete == TRUE) 
                         {
-
+                            // $d = "DELETE  FROM `crud` where `file`='$getIamgeName' ";
+                            // $rs = mysqli_query($conn, $d);
                             echo "Remove file successfully.";
+                            // header('Location:view1.php');
+
 
                         }
                         else
@@ -93,8 +95,13 @@ if(isset($_GET['id']) && $_GET['image'])
                             echo "Error:" . $deleteSql . "<br>" . $conn->error;
 
                         }
+                        $array = [$getIamgeName];
+                        $a=array_filter($array);
+                        //$a = array_splice($array, 0);
+                        print_r($a);
+                        exit();
+
                     }
-           
         
     }
 

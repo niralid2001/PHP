@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2022 at 03:19 PM
+-- Generation Time: Jul 27, 2022 at 01:36 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -56,7 +56,7 @@ CREATE TABLE `crud` (
   `gender` varchar(100) NOT NULL,
   `hobbies` varchar(1000) NOT NULL,
   `city` varchar(1000) NOT NULL,
-  `file` varchar(1000) NOT NULL
+  `file` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -64,11 +64,8 @@ CREATE TABLE `crud` (
 --
 
 INSERT INTO `crud` (`id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
-(45, 'hello', 78, 'male', 'dancing', 'surat', 'Lighthouse1658398108.jpg,Penguins1658398109.jpg,Tulips1658398109.jpg'),
-(46, 'land', 23, 'male', 'playing', 'vadodra', 'Hydrangeas1658313608.jpg,Tulips1658313608.jpg'),
-(47, 'aaaa', 23, 'male', 'playing', 'surat', 'Hydrangeas1658317232.jpg,Jellyfish1658317232.jpg,Koala1658317232.jpg'),
-(54, 'cghfchg', 45, 'male', 'dancing', 'surat', 'Koala1658489870.jpg,Penguins1658489870.jpg,Tulips1658489870.jpg,Chrysanthemum1658493317.jpg,Desert1658493317.jpg,Hydrangeas1658493441.jpg'),
-(55, 'hello', 34, 'male', 'playing,singing,dancing', 'vadodra', '');
+(90, 'hiii', 34, 'male', 'playing,dancing', 'surat', ',Lighthouse1658920845.jpg,Penguins1658920845.jpg'),
+(92, 'hello', 23, 'male', 'singing,dancing', 'rajkot', '');
 
 -- --------------------------------------------------------
 
@@ -198,7 +195,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `form`
