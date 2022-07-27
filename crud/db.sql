@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2022 at 01:36 PM
+-- Generation Time: Jul 27, 2022 at 02:21 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -64,8 +64,11 @@ CREATE TABLE `crud` (
 --
 
 INSERT INTO `crud` (`id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
-(90, 'hiii', 34, 'male', 'playing,dancing', 'surat', ',Lighthouse1658920845.jpg,Penguins1658920845.jpg'),
-(92, 'hello', 23, 'male', 'singing,dancing', 'rajkot', '');
+(95, 'hiii', 34, 'male', 'playing,singing', 'ahemdabad', 'Chrysanthemum1658923560.jpg,Desert1658923560.jpg'),
+(96, 'earth', 22, 'male', 'singing,dancing', 'surat', 'Hydrangeas1658923580.jpg,Koala1658923580.jpg'),
+(97, 'hello', 24, 'female', 'singing', 'vadodra', 'Penguins1658923606.jpg,Tulips1658923606.jpg'),
+(98, 'jellyfish', 45, 'female', 'dancing', 'ahemdabad', 'Jellyfish1658923631.jpg'),
+(101, 'land', 24, 'female', 'singing,dancing', 'surat', 'Chrysanthemum1658924328.jpg,Tulips1658924328.jpg');
 
 -- --------------------------------------------------------
 
@@ -195,7 +198,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `form`

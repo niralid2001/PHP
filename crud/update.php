@@ -126,8 +126,9 @@ if (isset($_GET['id']))
                              
                           <!-- <input type="button" name="btn" value="remove" >  -->
 
-                          <?php } ?>
-                           <a href="remove.php?image=<?php echo "$image"; ?>&id=<?php echo $id; ?>" onclick="return confirm('Are you sure to remove all files ?')">Remove</a>
+                          <?php } ?><br>
+                          Click here to remove files<br>
+                           <a href="remove.php?image=<?php echo "$image"; ?>&id=<?php echo $id; ?>" onclick="return confirm('Are you sure to remove all files ?')">Remove all files</a>
         </td></td></tr>
         <tr><td><input type="submit" name="update" value="update"></td></tr>
         </table>
