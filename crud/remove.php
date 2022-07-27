@@ -95,11 +95,11 @@ if(isset($_GET['id']) && $_GET['image'])
                             echo "Error:" . $deleteSql . "<br>" . $conn->error;
 
                         }
-                        $array = [$getIamgeName];
-                        $a=array_filter($array);
-                        //$a = array_splice($array, 0);
-                        print_r($a);
-                        exit();
+                        // $array = [$getIamgeName];
+                        // $a=array_filter($array);
+                        // //$a = array_splice($array, 0);
+                        // print_r($a);
+                        // exit();
 
                     }
         

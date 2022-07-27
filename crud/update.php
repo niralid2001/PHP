@@ -123,11 +123,11 @@ if (isset($_GET['id']))
                            ?>
                            <input type="hidden" name="images[]" value="<?php echo $image;?>">
                           <img src="<?php echo 'photo/'.$image;?>" width="100" />
-                           <a href="remove.php?image=<?php echo "$image"; ?>&id=<?php echo $id; ?>" onclick="return confirm('Are you sure to remove all files ?')">Remove</a>   
+                             
                           <!-- <input type="button" name="btn" value="remove" >  -->
 
                           <?php } ?>
-                          
+                           <a href="remove.php?image=<?php echo "$image"; ?>&id=<?php echo $id; ?>" onclick="return confirm('Are you sure to remove all files ?')">Remove</a>
         </td></td></tr>
         <tr><td><input type="submit" name="update" value="update"></td></tr>
         </table>
