@@ -1,7 +1,9 @@
 <?Php
 session_start();
-if(isset($_SESSION["user"]))
-{ 
+if(!isset($_SESSION['user']))
+{
+    header('Location:login.php');
+} 
         $conn=mysqli_connect('localhost','root','','db');
         $id=$_GET['id'];
         if(!is_numeric($id))
@@ -43,5 +45,5 @@ if(isset($_SESSION["user"]))
             }
 
          }
-}
+
  ?> 

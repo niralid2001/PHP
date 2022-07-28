@@ -1,7 +1,9 @@
 <center><?php 
 session_start();
-if(isset($_SESSION["user"]))
-{ 
+if(!isset($_SESSION['user']))
+{
+  header('Location:login.php');
+} 
     $conn=mysqli_connect('localhost','root','','db');
      $result = mysqli_query($conn,"SELECT * FROM crud"); 
 
@@ -191,7 +193,5 @@ if(isset($_SESSION["user"]))
       </script>  
     </body>
     </html>
-    <?PHP 
-}
-    ?>
+
 </center>

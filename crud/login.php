@@ -11,7 +11,7 @@ session_start();
 		if($row == 1)
 		{
 			//echo "login successfully";
-			$_SESSION["user"]=$email;
+			$_SESSION['user']=$email;
 			header('Location:crud.php');
 			exit();
 		}
@@ -37,7 +37,7 @@ session_start();
 		<tr><td>Email :</td><td> <input type="text" name="email" ></td></tr><br>
 		<tr><td>password :</td><td> <input type="password" name="password" ></td></tr><br>
 		
-		<tr><td><input type="reset" ></td><td><input type="submit" name="sub" id="sub"></td></tr>
+		<tr><td><input type="reset" ></td><td><input type="submit" name="sub" id="sub">&nbsp;<a href="logout.php">logout</a></td></tr>
 		</table>
 		 
 </form>

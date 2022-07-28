@@ -1,7 +1,9 @@
 <?php
 session_start();
-if(isset($_SESSION["user"]))
+if(!isset($_SESSION['user']))
 {
+    header('Location:login.php');
+}
         $conn=mysqli_connect('localhost','root','','db');
          
         $sql = "SELECT id,name,age,gender,hobbies,city,file FROM crud";
@@ -45,6 +47,7 @@ if(isset($_SESSION["user"]))
                                 <a href="update.php?id=<?php echo $user["id"]; ?>">Update</a>
                                 <a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are yosure?')">Delete</a>
                             </td>
+                            &nbsp;<a href="logout.php">logout</a
                         </tr>
                     <?php } ?>
 
@@ -60,6 +63,3 @@ if(isset($_SESSION["user"]))
             $('#tblUser').DataTable();
         } );
         </script>
-<?php 
-}
-?>

@@ -1,7 +1,9 @@
 <?php 
 session_start();
-if(isset($_SESSION["user"]))
-{ 
+if(!isset($_SESSION['user']))
+{
+    header('Location:login.php');
+}
         $conn=mysqli_connect('localhost','root','','db'); 
 
          if(isset($_GET['id']) && $_GET['image'])
@@ -99,6 +101,6 @@ if(isset($_SESSION["user"]))
                     //      //header("Location:failure_page.php");
                     //     echo "......error....";
                     // }
-}
+
 ?> 
 

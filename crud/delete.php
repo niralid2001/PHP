@@ -2,8 +2,10 @@
 
 <?php 
 session_start();
-if(isset($_SESSION["user"]))
-{ 
+if(!isset($_SESSION['user']))
+{
+    header('Location:login.php');
+}      
         $conn=mysqli_connect('localhost','root','','db'); 
 
         if (isset($_GET['id'])) 
@@ -27,6 +29,6 @@ if(isset($_SESSION["user"]))
             header('Location:view1.php');
 
         } 
-}
+
 
 ?>

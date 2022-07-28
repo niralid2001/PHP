@@ -1,7 +1,9 @@
 <?php
 session_start();
-if(isset($_SESSION["user"]))
-{ 
+if(!isset($_SESSION['user']))
+{
+    header('Location:login.php');
+} 
     $conn=mysqli_connect('localhost','root','','db');
     $searchErr = '';
     $employee_details='';
@@ -43,5 +45,5 @@ if(isset($_SESSION["user"]))
             echo "no recorde found";
         }
     }
-}
+
 ?>
