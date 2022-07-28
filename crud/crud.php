@@ -3,7 +3,7 @@
 session_start();
 if(isset($_SESSION["user"]))
 { 
-		include_once'db.php';
+		$conn=mysqli_connect('localhost','root','','db');
 		//$result = mysqli_query($conn,"SELECT * FROM crud");
 		$sub = "submit";
 

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-	include_once "db.php";
+	$conn=mysqli_connect('localhost','root','','db');
 	if(isset($_POST['sub']))
 	{
 		$email = $_POST['email'];

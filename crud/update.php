@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION["user"]))
 {
-        include_once'db.php';
+        $conn=mysqli_connect('localhost','root','','db');
 
             
             if (isset($_POST['update'])) 
