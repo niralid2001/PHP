@@ -10,7 +10,7 @@ if(!$conn){
 }
 else
 {  
-   mysqli_select_db($conn, 'Pagination');  
+   mysqli_select_db($conn, 'web');  
 } 
    
 

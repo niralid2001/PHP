@@ -1,0 +1,46 @@
+<?php 
+session_start();
+	include_once "db.php";
+	if(isset($_POST['sub']))
+	{
+		$email = $_POST['email'];
+		$ps = $_POST['password'];
+
+		$query = mysqli_query($conn, "select * from login where email='$email' and password='$ps'");
+		$row = mysqli_num_rows($query);
+		if($row == 1)
+		{
+			//echo "login successfully";
+			$_SESSION["user"]=$email;
+			header('Location:crud.php');
+			exit();
+		}
+		else 
+		{
+			echo "<script>alert(login failed);</script>";
+		}
+		
+	}
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login User</title>
+	<script src="http://localhost/PHP-Training/crud/js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<form method="POST" enctype="multipart/form-data" name="form">
+		<table align="center">
+		<tr><td>Email :</td><td> <input type="text" name="email" ></td></tr><br>
+		<tr><td>password :</td><td> <input type="password" name="password" ></td></tr><br>
+		
+		<tr><td><input type="reset" ></td><td><input type="submit" name="sub" id="sub"></td></tr>
+		</table>
+		 
+</form>
+
+</body>
+</html>
