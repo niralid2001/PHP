@@ -44,13 +44,14 @@ if(!isset($_SESSION['user']))
                                   <?php } ?>
                              </td>
                              <td>
-                                <a href="update.php?id=<?php echo $user["id"]; ?>">Update</a>
+                                <a href="update.php?id=<?php echo $user["id"]; ?>">Update</a>&nbsp;&nbsp;
                                 <a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are yosure?')">Delete</a>
                             </td>
-                            &nbsp;<a href="logout.php">logout</a
                         </tr>
-                    <?php } ?>
 
+                    <?php } ?>
+                    <a href="logout.php"><font size="6">logout</font></a><br><br>
+                    <center><a href="crud.php"><font size="4">Add new data </font></a></center>
                 <?php } ?>       
                             
             </tbody>

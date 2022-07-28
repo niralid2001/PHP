@@ -12,7 +12,7 @@ session_start();
 		{
 			//echo "login successfully";
 			$_SESSION['user']=$email;
-			header('Location:crud.php');
+			header('Location:view1.php');
 			exit();
 		}
 		else 
@@ -37,7 +37,7 @@ session_start();
 		<tr><td>Email :</td><td> <input type="text" name="email" ></td></tr><br>
 		<tr><td>password :</td><td> <input type="password" name="password" ></td></tr><br>
 		
-		<tr><td><input type="reset" ></td><td><input type="submit" name="sub" id="sub">&nbsp;<a href="logout.php">logout</a></td></tr>
+		<tr><td><input type="reset" ></td><td><input type="submit" name="sub" id="sub" value="login">&nbsp;<a href="logout.php">logout</a></td></tr>
 		</table>
 		 
 </form>

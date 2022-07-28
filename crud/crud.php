@@ -1,7 +1,6 @@
 
 <?php
 session_start();
-print_r($_SESSION);
 if(!isset($_SESSION['user']))
 {
 	header('Location:login.php');
@@ -136,7 +135,7 @@ if(!isset($_SESSION['user']))
 		  							<option value="vadodra">Vadodra</option>
 								</select></td></tr><br>
 				<tr><td>file : </td><td><input type="file" name="files[]" value="<?php echo "$file_name"?>" multiple id="files"></td></tr><br>
-				<tr><td><input type="reset" ></td><td><input type="submit" name="submit" id="button">&nbsp;<a href="logout.php">logout</a</td></tr>
+				<tr><td><input type="reset" ></td><td><input type="submit" name="submit" id="button">&nbsp;<a href="logout.php">logout</a></td></tr>
 				</table>
 				 
 		</form>

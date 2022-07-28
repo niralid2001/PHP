@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2022 at 02:21 PM
+-- Generation Time: Jul 28, 2022 at 03:07 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -41,7 +41,8 @@ INSERT INTO `category` (`catid`, `catname`) VALUES
 (4, 'cookies'),
 (5, 'cold-drinks'),
 (6, 'ice-cream'),
-(7, 'pizza');
+(7, 'pizza'),
+(8, 'snacks');
 
 -- --------------------------------------------------------
 
@@ -65,10 +66,10 @@ CREATE TABLE `crud` (
 
 INSERT INTO `crud` (`id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
 (95, 'hiii', 34, 'male', 'playing,singing', 'ahemdabad', 'Chrysanthemum1658923560.jpg,Desert1658923560.jpg'),
-(96, 'earth', 22, 'male', 'singing,dancing', 'surat', 'Hydrangeas1658923580.jpg,Koala1658923580.jpg'),
-(97, 'hello', 24, 'female', 'singing', 'vadodra', 'Penguins1658923606.jpg,Tulips1658923606.jpg'),
-(98, 'jellyfish', 45, 'female', 'dancing', 'ahemdabad', 'Jellyfish1658923631.jpg'),
-(101, 'land', 24, 'female', 'singing,dancing', 'surat', 'Chrysanthemum1658924328.jpg,Tulips1658924328.jpg');
+(101, 'land', 24, 'female', 'singing,dancing', 'surat', 'Chrysanthemum1658924328.jpg,Tulips1658924328.jpg'),
+(102, 'world', 45, 'male', 'playing', 'rajkot', 'images1658924940.jpg,margherita1658924940.jpg'),
+(103, 'aaaa', 100, 'female', 'singing', 'vadodra', 'Koala1658924984.jpg,Penguins1658924984.jpg'),
+(104, 'hiii', 34, 'male', 'playing,singing', 'rajkot', 'Jellyfish1659010791.jpg,Koala1659010791.jpg,Hydrangeas1659010801.jpg');
 
 -- --------------------------------------------------------
 
@@ -130,6 +131,26 @@ INSERT INTO `form` (`id`, `email`, `password`, `twitter`, `github`, `website`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `log_id` int(10) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`log_id`, `email`, `password`) VALUES
+(1, 'user@gmail.com', '123'),
+(4, 'user1@gmail.com', '456');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
@@ -179,6 +200,12 @@ ALTER TABLE `form`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`log_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -192,19 +219,25 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `catid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `catid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `form`
 --
 ALTER TABLE `form`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product`
