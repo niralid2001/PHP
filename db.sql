@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2022 at 03:07 PM
+-- Generation Time: Jul 29, 2022 at 02:51 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -137,16 +137,18 @@ INSERT INTO `form` (`id`, `email`, `password`, `twitter`, `github`, `website`, `
 CREATE TABLE `login` (
   `log_id` int(10) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `admintype` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`log_id`, `email`, `password`) VALUES
-(1, 'user@gmail.com', '123'),
-(4, 'user1@gmail.com', '456');
+INSERT INTO `login` (`log_id`, `email`, `password`, `admintype`) VALUES
+(1, 'admin1@gmail.com', '123', 'admin1'),
+(2, 'admin2@gmail.com', '456', 'admin2'),
+(3, 'superadmin@gmail.com', '123456', 'superadmin');
 
 -- --------------------------------------------------------
 

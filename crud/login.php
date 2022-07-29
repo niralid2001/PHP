@@ -7,22 +7,41 @@ session_start();
 		$ps = $_POST['password'];
 
 		$query = mysqli_query($conn, "select * from login where email='$email' and password='$ps'");
-		$row = mysqli_num_rows($query);
-		if($row == 1)
+		$row = mysqli_fetch_array($query);
+		if($row['admintype']=="admin1")
 		{
 			//echo "login successfully";
+			// $_SESSION['user']=$email;
+			// header('Location:view1.php');
+			// exit();
+			echo "admin1's dashboard";
+		}
+		elseif($row['admintype']=="admin2")
+		{
+			//echo "login successfully";
+			// $_SESSION['user']=$email;
+			// header('Location:view1.php');
+			// exit();
+			echo "admin2's dashboard";
+		}
+		elseif($row['admintype']=="superadmin")
+		{
+			echo "login successfully";
 			$_SESSION['user']=$email;
 			header('Location:view1.php');
 			exit();
+			
 		}
 		else 
 		{
-			echo "<script>alert(login failed);</script>";
+			//echo "<script>alert(login failed);</script>";
+			echo "login failed";
 		}
 		
 	}
 
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,3 +63,5 @@ session_start();
 
 </body>
 </html>
+
+<!-- https://youtu.be/wODW8RLBPt0 -->

@@ -6,7 +6,7 @@ if(!isset($_SESSION['user']))
 }
         $conn=mysqli_connect('localhost','root','','db');
          
-        $sql = "SELECT id,name,age,gender,hobbies,city,file FROM crud";
+        $sql = "SELECT id,name,age,gender,hobbies,city,file FROM crud ";
         $result = $conn->query($sql);
         $arr_users = [];
         if ($result->num_rows > 0) {
