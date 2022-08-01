@@ -10,19 +10,19 @@ session_start();
 		$row = mysqli_fetch_array($query);
 		if($row['admintype']=="admin1")
 		{
-			//echo "login successfully";
-			// $_SESSION['user']=$email;
-			// header('Location:view1.php');
-			// exit();
-			echo "admin1's dashboard";
+			echo "login successfully";
+			$_SESSION['user']=$email;
+			header('Location:admin1_view.php');
+			exit();
+			//echo "admin1's dashboard";
 		}
 		elseif($row['admintype']=="admin2")
 		{
-			//echo "login successfully";
-			// $_SESSION['user']=$email;
-			// header('Location:view1.php');
-			// exit();
-			echo "admin2's dashboard";
+			echo "login successfully";
+			$_SESSION['user']=$email;
+			header('Location:admin2_view.php');
+			exit();
+			//echo "admin2's dashboard";
 		}
 		elseif($row['admintype']=="superadmin")
 		{

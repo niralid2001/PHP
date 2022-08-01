@@ -36,5 +36,10 @@ $conn = mysqli_connect('localhost','root','','db');
 	// }
 	// admin3 merge table 1 and table 2 
 	// select * from table 1 join table 2 using column
-
+	// admin1 table t1
+	// admi2 table t2
+	// admin 3 ...select * form table t1 join t2 using id
+	// select * from t2 cross join t1 
+	// select * from t1 cross join t2
+	// select * from t1 full join t2 using id
 ?>
