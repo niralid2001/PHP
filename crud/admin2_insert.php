@@ -49,7 +49,7 @@ if(!isset($_SESSION['user']))
 						" . mysqli_error($conn);
 				}
 				
-			header('Location:admin1_view.php');
+			header('Location:admin2_view.php');
 			}
 		?>
 		<!DOCTYPE html>
