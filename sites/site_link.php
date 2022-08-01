@@ -7,6 +7,10 @@
 </head>
 <body>
 	<!-- multi admin -->
-	<a href="https://webscodex.com/creating-multi-user-role-based-admin-using-php-mysql-and-bootstrap/"></a>
+	<a href="https://webscodex.com/creating-multi-user-role-based-admin-using-php-mysql-and-bootstrap/">Webs Codex</a></br>
+	<a href="https://www.cloudways.com/blog/admin-dashboard-template-php-boostrap-4/">cloudways</a></br>
+	<a href="https://stackoverflow.com/">stack overflow</a>
+	
+	
 </body>
 </html>

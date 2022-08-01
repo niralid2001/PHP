@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2022 at 02:51 PM
+-- Generation Time: Aug 01, 2022 at 02:45 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -66,10 +66,10 @@ CREATE TABLE `crud` (
 
 INSERT INTO `crud` (`id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
 (95, 'hiii', 34, 'male', 'playing,singing', 'ahemdabad', 'Chrysanthemum1658923560.jpg,Desert1658923560.jpg'),
-(101, 'land', 24, 'female', 'singing,dancing', 'surat', 'Chrysanthemum1658924328.jpg,Tulips1658924328.jpg'),
+(101, 'land', 24, 'male', 'singing,dancing', 'surat', 'Chrysanthemum1658924328.jpg,Tulips1658924328.jpg'),
 (102, 'world', 45, 'male', 'playing', 'rajkot', 'images1658924940.jpg,margherita1658924940.jpg'),
-(103, 'aaaa', 100, 'female', 'singing', 'vadodra', 'Koala1658924984.jpg,Penguins1658924984.jpg'),
-(104, 'hiii', 34, 'male', 'playing,singing', 'rajkot', 'Jellyfish1659010791.jpg,Koala1659010791.jpg,Hydrangeas1659010801.jpg');
+(103, 'aaaa', 100, 'male', 'singing', 'vadodra', 'Koala1658924984.jpg,Penguins1658924984.jpg'),
+(104, 'hiii', 34, 'male', 'playing,singing', 'rajkot', '');
 
 -- --------------------------------------------------------
 
