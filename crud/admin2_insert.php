@@ -126,7 +126,7 @@ if(!isset($_SESSION['user']))
 				<input type="radio" name="gender" value="female" >female</td></tr><br>
 				<tr><td>hobbies : </td><td><input type="checkbox" name="hobbies[]" value="playing">Playing
 				<input type="checkbox" name="hobbies[]" value="singing" >singing
-				<input type="checkbox" name="hobbies[]" value="dancing" >dancing</td></tr><br>
+				<input type="checkbox" name="hobbies[]" value="dancind" >dancing</td></tr><br>
 				<tr><td>city : </td><td> <select name="city">
 									<option disabled selected value="-1">[select city]</option>
 		  							<option value="rajkot">Rajkot</option>
