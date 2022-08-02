@@ -5,17 +5,17 @@ if(!isset($_SESSION['user']))
     header('Location:login.php');
 }
         $conn=mysqli_connect('localhost','root','','db');
-        if (isset($_GET['log_id']))
-        {
-            $log_id = $_GET['log_id'];
-            $sql = "SELECT * FROM crud WHERE log_id = '$log_id' ";
+        // if (isset($_GET['log_id']))
+        // {
+        //     $log_id = $_GET['log_id'];
+            $sql = "SELECT * FROM crud ";
             // id,name,age,gender,hobbies,city,file
             $result = $conn->query($sql);
             $arr_users = [];
             if ($result->num_rows > 0) {
                 $arr_users = $result->fetch_all(MYSQLI_ASSOC);
             }
-        }
+        // }
         ?>
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
@@ -56,9 +56,10 @@ if(!isset($_SESSION['user']))
                         </tr>
 
                     <?php } ?>
-                    <a href="logout.php"><font size="6">logout</font></a><br><br>
-                    <center><a href="crud.php"><font size="4">Add new data </font></a></center>
-                <?php } ?>       
+                    
+                <?php } ?>  
+                <a href="logout.php"><font size="6">logout</font></a><br><br>
+                    <center><a href="crud.php"><font size="4">Add new data </font></a></center>     
                             
             </tbody>
         </table>
