@@ -8,23 +8,23 @@ session_start();
 
 		$query = mysqli_query($conn, "select * from login where email='$email' and password='$ps'");
 		$row = mysqli_fetch_array($query);
-		if($row['admintype']=="admin1")
+		if($row['log_id']=="1")
 		{
 			echo "login successfully";
 			$_SESSION['user']=$email;
-			header('Location:admin1_view.php');
+			header('Location:view1.php');
 			exit();
 			//echo "admin1's dashboard";
 		}
-		elseif($row['admintype']=="admin2")
+		elseif($row['log_id']=="2")
 		{
 			echo "login successfully";
 			$_SESSION['user']=$email;
-			header('Location:admin2_view.php');
+			header('Location:view1.php');
 			exit();
 			//echo "admin2's dashboard";
 		}
-		elseif($row['admintype']=="superadmin")
+		elseif($row['log_id']=="3")
 		{
 			echo "login successfully";
 			$_SESSION['user']=$email;

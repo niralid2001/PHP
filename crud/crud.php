@@ -12,6 +12,7 @@ if(!isset($_SESSION['user']))
 
 		if(isset($_POST['submit']))
 			{
+				$log_id = $_POST['log_id'];
 				$name = $_POST['nm'];
 				$age = $_POST['age'];
 				$gender = $_POST['gender'];
@@ -37,7 +38,7 @@ if(!isset($_SESSION['user']))
 		  //     	$chk .= $chk1.",";  
 		  //  		}
 
-				$qry = "INSERT INTO  `crud`(`name` ,  `age` ,`gender` ,`hobbies` ,`city` , `file`) VALUES ('$name','$age','$gender','$hobbies','$city','".implode(",",$file)."')";
+				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city` , `file`) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city','".implode(",",$file)."') ";
 				if (mysqli_query($conn, $qry)) 
 				{
 					
@@ -120,6 +121,23 @@ if(!isset($_SESSION['user']))
 		</script>
 			<form method="POST" enctype="multipart/form-data" name="form">
 				<table align="center">
+					<select name="log_id" class="form-control" required>
+                                    <?php
+                                    $sql1="select * from login";
+                                    $all_logid=mysqli_query($conn,$sql1);
+                                     while ($log_id = mysqli_fetch_array(
+                                                $all_logid,MYSQLI_ASSOC)):;
+                                                
+                                    ?>
+                                    
+                                    <option value="<?php echo $log_id["log_id"];?>">
+                                      <?php echo $log_id["admintype"];
+                                        ?>
+                                    </option>
+                                    <?php 
+                                        endwhile;
+                                    ?>
+                                </select>
 				<tr><td>Name :</td><td> <input type="text" name="nm" ></td></tr><br>
 				<tr><td>Age :</td><td> <input type="text" name="age" ></td></tr><br>
 				<tr><td>gender :</td><td> <input type="radio" name="gender" value="male" >male

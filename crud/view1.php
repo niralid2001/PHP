@@ -5,18 +5,23 @@ if(!isset($_SESSION['user']))
     header('Location:login.php');
 }
         $conn=mysqli_connect('localhost','root','','db');
-         
-        $sql = "SELECT id,name,age,gender,hobbies,city,file FROM crud ";
-        $result = $conn->query($sql);
-        $arr_users = [];
-        if ($result->num_rows > 0) {
-            $arr_users = $result->fetch_all(MYSQLI_ASSOC);
+        if (isset($_GET['log_id']))
+        {
+            $log_id = $_GET['log_id'];
+            $sql = "SELECT * FROM crud WHERE log_id = '$log_id' ";
+            // id,name,age,gender,hobbies,city,file
+            $result = $conn->query($sql);
+            $arr_users = [];
+            if ($result->num_rows > 0) {
+                $arr_users = $result->fetch_all(MYSQLI_ASSOC);
+            }
         }
         ?>
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
         <table id="tblUser">
             <thead>
+                <th>log_id</th>
                 <th>id</th>
                 <th>name</th>
                 <th>age</th>
@@ -30,6 +35,7 @@ if(!isset($_SESSION['user']))
                 <?php if(!empty($arr_users)) { ?>
                     <?php foreach($arr_users as $user) { ?>
                         <tr>
+                            <td><?php echo $user['log_id']; ?></td>
                             <td><?php echo $user['id']; ?></td>
                             <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['age']; ?></td>
