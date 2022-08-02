@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2022 at 02:45 PM
+-- Generation Time: Aug 02, 2022 at 03:14 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -51,6 +51,7 @@ INSERT INTO `category` (`catid`, `catname`) VALUES
 --
 
 CREATE TABLE `crud` (
+  `log_id` int(10) NOT NULL,
   `id` int(10) NOT NULL,
   `name` varchar(500) NOT NULL,
   `age` int(100) NOT NULL,
@@ -64,12 +65,11 @@ CREATE TABLE `crud` (
 -- Dumping data for table `crud`
 --
 
-INSERT INTO `crud` (`id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
-(95, 'hiii', 34, 'male', 'playing,singing', 'ahemdabad', 'Chrysanthemum1658923560.jpg,Desert1658923560.jpg'),
-(101, 'land', 24, 'male', 'singing,dancing', 'surat', 'Chrysanthemum1658924328.jpg,Tulips1658924328.jpg'),
-(102, 'world', 45, 'male', 'playing', 'rajkot', 'images1658924940.jpg,margherita1658924940.jpg'),
-(103, 'aaaa', 100, 'male', 'singing', 'vadodra', 'Koala1658924984.jpg,Penguins1658924984.jpg'),
-(104, 'hiii', 34, 'male', 'playing,singing', 'rajkot', '');
+INSERT INTO `crud` (`log_id`, `id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
+(1, 117, 'aaa', 11, 'male', 'playing', 'rajkot', 'Chrysanthemum1659443467.jpg'),
+(2, 118, 'bbb', 22, 'female', 'singing', 'surat', 'Desert1659443486.jpg'),
+(2, 119, 'ccc', 33, 'male', 'dancing', 'ahemdabad', 'Hydrangeas1659443507.jpg'),
+(3, 120, 'ddd', 44, 'female', 'playing,singing,dancing', 'vadodra', 'Jellyfish1659443528.jpg');
 
 -- --------------------------------------------------------
 
@@ -227,7 +227,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `form`

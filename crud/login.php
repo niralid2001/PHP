@@ -8,30 +8,15 @@ session_start();
 
 		$query = mysqli_query($conn, "select * from login where email='$email' and password='$ps'");
 		$row = mysqli_fetch_array($query);
-		if($row['log_id']=="1")
+		if(mysqli_num_rows($query)>0)
 		{
-			echo "login successfully";
-			$_SESSION['user']=$email;
+			//echo "login successfully";
+			$_SESSION['user']=$row;
 			header('Location:view1.php');
 			exit();
 			//echo "admin1's dashboard";
 		}
-		elseif($row['log_id']=="2")
-		{
-			echo "login successfully";
-			$_SESSION['user']=$email;
-			header('Location:view1.php');
-			exit();
-			//echo "admin2's dashboard";
-		}
-		elseif($row['log_id']=="3")
-		{
-			echo "login successfully";
-			$_SESSION['user']=$email;
-			header('Location:view1.php');
-			exit();
-			
-		}
+		
 		else 
 		{
 			//echo "<script>alert(login failed);</script>";
