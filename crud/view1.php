@@ -5,9 +5,8 @@ if(!isset($_SESSION['user']))
     header('Location:login.php');
 }
 
-        $conn=mysqli_connect('localhost','root','','db');
-        // if (isset($_GET['log_id']))
-        // {
+            $conn=mysqli_connect('localhost','root','','db');
+            $log_id = $_SESSION['user']['log_id'];
             $admintype = $_SESSION['user']['admintype'];
             if($admintype == "superadmin")
             {
@@ -16,18 +15,15 @@ if(!isset($_SESSION['user']))
             }
             else
             {
-                $log_id = $_SESSION['user']['log_id'];
-                $sql = "SELECT * FROM crud WHERE log_id = '$log_id' ";
-                // id,name,age,gender,hobbies,city,file
-                
-               
+                $sql = "SELECT * FROM crud WHERE log_id = '$log_id' "; 
             }
             $result = $conn->query($sql);
-             $arr_users = [];
-                if ($result->num_rows > 0) {
+            $arr_users = [];
+            if ($result->num_rows > 0) 
+            {
                     $arr_users = $result->fetch_all(MYSQLI_ASSOC);
-                }
-        ?>
+            }
+?>
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
         <table id="tblUser">
