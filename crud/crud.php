@@ -31,14 +31,16 @@ if(!isset($_SESSION['user']))
 			}
 		   	 	$tmp_name=$_FILES['files']['tmp_name'][$i];   
 		   	 	$hobbies = implode(",",$hobbies);
-		      	 	//$hobbies = explode(",",$hobbies);
-		  //     	$chk="";  
-				// foreach($hobbies as $chk1)  
-		  //  		{  
+		  //    $chk="";  
+		  //	foreach($hobbies as $chk1)  
+		  //  	{  
 		  //     	$chk .= $chk1.",";  
-		  //  		}
+		  //  	}
 
 				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city` , `file`) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city','".implode(",",$file)."') ";
+				//$qry1 = "INSERT INTO `image`(`image`) VALUES ('$file')";
+				mysqli_query($conn,$qry1);
+
 				if (mysqli_query($conn, $qry)) 
 				{
 					
@@ -121,23 +123,32 @@ if(!isset($_SESSION['user']))
 		</script>
 			<form method="POST" enctype="multipart/form-data" name="form">
 				<table align="center">
-					<select name="log_id" class="form-control" required>
+				
+                 <?php
+
+           		 	$admintype = $_SESSION['user']['admintype'];
+					if($admintype == "superadmin")
+		            { ?>
+		                 <tr><td><select name="log_id1"  required>
                                     <?php
-                                    $sql1="select * from login";
-                                    $all_logid=mysqli_query($conn,$sql1);
-                                     while ($log_id = mysqli_fetch_array(
-                                                $all_logid,MYSQLI_ASSOC)):;
-                                                
+                                    $sql1="SELECT * FROM login";
+                                     $all_logid=mysqli_query($conn,$sql1);
+                                     while ($log_id1 = mysqli_fetch_array(
+                                                $all_logid,MYSQLI_ASSOC)){            
                                     ?>
                                     
                                     <option value="<?php echo $log_id["log_id"];?>">
                                       <?php echo $log_id["admintype"];
                                         ?>
                                     </option>
-                                    <?php 
-                                        endwhile;
-                                    ?>
-                                </select>
+                                    <?php } ?>
+                                </select></td></tr> 
+		        
+		            
+		           <?php } 
+		           ?>
+                              
+                   
 				<tr><td>Name :</td><td> <input type="text" name="nm" ></td></tr><br>
 				<tr><td>Age :</td><td> <input type="text" name="age" ></td></tr><br>
 				<tr><td>gender :</td><td> <input type="radio" name="gender" value="male" >male

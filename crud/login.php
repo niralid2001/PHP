@@ -41,12 +41,12 @@ session_start();
 		<tr><td>Email :</td><td> <input type="text" name="email" ></td></tr><br>
 		<tr><td>password :</td><td> <input type="password" name="password" ></td></tr><br>
 		
-		<tr><td><input type="reset" ></td><td><input type="submit" name="sub" id="sub" value="login">&nbsp;<a href="logout.php">logout</a></td></tr>
+		<tr><td><input type="reset" ></td><td><input type="submit" name="sub" id="sub" value="login"></td></tr>
 		</table>
 		 
 </form>
 
 </body>
 </html>
-
+<!-- example-video -->
 <!-- https://youtu.be/wODW8RLBPt0 -->

@@ -28,8 +28,9 @@ if(!isset($_SESSION['user']))
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
         <table id="tblUser">
             <thead>
-                <th>log_id</th>
+                
                 <th>id</th>
+                <th>log_id</th>
                 <th>name</th>
                 <th>age</th>
                 <th>gender</th>
@@ -42,8 +43,9 @@ if(!isset($_SESSION['user']))
                 <?php if(!empty($arr_users)) { ?>
                     <?php foreach($arr_users as $user) { ?>
                         <tr>
-                            <td><?php echo $user['log_id']; ?></td>
+                            
                             <td><?php echo $user['id']; ?></td>
+                            <td><?php echo $user['log_id']; ?></td>
                             <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['age']; ?></td>
                             <td><?php echo $user['gender']; ?></td>
