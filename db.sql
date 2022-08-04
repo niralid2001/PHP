@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2022 at 03:14 PM
+-- Generation Time: Aug 04, 2022 at 03:00 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -68,8 +68,12 @@ CREATE TABLE `crud` (
 INSERT INTO `crud` (`log_id`, `id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
 (1, 117, 'aaa', 11, 'male', 'playing', 'rajkot', 'Chrysanthemum1659443467.jpg'),
 (2, 118, 'bbb', 22, 'female', 'singing', 'surat', 'Desert1659443486.jpg'),
-(2, 119, 'ccc', 33, 'male', 'dancing', 'ahemdabad', 'Hydrangeas1659443507.jpg'),
-(3, 120, 'ddd', 44, 'female', 'playing,singing,dancing', 'vadodra', 'Jellyfish1659443528.jpg');
+(3, 120, 'ddd', 44, 'female', 'playing,singing,dancing', 'vadodra', 'Jellyfish1659443528.jpg'),
+(1, 124, 'mmm', 6, 'female', 'singing', 'vadodra', 'Koala1659525091.jpg'),
+(1, 133, 'aaaaa', 88, 'female', 'dancing', 'rajkot', 'Tulips1659607527.jpg'),
+(3, 134, 'bbbb', 88, 'female', 'singing', 'vadodra', 'Jellyfish1659607678.jpg'),
+(2, 135, 'cccc', 99, 'male', 'playing,singing', 'surat', 'Tulips1659607704.jpg'),
+(2, 138, 'bbbb', 88, 'female', 'singing', 'ahemdabad', 'Koala1659608713.jpg');
 
 -- --------------------------------------------------------
 
@@ -127,6 +131,25 @@ INSERT INTO `form` (`id`, `email`, `password`, `twitter`, `github`, `website`, `
 (39, 'user@gmail.com', '12344', 'twitter.com', 'githun.com', 'https://website.com', 'hiii', 'hello', 1234567890),
 (40, 'user@gmail.com', '12345', 'twitter.com', 'githun.com', 'https://website.com', 'hiii', 'hello', 1234567895),
 (41, 'user@gmail.com', '1234', 'twitter.com', 'githun.com', 'https://website.com', 'hiii', 'hello', 1234567890);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `image`
+--
+
+CREATE TABLE `image` (
+  `img_id` int(10) NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`img_id`, `image`) VALUES
+(18, 'Array'),
+(19, 'Array');
 
 -- --------------------------------------------------------
 
@@ -202,6 +225,12 @@ ALTER TABLE `form`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `image`
+--
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`img_id`);
+
+--
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
@@ -227,13 +256,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `form`
 --
 ALTER TABLE `form`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT for table `image`
+--
+ALTER TABLE `image`
+  MODIFY `img_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `login`

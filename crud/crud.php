@@ -12,7 +12,7 @@ if(!isset($_SESSION['user']))
 
 		if(isset($_POST['submit']))
 			{
-				$log_id = $_POST['log_id'];
+				$log_id = $_SESSION['user']['log_id'];
 				$name = $_POST['nm'];
 				$age = $_POST['age'];
 				$gender = $_POST['gender'];
@@ -36,9 +36,9 @@ if(!isset($_SESSION['user']))
 		  //  	{  
 		  //     	$chk .= $chk1.",";  
 		  //  	}
-
-				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city` , `file`) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city','".implode(",",$file)."') ";
-				//$qry1 = "INSERT INTO `image`(`image`) VALUES ('$file')";
+				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city` ) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city') ";
+				//, `file`  ,'".implode(",",$file)."'
+				$qry1 = "INSERT INTO `image`(`image`) VALUES ('$file')";
 				mysqli_query($conn,$qry1);
 
 				if (mysqli_query($conn, $qry)) 
@@ -125,7 +125,6 @@ if(!isset($_SESSION['user']))
 				<table align="center">
 				
                  <?php
-                 	//$log_id = $_SESSION['user']['log_id'];
            		 	$admintype = $_SESSION['user']['admintype'];
 					if($admintype == "superadmin")
 		            { ?>
@@ -145,8 +144,7 @@ if(!isset($_SESSION['user']))
                                 </select></td></tr> 
 		        
 		            
-		           <?php } 
-		           ?>
+		           <?php }?>
                               
                    
 				<tr><td>Name :</td><td> <input type="text" name="nm" ></td></tr><br>
