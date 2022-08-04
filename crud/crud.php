@@ -125,15 +125,15 @@ if(!isset($_SESSION['user']))
 				<table align="center">
 				
                  <?php
-
+                 	//$log_id = $_SESSION['user']['log_id'];
            		 	$admintype = $_SESSION['user']['admintype'];
 					if($admintype == "superadmin")
 		            { ?>
-		                 <tr><td><select name="log_id1"  required>
+		                 <tr><td><select name="log_id"  required>
                                     <?php
                                     $sql1="SELECT * FROM login";
                                      $all_logid=mysqli_query($conn,$sql1);
-                                     while ($log_id1 = mysqli_fetch_array(
+                                     while ($log_id = mysqli_fetch_array(
                                                 $all_logid,MYSQLI_ASSOC)){            
                                     ?>
                                     
