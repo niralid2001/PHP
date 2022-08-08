@@ -60,7 +60,7 @@ if(!isset($_SESSION['user']))
                              </td>
                              <td>
                                 <a href="update.php?id=<?php echo $user["id"]; ?>">Update</a>&nbsp;&nbsp;
-                                <a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are yosure?')">Delete</a>
+                                <a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are you sure?')">Delete</a>
                             </td>
                         </tr>
 

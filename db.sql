@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2022 at 03:00 PM
+-- Generation Time: Aug 08, 2022 at 02:10 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -73,7 +73,11 @@ INSERT INTO `crud` (`log_id`, `id`, `name`, `age`, `gender`, `hobbies`, `city`, 
 (1, 133, 'aaaaa', 88, 'female', 'dancing', 'rajkot', 'Tulips1659607527.jpg'),
 (3, 134, 'bbbb', 88, 'female', 'singing', 'vadodra', 'Jellyfish1659607678.jpg'),
 (2, 135, 'cccc', 99, 'male', 'playing,singing', 'surat', 'Tulips1659607704.jpg'),
-(2, 138, 'bbbb', 88, 'female', 'singing', 'ahemdabad', 'Koala1659608713.jpg');
+(2, 138, 'bbbb', 88, 'female', 'singing', 'ahemdabad', 'Koala1659608713.jpg'),
+(3, 142, '77777777', 19, 'female', 'singing', 'rajkot', NULL),
+(2, 143, 'rrt', 66, 'male', 'playing,singing', 'rajkot', NULL),
+(2, 144, 'yyyyyy', 99, 'female', 'singing,dancing', 'vadodra', NULL),
+(2, 145, 'rrt', 66, 'female', 'singing', 'vadodra', NULL);
 
 -- --------------------------------------------------------
 
@@ -148,8 +152,10 @@ CREATE TABLE `image` (
 --
 
 INSERT INTO `image` (`img_id`, `image`) VALUES
-(18, 'Array'),
-(19, 'Array');
+(21, 'Desert1659953233.jpg'),
+(22, 'Koala1659954853.jpg'),
+(23, 'Jellyfish1659956492.jpg'),
+(25, 'Penguins1659960542.jpg');
 
 -- --------------------------------------------------------
 
@@ -256,7 +262,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT for table `form`
@@ -268,7 +274,7 @@ ALTER TABLE `form`
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `img_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `img_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `login`

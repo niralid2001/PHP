@@ -126,7 +126,7 @@ if(!isset($_SESSION['user']))
 				
                  <?php
            		 	$admintype = $_SESSION['user']['admintype'];
-					if($admintype == "superadmin")
+								if($admintype == "superadmin")
 		            { ?>
 		                 <tr><td><select name="log_id"  required>
                                     <?php
