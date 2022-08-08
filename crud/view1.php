@@ -11,6 +11,7 @@ if(!isset($_SESSION['user']))
             if($admintype == "superadmin")
             {
                 $sql="SELECT * FROM crud";
+                //$sql = "SELECT image FROM image";
             }
             else
             {
