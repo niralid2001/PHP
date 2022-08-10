@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2022 at 02:10 PM
+-- Generation Time: Aug 10, 2022 at 01:27 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -66,18 +66,10 @@ CREATE TABLE `crud` (
 --
 
 INSERT INTO `crud` (`log_id`, `id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
-(1, 117, 'aaa', 11, 'male', 'playing', 'rajkot', 'Chrysanthemum1659443467.jpg'),
-(2, 118, 'bbb', 22, 'female', 'singing', 'surat', 'Desert1659443486.jpg'),
-(3, 120, 'ddd', 44, 'female', 'playing,singing,dancing', 'vadodra', 'Jellyfish1659443528.jpg'),
-(1, 124, 'mmm', 6, 'female', 'singing', 'vadodra', 'Koala1659525091.jpg'),
-(1, 133, 'aaaaa', 88, 'female', 'dancing', 'rajkot', 'Tulips1659607527.jpg'),
-(3, 134, 'bbbb', 88, 'female', 'singing', 'vadodra', 'Jellyfish1659607678.jpg'),
-(2, 135, 'cccc', 99, 'male', 'playing,singing', 'surat', 'Tulips1659607704.jpg'),
-(2, 138, 'bbbb', 88, 'female', 'singing', 'ahemdabad', 'Koala1659608713.jpg'),
-(3, 142, '77777777', 19, 'female', 'singing', 'rajkot', NULL),
-(2, 143, 'rrt', 66, 'male', 'playing,singing', 'rajkot', NULL),
-(2, 144, 'yyyyyy', 99, 'female', 'singing,dancing', 'vadodra', NULL),
-(2, 145, 'rrt', 66, 'female', 'singing', 'vadodra', NULL);
+(3, 158, 'rrt', 66, 'female', 'singing', 'rajkot', NULL),
+(2, 159, 'yyyyyy', 99, 'female', 'singing', 'surat', NULL),
+(3, 160, 'rtyu', 11, 'female', 'playing,singing', 'ahemdabad', NULL),
+(1, 161, 'hiiii', 33, 'male', 'playing', 'rajkot', NULL);
 
 -- --------------------------------------------------------
 
@@ -139,27 +131,6 @@ INSERT INTO `form` (`id`, `email`, `password`, `twitter`, `github`, `website`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `image`
---
-
-CREATE TABLE `image` (
-  `img_id` int(10) NOT NULL,
-  `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `image`
---
-
-INSERT INTO `image` (`img_id`, `image`) VALUES
-(21, 'Desert1659953233.jpg'),
-(22, 'Koala1659954853.jpg'),
-(23, 'Jellyfish1659956492.jpg'),
-(25, 'Penguins1659960542.jpg');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `login`
 --
 
@@ -202,6 +173,27 @@ INSERT INTO `product` (`proid`, `catid`, `proname`, `proprice`, `prodesc`, `proi
 (11, 3, 'red velvate', 550, 'decilious', 'upload/images.jpg'),
 (12, 3, 'oreo', 300, 'tastfully....!', 'upload/images.jpg');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `table_file`
+--
+
+CREATE TABLE `table_file` (
+  `file_id` int(10) NOT NULL,
+  `file` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `table_file`
+--
+
+INSERT INTO `table_file` (`file_id`, `file`) VALUES
+(4, 'Jellyfish1660128393.jpg,Koala1660128393.jpg'),
+(5, 'Chrysanthemum1660128971.jpg,Desert1660128971.jpg'),
+(6, 'Tulips1660129058.jpg'),
+(7, 'Jellyfish1660129771.jpg');
+
 --
 -- Indexes for dumped tables
 --
@@ -231,12 +223,6 @@ ALTER TABLE `form`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `image`
---
-ALTER TABLE `image`
-  ADD PRIMARY KEY (`img_id`);
-
---
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
@@ -247,6 +233,12 @@ ALTER TABLE `login`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`proid`);
+
+--
+-- Indexes for table `table_file`
+--
+ALTER TABLE `table_file`
+  ADD PRIMARY KEY (`file_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -262,19 +254,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- AUTO_INCREMENT for table `form`
 --
 ALTER TABLE `form`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
-
---
--- AUTO_INCREMENT for table `image`
---
-ALTER TABLE `image`
-  MODIFY `img_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -287,6 +273,12 @@ ALTER TABLE `login`
 --
 ALTER TABLE `product`
   MODIFY `proid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `table_file`
+--
+ALTER TABLE `table_file`
+  MODIFY `file_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
