@@ -10,7 +10,7 @@ if(!isset($_SESSION['user']))
             $admintype = $_SESSION['user']['admintype'];
             if($admintype == "superadmin")
             {
-                $sql="SELECT * FROM crud";
+                $sql="SELECT * FROM crud ";
                 //$sql = "SELECT image FROM image";
             }
             else

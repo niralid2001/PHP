@@ -38,7 +38,7 @@ if(!isset($_SESSION['user']))
 		  //  	}
 				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city` ) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city') ";
 				//, `file`  ,'".implode(",",$file)."'
-				$qry1 = "INSERT INTO `image`(`image`) VALUES ('$file_name')";
+				$qry1 = "INSERT INTO `table_file`(`file`) VALUES ('".implode(",",$file)."')";
 				mysqli_query($conn,$qry1);
 
 				if (mysqli_query($conn, $qry)) 
