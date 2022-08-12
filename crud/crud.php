@@ -39,9 +39,9 @@ if(!isset($_SESSION['user']))
 				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city` ) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city') ";
 				//, `file`  ,'".implode(",",$file)."'
 				$qry1 = "INSERT INTO `table_file`(`file`) VALUES ('".implode(",",$file)."')";
-				mysqli_query($conn,$qry1);
 
-				if (mysqli_query($conn, $qry)) 
+
+				if (mysqli_query($conn, $qry) && mysqli_query($conn,$qry1)) 
 				{
 					
 					echo "record created successfully !";
@@ -145,6 +145,14 @@ if(!isset($_SESSION['user']))
 		        
 		            
 		           <?php }?>
+		           <!-- <?php 
+		           		$sql2 ="SELECT *  FROM crud";
+		           		$all_id=mysqli_query($conn,$sql2);
+		           		while($id=mysqli_fetch_array($all_id,MYSQLI_ASSOC))
+		           		{
+		           			$id;
+		           		}
+		           ?> -->
                               
                    
 				<tr><td>Name :</td><td> <input type="text" name="nm" ></td></tr><br>
