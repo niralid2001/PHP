@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2022 at 01:27 PM
+-- Generation Time: Aug 12, 2022 at 02:04 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -66,10 +66,8 @@ CREATE TABLE `crud` (
 --
 
 INSERT INTO `crud` (`log_id`, `id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
-(3, 158, 'rrt', 66, 'female', 'singing', 'rajkot', NULL),
-(2, 159, 'yyyyyy', 99, 'female', 'singing', 'surat', NULL),
-(3, 160, 'rtyu', 11, 'female', 'playing,singing', 'ahemdabad', NULL),
-(1, 161, 'hiiii', 33, 'male', 'playing', 'rajkot', NULL);
+(3, 173, 'hih', 22, 'female', 'singing,dancing', 'rajkot', NULL),
+(3, 174, 'yyyyyy', 66, 'male', 'playing,singing', 'ahemdabad', NULL);
 
 -- --------------------------------------------------------
 
@@ -181,6 +179,7 @@ INSERT INTO `product` (`proid`, `catid`, `proname`, `proprice`, `prodesc`, `proi
 
 CREATE TABLE `table_file` (
   `file_id` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
   `file` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -188,11 +187,9 @@ CREATE TABLE `table_file` (
 -- Dumping data for table `table_file`
 --
 
-INSERT INTO `table_file` (`file_id`, `file`) VALUES
-(4, 'Jellyfish1660128393.jpg,Koala1660128393.jpg'),
-(5, 'Chrysanthemum1660128971.jpg,Desert1660128971.jpg'),
-(6, 'Tulips1660129058.jpg'),
-(7, 'Jellyfish1660129771.jpg');
+INSERT INTO `table_file` (`file_id`, `id`, `file`) VALUES
+(18, 0, 'Koala1660305820.jpg'),
+(19, 0, 'Penguins1660305855.jpg');
 
 --
 -- Indexes for dumped tables
@@ -254,7 +251,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 
 --
 -- AUTO_INCREMENT for table `form`
@@ -278,7 +275,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `table_file`
 --
 ALTER TABLE `table_file`
-  MODIFY `file_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `file_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

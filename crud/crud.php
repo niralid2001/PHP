@@ -145,16 +145,7 @@ if(!isset($_SESSION['user']))
 		        
 		            
 		           <?php }?>
-		           <!-- <?php 
-		           		$sql2 ="SELECT *  FROM crud";
-		           		$all_id=mysqli_query($conn,$sql2);
-		           		while($id=mysqli_fetch_array($all_id,MYSQLI_ASSOC))
-		           		{
-		           			$id;
-		           		}
-		           ?> -->
-                              
-                   
+		                    
 				<tr><td>Name :</td><td> <input type="text" name="nm" ></td></tr><br>
 				<tr><td>Age :</td><td> <input type="text" name="age" ></td></tr><br>
 				<tr><td>gender :</td><td> <input type="radio" name="gender" value="male" >male
