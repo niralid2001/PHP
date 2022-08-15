@@ -12,6 +12,7 @@ if(!isset($_SESSION['user']))
 
 		if(isset($_POST['submit']))
 			{
+				$id=$_GET['id'];
 				$log_id = $_SESSION['user']['log_id'];
 				$name = $_POST['nm'];
 				$age = $_POST['age'];
@@ -145,6 +146,7 @@ if(!isset($_SESSION['user']))
 		        
 		            
 		           <?php }?>
+		          
 		                    
 				<tr><td>Name :</td><td> <input type="text" name="nm" ></td></tr><br>
 				<tr><td>Age :</td><td> <input type="text" name="age" ></td></tr><br>
