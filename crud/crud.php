@@ -32,13 +32,13 @@ if(!isset($_SESSION['user']))
 		   	 	$tmp_name=$_FILES['files']['tmp_name'][$i];   
 		   	 	$hobbies = implode(",",$hobbies);
 		  //    $chk="";  
-		  //	foreach($hobbies as $chk1)  
+		  //		foreach($hobbies as $chk1)  
 		  //  	{  
 		  //     	$chk .= $chk1.",";  
 		  //  	}
 				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city` ) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city') ";
 				//, `file`  ,'".implode(",",$file)."'
-				$qry1 = "INSERT INTO `table_file`(`file`) VALUES ('".implode(",",$file)."')";
+				$qry1 = "INSERT INTO `table_file`(`file_id`,`file`) VALUES ('$id','".implode(",",$file)."')";
 
 
 				if (mysqli_query($conn, $qry) && mysqli_query($conn,$qry1)) 
