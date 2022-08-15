@@ -12,7 +12,6 @@ if(!isset($_SESSION['user']))
 
 		if(isset($_POST['submit']))
 			{
-				$id=$_GET['id'];
 				$log_id = $_SESSION['user']['log_id'];
 				$name = $_POST['nm'];
 				$age = $_POST['age'];
@@ -37,14 +36,15 @@ if(!isset($_SESSION['user']))
 		  //  	{  
 		  //     	$chk .= $chk1.",";  
 		  //  	}
-				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city` ) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city') ";
-				//, `file`  ,'".implode(",",$file)."'
-				$qry1 = "INSERT INTO `table_file`(`file_id`,`file`) VALUES ('$id','".implode(",",$file)."')";
-
-
-				if (mysqli_query($conn, $qry) && mysqli_query($conn,$qry1)) 
+				$qry = "INSERT INTO  `crud`(`id`,`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city`, `file` ) VALUES (null,'$log_id','$name','$age','$gender','$hobbies','$city','".implode(",",$file)."') ";
+						//, `file`  ,'".implode(",",$file)."'
+				$result = $conn->query($qry);
+				if($result) //(mysqli_query($conn, $qry) && mysqli_query($conn,$qry1)) 
 				{
+					$id=$conn->insert_id;
 					
+					$qry = "INSERT INTO `table_file`(`file_id`,`file`) VALUES ('$id','".implode(",",$file)."')";
+						$result = $conn->query($qry);
 					echo "record created successfully !";
 			 	} 
 			 	else 
