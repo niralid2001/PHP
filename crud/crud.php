@@ -6,7 +6,6 @@ if(!isset($_SESSION['user']))
 	header('Location:login.php');
 }
 		$conn=mysqli_connect('localhost','root','','db');
-		//$result = mysqli_query($conn,"SELECT * FROM crud");
 		$sub = "submit";
 
 
@@ -31,16 +30,11 @@ if(!isset($_SESSION['user']))
 			}
 		   	 	$tmp_name=$_FILES['files']['tmp_name'][$i];   
 		   	 	$hobbies = implode(",",$hobbies);
-		  //    $chk="";  
-		  //		foreach($hobbies as $chk1)  
-		  //  	{  
-		  //     	$chk .= $chk1.",";  
-		  //  	}
 				$qry = "INSERT INTO  `crud`(`id`,`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city`, `file` ) VALUES (null,'$log_id','$name','$age','$gender','$hobbies','$city','".implode(",",$file)."') ";
-						//, `file`  ,'".implode(",",$file)."'
 				$result = $conn->query($qry);
-				if($result) //(mysqli_query($conn, $qry) && mysqli_query($conn,$qry1)) 
+				if($result) 
 				{
+					// auto increment id & forieign key...
 					$id=$conn->insert_id;
 					
 					$qry = "INSERT INTO `table_file`(`file_id`,`file`) VALUES ('$id','".implode(",",$file)."')";
@@ -53,7 +47,7 @@ if(!isset($_SESSION['user']))
 						" . mysqli_error($conn);
 				}
 				
-			header('Location:view1.php');
+				header('Location:view1.php');
 			}
 		?>
 		<!DOCTYPE html>
