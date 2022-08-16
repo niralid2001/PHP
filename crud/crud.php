@@ -29,8 +29,8 @@ if(!isset($_SESSION['user']))
 				$file[] = $file_name;
 				move_uploaded_file($_FILES['files']['tmp_name'][$i],"photo/".$file_name);
 			
-		   	 	$tmp_name=$_FILES['files']['tmp_name'][$i];   
-		   	 	$hobbies = implode(",",$hobbies);
+		   	 $tmp_name=$_FILES['files']['tmp_name'][$i];   
+		   	 $hobbies = implode(",",$hobbies);
 				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city`) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city') ";
 					//, `file`    ,'".implode(",",$file)."'
 				$result = $conn->query($qry);
@@ -40,7 +40,7 @@ if(!isset($_SESSION['user']))
 					$id=$conn->insert_id;
 					
 					$qry = "INSERT INTO `table_file`(`file_id`,`file`) VALUES ('$id','".implode(",",$file)."')";
-						$result = $conn->query($qry);
+					$result = $conn->query($qry);
 					echo "record created successfully !";
 			 	} 
 			 	else 
