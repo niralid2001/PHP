@@ -15,22 +15,24 @@ if(!isset($_SESSION['user']))
 				$name = $_POST['nm'];
 				$age = $_POST['age'];
 				$gender = $_POST['gender'];
-				$hobbies = $_POST['hobbies'];
+				
 				$city = $_POST['city'];
 				$totalfiles = count($_FILES['files']['name']);
 				$file = array();
 			for($i=0;$i<$totalfiles;$i++)
 			{
+				$hobbies = $_POST['hobbies'];
 				$file_name=$_FILES['files']['name'][$i];
-				$file_name = explode(".",$file_name);
+				//$file_name = explode(".",$file_name);
 				$file_name[0]=$file_name[0]. time();
-				$file_name = implode(".", $file_name);
+				//$file_name = implode(".", $file_name);
 				$file[] = $file_name;
 				move_uploaded_file($_FILES['files']['tmp_name'][$i],"photo/".$file_name);
-			}
+			
 		   	 	$tmp_name=$_FILES['files']['tmp_name'][$i];   
 		   	 	$hobbies = implode(",",$hobbies);
-				$qry = "INSERT INTO  `crud`(`id`,`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city`, `file` ) VALUES (null,'$log_id','$name','$age','$gender','$hobbies','$city','".implode(",",$file)."') ";
+				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city`) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city') ";
+					//, `file`    ,'".implode(",",$file)."'
 				$result = $conn->query($qry);
 				if($result) 
 				{
@@ -49,6 +51,7 @@ if(!isset($_SESSION['user']))
 				
 				header('Location:view1.php');
 			}
+		}
 		?>
 		<!DOCTYPE html>
 		<html>

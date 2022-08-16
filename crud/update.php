@@ -40,12 +40,14 @@ if(!isset($_SESSION['user']))
                 // $chk .= $chk1.",";  
                 // }  
 
-               $sql = "UPDATE `crud` SET `name`='$name',`age`='$age',`gender`='$gender',`hobbies`='$hobbies',`city`='$city', `file`='".$images."' WHERE `id`='$id'"; 
+               $sql = "UPDATE `crud` SET `name`='$name',`age`='$age',`gender`='$gender',`hobbies`='$hobbies',`city`='$city' WHERE `id`='$id'"; 
+                            //, `file`='".$images."'
                 $result = $conn->query($sql); 
 
                 if ($result == TRUE) 
                 {
-
+                    $sql = "UPDATE `table_file` SET `file`='".implode(",",$file)."' WHERE `file_id`='$id' ";
+                        $result = $conn->query($sql);
                     echo "Record updated successfully.";
 
                 }

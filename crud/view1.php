@@ -10,12 +10,12 @@ if(!isset($_SESSION['user']))
             $admintype = $_SESSION['user']['admintype'];
             if($admintype == "superadmin")
             {
-                $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file FROM crud JOIN table_file ";
+                $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id ";
                 //$sql = "SELECT image FROM image";
             }
             else
             {
-                $sql = "SELECT * FROM crud WHERE log_id = '$log_id' "; 
+                $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' "; 
             }
             $result = $conn->query($sql);
             $arr_users = [];
