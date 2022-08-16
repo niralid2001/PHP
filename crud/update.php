@@ -47,7 +47,7 @@ if(!isset($_SESSION['user']))
 
                 if ($result == TRUE) 
                 {
-                    $sql = "UPDATE `table_file` SET `file`='".implode(",",$file)."' WHERE `file_id`='$id' ";
+                    $sql = "UPDATE `table_file` SET `file`='$file_name' WHERE `file_id`='$id' ";
                         $result = $conn->query($sql);
                     echo "Record updated successfully.";
 

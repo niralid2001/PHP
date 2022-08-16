@@ -39,7 +39,7 @@ if(!isset($_SESSION['user']))
 				{
 					// auto increment id & forieign key...
 					$id=$conn->insert_id;
-					$qry = "INSERT INTO `table_file`(`file_id`,`file`) VALUES ('$id','".implode(",",$file)."')";
+					$qry = "INSERT INTO `table_file`(`file_id`,`file`) VALUES ('$id','$file_name')";
 					$result = $conn->query($qry);
 					echo "record created successfully !";
 			 	} 

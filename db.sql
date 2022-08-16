@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2022 at 02:58 PM
+-- Generation Time: Aug 16, 2022 at 02:18 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -66,8 +66,14 @@ CREATE TABLE `crud` (
 --
 
 INSERT INTO `crud` (`log_id`, `id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
-(3, 194, 'hello', 66, 'male', 'playing', 'rajkot', 'Jellyfish1660568107.jpg'),
-(3, 195, 'hiiii', 11, 'female', 'singing', 'surat', 'Koala1660568124.jpg');
+(1, 198, 'admin1', 77, 'male', 'playing,singing,dancing', 'vadodra', NULL),
+(2, 199, 'ggg', 3, 'female', 'singing,dancing', 'ahemdabad', NULL),
+(2, 209, 'jjjjjjj', 99, 'female', 'singing,dancing', 'ahemdabad', NULL),
+(2, 214, 'hiiii', 55, 'male', 'dancing', 'surat', NULL),
+(1, 218, 'hello', 88, 'female', 'playing,singing', 'vadodra', NULL),
+(1, 219, 'hello', 88, 'female', 'playing,singing', 'vadodra', NULL),
+(3, 220, 'hiiii', 44, 'female', 'singing,dancing', 'surat', NULL),
+(3, 221, 'hiiii', 44, 'female', 'singing,dancing', 'surat', NULL);
 
 -- --------------------------------------------------------
 
@@ -188,8 +194,15 @@ CREATE TABLE `table_file` (
 --
 
 INSERT INTO `table_file` (`id`, `file_id`, `file`) VALUES
-(22, 194, 'Jellyfish1660568107.jpg'),
-(23, 195, 'Koala1660568124.jpg');
+(25, 197, 'Chrysanthemum1660645097.jpg'),
+(26, 198, 'Lighthouse1660643832.jpg'),
+(27, 199, 'Penguins1660645256.jpg'),
+(37, 209, 'Hydrangeas.jpg'),
+(41, 214, 'Koala.jpg'),
+(45, 218, 'Tulips.jpg'),
+(46, 219, 'Desert.jpg'),
+(47, 220, 'Jellyfish.jpg'),
+(48, 221, 'Koala.jpg');
 
 --
 -- Indexes for dumped tables
@@ -251,7 +264,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
 
 --
 -- AUTO_INCREMENT for table `form`
@@ -275,7 +288,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `table_file`
 --
 ALTER TABLE `table_file`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
