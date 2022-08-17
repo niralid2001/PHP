@@ -11,7 +11,6 @@ if(!isset($_SESSION['user']))
             if($admintype == "superadmin")
             {
                 $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id ";
-                //$sql = "SELECT image FROM image";
             }
             else
             {
@@ -37,7 +36,7 @@ if(!isset($_SESSION['user']))
                                     <option disabled selected value="-1">choose gender for record</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
-                                </select></th>
+                               </select></th>
                 <th>hobbies</th>
                 <th>city <br><select name="city">
                                     <option disabled selected value="-1">choose city for record</option>
@@ -45,7 +44,7 @@ if(!isset($_SESSION['user']))
                                     <option value="surat">Surat</option>
                                     <option value="ahemdabad">Ahemdabad</option>
                                     <option value="vadodra">Vadodra</option>
-                                </select></th>
+                            </select></th>
                 <th>file</th>
                 <th align="center"> action </th>
             </thead>
@@ -81,7 +80,7 @@ if(!isset($_SESSION['user']))
                     <center><a href="crud.php"><font size="4">Add new data </font></a>     
                      <form method="post" action="search.php">
                         <input type="text" name="text" placeholder="Search by id">
-                        <button type="submit" name="search" >Search</button>
+                        <button type="submit" name="search">Search</button>
                     </form> </center>      
             </tbody>
         </table>

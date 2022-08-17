@@ -11,6 +11,8 @@
 	<a href="https://www.cloudways.com/blog/admin-dashboard-template-php-boostrap-4/">cloudways</a></br>
 	<a href="https://stackoverflow.com/">stack overflow</a>
 	<a href="https://w3schools.invisionzone.com/topic/52713-php-user-profile-information-display-after-login/">w3 login admin(name display loged admin)</a>
+	<a href="https://www.studentstutorial.com/php/php-search.php">https://www.studentstutorial.com/php/php-search.php</a>
+	
 	
 	
 </body>
