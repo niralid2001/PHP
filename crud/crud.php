@@ -32,7 +32,7 @@ if(!isset($_SESSION['user']))
 			
 		   	$tmp_name=$_FILES['files']['tmp_name'][$i];   
 		   	$hobbies = implode(",",$hobbies);
-				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city`) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city') ";
+				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city`, `file`) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city','$file_name') ";
 					//, `file`    ,'".implode(",",$file)."'
 				$result = $conn->query($qry);
 				if($result) 

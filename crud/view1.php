@@ -70,7 +70,7 @@ if(!isset($_SESSION['user']))
                 <a href="logout.php"><font size="6">logout</font></a><br><br>
                     <center><a href="crud.php"><font size="4">Add new data </font></a>     
                      <form method="post" action="search.php">
-                        <input type="text" name="text" placeholder="Search by name">
+                        <input type="text" name="text" placeholder="Search by id">
                         <button type="submit" name="search" >Search</button>
                     </form> </center>      
             </tbody>
