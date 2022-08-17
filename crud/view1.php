@@ -68,8 +68,11 @@ if(!isset($_SESSION['user']))
                     
                 <?php } ?>  
                 <a href="logout.php"><font size="6">logout</font></a><br><br>
-                    <center><a href="crud.php"><font size="4">Add new data </font></a></center>     
-                            
+                    <center><a href="crud.php"><font size="4">Add new data </font></a>     
+                     <form method="post" action="search.php">
+                        <input type="text" name="text" placeholder="Search by name">
+                        <button type="submit" name="search" >Search</button>
+                    </form> </center>      
             </tbody>
         </table>
 
