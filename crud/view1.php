@@ -33,13 +33,23 @@ if(!isset($_SESSION['user']))
                 <th>log_id</th>
                 <th>name</th>
                 <th>age</th>
-                <th>gender</th>
+                <th>gender <br><select name="gender" >
+                                    <option disabled selected value="-1">choose gender for record</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select></th>
                 <th>hobbies</th>
-                <th>city</th>
+                <th>city <br><select name="city">
+                                    <option disabled selected value="-1">choose city for record</option>
+                                    <option value="rajkot">Rajkot</option>
+                                    <option value="surat">Surat</option>
+                                    <option value="ahemdabad">Ahemdabad</option>
+                                    <option value="vadodra">Vadodra</option>
+                                </select></th>
                 <th>file</th>
                 <th align="center"> action </th>
             </thead>
-            <tbody>
+            <tbody align="center">
                 <?php if(!empty($arr_users)) { ?>
                     <?php foreach($arr_users as $user) { ?>
                         <tr>
