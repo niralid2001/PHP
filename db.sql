@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2022 at 09:30 AM
+-- Generation Time: Aug 22, 2022 at 01:31 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -72,7 +72,8 @@ INSERT INTO `crud` (`log_id`, `id`, `name`, `age`, `gender`, `hobbies`, `city`, 
 (2, 227, 'hiiii', 22, 'female', 'singing,dancing', 'ahemdabad', 'Jellyfish.jpg'),
 (3, 228, 'world', 33, 'female', 'playing,singing,dancing', 'vadodra', 'Koala.jpg'),
 (3, 229, 'world', 33, 'female', 'playing,singing,dancing', 'vadodra', 'Lighthouse.jpg'),
-(3, 230, 'world', 33, 'female', 'playing,singing,dancing', 'vadodra', 'Penguins.jpg');
+(3, 230, 'world', 33, 'female', 'playing,singing,dancing', 'vadodra', 'Penguins.jpg'),
+(1, 231, 'haaannn', 12, 'male', 'playing,dancing', 'rajkot', 'Tulips.jpg');
 
 -- --------------------------------------------------------
 
@@ -199,7 +200,8 @@ INSERT INTO `table_file` (`id`, `file_id`, `file`) VALUES
 (54, 227, 'Jellyfish.jpg'),
 (55, 228, 'Koala.jpg'),
 (56, 229, 'Lighthouse.jpg'),
-(57, 230, 'Penguins.jpg');
+(57, 230, 'Penguins.jpg'),
+(58, 231, 'Tulips.jpg');
 
 --
 -- Indexes for dumped tables
@@ -261,7 +263,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=231;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
 
 --
 -- AUTO_INCREMENT for table `form`
@@ -285,7 +287,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `table_file`
 --
 ALTER TABLE `table_file`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
