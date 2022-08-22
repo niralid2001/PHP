@@ -80,7 +80,7 @@ if(!isset($_SESSION['user']))
                     <center><a href="crud.php"><font size="4">Add new data </font></a>     
                      <form method="post" action="search.php">
                         <input type="text" name="text" placeholder="Search by id">
-                        <button type="submit" name="search">Search</button>
+                        <button type="submit" name="search" >Search</button>
                     </form> </center>      
             </tbody>
         </table>
