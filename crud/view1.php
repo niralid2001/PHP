@@ -88,7 +88,7 @@ if(!isset($_SESSION['user']))
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
         <script>
-        jQuery(document).ready(function($) {
+        jQuery(document).ready(function($) {     
             $('#tblUser').DataTable();
         } );
         </script>
