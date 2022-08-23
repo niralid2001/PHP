@@ -32,8 +32,9 @@ if(!isset($_SESSION['user']))
                 <th>log_id</th>
                 <th>name</th>
                 <th>age<br>
+                    <!-- Dynamic dropdown -->
                     <?php
-                    $query=mysqli_query($conn,"SELECT age FROM crud ");
+                    $query=mysqli_query($conn,"SELECT distinct age FROM crud ");
                     $rowcount=mysqli_num_rows($query); 
                     ?>
                     <select name="age" >
@@ -50,7 +51,7 @@ if(!isset($_SESSION['user']))
                     </select></th>
                 <th>gender <br>
                    <?php
-                    $query1=mysqli_query($conn,"SELECT gender FROM crud ");
+                    $query1=mysqli_query($conn,"SELECT distinct gender FROM crud ");
                     $rowcount1=mysqli_num_rows($query1); 
                     ?>
                     <select name="gender" >
@@ -67,7 +68,7 @@ if(!isset($_SESSION['user']))
                                </select></th>
                 <th>hobbies<br>
                    <?php
-                    $query2=mysqli_query($conn,"SELECT hobbies FROM crud ");
+                    $query2=mysqli_query($conn,"SELECT distinct hobbies FROM crud ");
                     $rowcount2=mysqli_num_rows($query2); 
                     ?>
                     <select name="hobbies" >
@@ -84,7 +85,7 @@ if(!isset($_SESSION['user']))
                                </select></th>
                 <th>city <br>
                    <?php
-                    $query3=mysqli_query($conn,"SELECT city FROM crud ");
+                    $query3=mysqli_query($conn,"SELECT distinct city FROM crud ");
                     $rowcount3=mysqli_num_rows($query3); 
                     ?>
                     <select name="gender" >
