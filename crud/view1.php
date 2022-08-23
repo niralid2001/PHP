@@ -31,19 +31,73 @@ if(!isset($_SESSION['user']))
                 <th>id</th>
                 <th>log_id</th>
                 <th>name</th>
-                <th>age</th>
-                <th>gender <br><select name="gender" >
-                                    <option disabled selected value="-1">choose gender for record</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                <th>age<br>
+                    <?php
+                    $query=mysqli_query($conn,"SELECT age FROM crud ");
+                    $rowcount=mysqli_num_rows($query); 
+                    ?>
+                    <select name="age" >
+                        <option disabled selected value="-1">choose age for record</option>
+                        <?php 
+                            for($i=1;$i<=$rowcount;$i++)
+                            {
+                                $row=mysqli_fetch_array($query,MYSQLI_ASSOC);
+                        ?>
+                        <option value="<?php echo $row["age"]; ?>"><?php echo $row["age"]; ?></option>
+                        <?php 
+                            }
+                        ?>
+                    </select></th>
+                <th>gender <br>
+                   <?php
+                    $query1=mysqli_query($conn,"SELECT gender FROM crud ");
+                    $rowcount1=mysqli_num_rows($query1); 
+                    ?>
+                    <select name="gender" >
+                        <option disabled selected value="-1">choose age for record</option>
+                        <?php 
+                            for($i=1;$i<=$rowcount1;$i++)
+                            {
+                                $row1=mysqli_fetch_array($query1,MYSQLI_ASSOC);
+                        ?>
+                        <option value="<?php echo $row1["gender"]; ?>"><?php echo $row1["gender"]; ?></option>
+                        <?php 
+                            }
+                        ?>
                                </select></th>
-                <th>hobbies</th>
-                <th>city <br><select name="city">
-                                    <option disabled selected value="-1">choose city for record</option>
-                                    <option value="rajkot">Rajkot</option>
-                                    <option value="surat">Surat</option>
-                                    <option value="ahemdabad">Ahemdabad</option>
-                                    <option value="vadodra">Vadodra</option>
+                <th>hobbies<br>
+                   <?php
+                    $query2=mysqli_query($conn,"SELECT hobbies FROM crud ");
+                    $rowcount2=mysqli_num_rows($query2); 
+                    ?>
+                    <select name="hobbies" >
+                        <option disabled selected value="-1">choose age for record</option>
+                        <?php 
+                            for($i=1;$i<=$rowcount2;$i++)
+                            {
+                                $row2=mysqli_fetch_array($query2,MYSQLI_ASSOC);
+                        ?>
+                        <option value="<?php echo $row2["hobbies"]; ?>"><?php echo $row2["hobbies"]; ?></option>
+                        <?php 
+                            }
+                        ?>
+                               </select></th>
+                <th>city <br>
+                   <?php
+                    $query3=mysqli_query($conn,"SELECT city FROM crud ");
+                    $rowcount3=mysqli_num_rows($query3); 
+                    ?>
+                    <select name="gender" >
+                        <option disabled selected value="-1">choose age for record</option>
+                        <?php 
+                            for($i=1;$i<=$rowcount3;$i++)
+                            {
+                                $row3=mysqli_fetch_array($query3,MYSQLI_ASSOC);
+                        ?>
+                        <option value="<?php echo $row3["city"]; ?>"><?php echo $row3["city"]; ?></option>
+                        <?php 
+                            }
+                        ?>
                             </select></th>
                 <th>file</th>
                 <th align="center"> action </th>
