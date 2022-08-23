@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2022 at 01:31 PM
+-- Generation Time: Aug 23, 2022 at 02:12 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -73,7 +73,10 @@ INSERT INTO `crud` (`log_id`, `id`, `name`, `age`, `gender`, `hobbies`, `city`, 
 (3, 228, 'world', 33, 'female', 'playing,singing,dancing', 'vadodra', 'Koala.jpg'),
 (3, 229, 'world', 33, 'female', 'playing,singing,dancing', 'vadodra', 'Lighthouse.jpg'),
 (3, 230, 'world', 33, 'female', 'playing,singing,dancing', 'vadodra', 'Penguins.jpg'),
-(1, 231, 'haaannn', 12, 'male', 'playing,dancing', 'rajkot', 'Tulips.jpg');
+(1, 231, 'haaannn', 12, 'male', 'playing,dancing', 'rajkot', 'Tulips.jpg'),
+(2, 232, 'hlloww', 66, 'male', 'singing', 'rajkot', 'images.jpg'),
+(2, 233, 'iiiiii', 24, 'male', 'playing,singing,dancing', 'ahemdabad', 'Chrysanthemum.jpg'),
+(2, 234, 'kkk', 90, 'female', 'playing', 'rajkot', 'margherita.jpg');
 
 -- --------------------------------------------------------
 
@@ -201,7 +204,10 @@ INSERT INTO `table_file` (`id`, `file_id`, `file`) VALUES
 (55, 228, 'Koala.jpg'),
 (56, 229, 'Lighthouse.jpg'),
 (57, 230, 'Penguins.jpg'),
-(58, 231, 'Tulips.jpg');
+(58, 231, 'Tulips.jpg'),
+(59, 232, 'images.jpg'),
+(60, 233, 'Chrysanthemum.jpg'),
+(61, 234, 'margherita.jpg');
 
 --
 -- Indexes for dumped tables
@@ -263,7 +269,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
 
 --
 -- AUTO_INCREMENT for table `form`
@@ -287,7 +293,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `table_file`
 --
 ALTER TABLE `table_file`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

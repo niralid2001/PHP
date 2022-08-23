@@ -21,7 +21,7 @@ if(!isset($_SESSION['user']))
             if ($result->num_rows > 0) 
             {
                     $arr_users = $result->fetch_all(MYSQLI_ASSOC);
-            }
+            }        
 ?>
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
@@ -37,7 +37,7 @@ if(!isset($_SESSION['user']))
                     $query=mysqli_query($conn,"SELECT distinct age FROM crud ");
                     $rowcount=mysqli_num_rows($query); 
                     ?>
-                    <select name="age" >
+                    <select name="age" id="age">
                         <option disabled selected value="-1">choose age for record</option>
                         <?php 
                             for($i=1;$i<=$rowcount;$i++)
@@ -55,7 +55,7 @@ if(!isset($_SESSION['user']))
                     $rowcount1=mysqli_num_rows($query1); 
                     ?>
                     <select name="gender" >
-                        <option disabled selected value="-1">choose age for record</option>
+                        <option disabled selected value="-1">choose gender for record</option>
                         <?php 
                             for($i=1;$i<=$rowcount1;$i++)
                             {
@@ -72,7 +72,7 @@ if(!isset($_SESSION['user']))
                     $rowcount2=mysqli_num_rows($query2); 
                     ?>
                     <select name="hobbies" >
-                        <option disabled selected value="-1">choose age for record</option>
+                        <option disabled selected value="-1">choose hobbies for record</option>
                         <?php 
                             for($i=1;$i<=$rowcount2;$i++)
                             {
@@ -89,7 +89,7 @@ if(!isset($_SESSION['user']))
                     $rowcount3=mysqli_num_rows($query3); 
                     ?>
                     <select name="gender" >
-                        <option disabled selected value="-1">choose age for record</option>
+                        <option disabled selected value="-1">choose city for record</option>
                         <?php 
                             for($i=1;$i<=$rowcount3;$i++)
                             {
@@ -135,7 +135,7 @@ if(!isset($_SESSION['user']))
                     <center><a href="crud.php"><font size="4">Add new data </font></a>     
                      <form method="post" action="search.php">
                         <input type="text" name="text" placeholder="Search by id">
-                        <button type="submit" name="search" >Search</button>
+                        <button type="submit" name="search" id="search">Search</button>
                     </form> </center>      
             </tbody>
         </table>
