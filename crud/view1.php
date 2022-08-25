@@ -23,6 +23,29 @@ if(!isset($_SESSION['user']))
                     $arr_users = $result->fetch_all(MYSQLI_ASSOC);
             }        
 ?>
+<script type="text/javascript">
+// ajax script for getting state data
+$(document).ready(function(){
+   $(#age).on('change', function(){
+      var id = $(this).val();
+      if(id){
+          $.ajax({
+              type:'POST',
+              url:'ajax.php',
+              data:'id':+id,
+              success:function(html){
+                  $('#gender').html(html);
+                 
+              }
+          }); 
+      }else{
+          $('#gender').html('<option value="">gender</option>');
+          // $('#hobbies').html('<option value=""> hobbies </option>');
+          // $('#city').html('<option value=""> city </option>') 
+      }
+  });
+});
+  </script>
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
         <table id="tblUser">
@@ -54,7 +77,7 @@ if(!isset($_SESSION['user']))
                     $query1=mysqli_query($conn,"SELECT distinct gender FROM crud ");
                     $rowcount1=mysqli_num_rows($query1); 
                     ?>
-                    <select name="gender" >
+                    <select name="gender" id="gender">
                         <option disabled selected value="-1">choose gender for record</option>
                         <?php 
                             for($i=1;$i<=$rowcount1;$i++)
@@ -71,7 +94,7 @@ if(!isset($_SESSION['user']))
                     $query2=mysqli_query($conn,"SELECT distinct hobbies FROM crud ");
                     $rowcount2=mysqli_num_rows($query2); 
                     ?>
-                    <select name="hobbies" >
+                    <select name="hobbies" id="hobbies">
                         <option disabled selected value="-1">choose hobbies for record</option>
                         <?php 
                             for($i=1;$i<=$rowcount2;$i++)
@@ -88,7 +111,7 @@ if(!isset($_SESSION['user']))
                     $query3=mysqli_query($conn,"SELECT distinct city FROM crud ");
                     $rowcount3=mysqli_num_rows($query3); 
                     ?>
-                    <select name="gender" >
+                    <select name="city" id="city">
                         <option disabled selected value="-1">choose city for record</option>
                         <?php 
                             for($i=1;$i<=$rowcount3;$i++)
