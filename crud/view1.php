@@ -23,16 +23,18 @@ if(!isset($_SESSION['user']))
                     $arr_users = $result->fetch_all(MYSQLI_ASSOC);
             }        
 ?>
+<!-- ajax code -->
+    <script src="http://localhost/PHP-Training/crud/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 // ajax script for getting state data
 $(document).ready(function(){
-   $(#age).on('change', function(){
-      var id = $(this).val();
+   $('#age').on('change', function(){
+      var age = $(this).val();
       if(id){
           $.ajax({
               type:'POST',
               url:'ajax.php',
-              data:'id':+id,
+              data:{'age':age},
               success:function(html){
                   $('#gender').html(html);
                  
@@ -159,7 +161,7 @@ $(document).ready(function(){
                      <form method="post" action="search.php">
                         <input type="text" name="text" placeholder="Search by id">
                         <button type="submit" name="search" id="search">Search</button>
-                    </form> </center>      
+                    </form> </center>                                            
             </tbody>
         </table>
 
