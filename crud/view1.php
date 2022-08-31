@@ -30,13 +30,13 @@ if(!isset($_SESSION['user']))
 $(document).ready(function(){
    $('#age').on('change', function(){
       var age = $(this).val();
-      if(id){
+      if(age){
           $.ajax({
               type:'POST',
               url:'ajax.php',
               data:{'age':age},
               success:function(html){
-                  $('#gender').html(html);
+                  $('#tblUser tbody').html(html);
                  
               }
           }); 
