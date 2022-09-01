@@ -6,20 +6,36 @@
         header('Location:login.php');
     }
     $conn=mysqli_connect('localhost','root','','db');
+    $query="SELECT * FROM crud where 1=1";
     if(!empty($_POST['age']))
     {
-        $_SESSION["user"]["log_id"];
-        $query="SELECT * FROM crud where age=".$_POST['age']." ";
-        $result=$conn->query($query);
+        $query.=" AND age='".$_POST['age']."'";
+    }
+    if(!empty($_POST['gender']))
+    {
+        $query.=" AND gender='".$_POST['gender']."'";
+    }
+    if(!empty($_POST['hobbies']))
+    {
+        $query.=" AND hobbies='".$_POST['hobbies']."'";
+    }
+    if(!empty($_POST['city']))
+    {
+        $query.=" AND city='".$_POST['city']."'";
+    }
 
-        if($result->num_rows > 0)
-        {
-           $arr_users = $result->fetch_all(MYSQLI_ASSOC);
-        }
-                    
+    $result=$conn->query($query);
+    if($result->num_rows > 0)
+    {
+        $arr_users = $result->fetch_all(MYSQLI_ASSOC);
+    }
+    else
+    {
+        $arr_users = array();
     }
 ?>
-<?php if(!empty($arr_users)) { ?>
+<?php 
+if(!empty($arr_users)) { ?>
                     <?php foreach($arr_users as $user) { ?>
                         <tr>
                             

@@ -30,20 +30,76 @@ if(!isset($_SESSION['user']))
 $(document).ready(function(){
    $('#age').on('change', function(){
       var age = $(this).val();
+      var gender = $('#gender').val();
+      var hobbies = $('#hobbies').val();
+      var city = $('#city').val();
       if(age){
           $.ajax({
               type:'POST',
               url:'ajax.php',
-              data:{'age':age},
+              data:{'age':age,'gender':gender,'hobbies':hobbies,'city':city},
               success:function(html){
                   $('#tblUser tbody').html(html);
                  
               }
           }); 
-      }else{
-          $('#gender').html('<option value="">gender</option>');
-          // $('#hobbies').html('<option value=""> hobbies </option>');
-          // $('#city').html('<option value=""> city </option>') 
+      }
+  });
+});
+$(document).ready(function(){
+   $('#gender').on('change', function(){
+      var gender = $(this).val();
+      var age = $('#age').val();
+      var hobbies = $('#hobbies').val();
+      var city = $('#city').val();
+      if(gender){
+          $.ajax({
+              type:'POST',
+              url:'ajax.php',
+              data:{'gender':gender,'age':age,'hobbies':hobbies,'city':city},
+              success:function(html){
+                  $('#tblUser tbody').html(html);
+                 
+              }
+          }); 
+      }
+  });
+});
+$(document).ready(function(){
+   $('#hobbies').on('change', function(){
+      var hobbies = $(this).val();
+      var age = $('#age').val();
+      var gender = $('#gender').val();
+      var city = $('#city').val();
+      if(hobbies){
+          $.ajax({
+              type:'POST',
+              url:'ajax.php',
+              data:{'hobbies':hobbies,'age':age,'gender':gender,'city':city},
+              success:function(html){
+                  $('#tblUser tbody').html(html);
+                 
+              }
+          }); 
+      }
+  });
+});
+$(document).ready(function(){
+   $('#city').on('change', function(){
+      var city = $(this).val();
+      var age = $('#age').val();
+      var gender = $('#gender').val();
+      var hobbies = $('#hobbies').val();
+      if(hobbies){
+          $.ajax({
+              type:'POST',
+              url:'ajax.php',
+              data:{'city':city,'age':age,'gender':gender,'hobbies':hobbies},
+              success:function(html){
+                  $('#tblUser tbody').html(html);
+                 
+              }
+          }); 
       }
   });
 });
