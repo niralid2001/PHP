@@ -59,7 +59,15 @@ $(document).ready(function(){
                 <th>age<br>
                     <!-- Dynamic dropdown -->
                     <?php
-                    $query=mysqli_query($conn,"SELECT distinct age FROM crud ");
+                    $admintype = $_SESSION['user']['admintype'];
+                    if($admintype == "superadmin")
+                    {
+                        $query=mysqli_query($conn,"SELECT distinct age FROM crud ");
+                    }
+                    else
+                    {
+                        $query=mysqli_query($conn,"SELECT distinct age FROM crud WHERE log_id = '$log_id'");
+                    }
                     $rowcount=mysqli_num_rows($query); 
                     ?>
                     <select name="age" id="age">
@@ -76,7 +84,15 @@ $(document).ready(function(){
                     </select></th>
                 <th>gender <br>
                    <?php
-                    $query1=mysqli_query($conn,"SELECT distinct gender FROM crud ");
+                   $admintype = $_SESSION['user']['admintype'];
+                    if($admintype == "superadmin")
+                    {
+                        $query1=mysqli_query($conn,"SELECT distinct gender FROM crud ");
+                    }
+                    else
+                    {
+                        $query1=mysqli_query($conn,"SELECT distinct gender FROM crud WHERE log_id = '$log_id'");
+                    }
                     $rowcount1=mysqli_num_rows($query1); 
                     ?>
                     <select name="gender" id="gender">
@@ -93,7 +109,15 @@ $(document).ready(function(){
                                </select></th>
                 <th>hobbies<br>
                    <?php
-                    $query2=mysqli_query($conn,"SELECT distinct hobbies FROM crud ");
+                    $admintype = $_SESSION['user']['admintype'];
+                    if($admintype == "superadmin")
+                    {
+                        $query2=mysqli_query($conn,"SELECT distinct hobbies FROM crud ");
+                    }
+                    else
+                    {
+                        $query2=mysqli_query($conn,"SELECT distinct hobbies FROM crud WHERE log_id = '$log_id'");
+                    }
                     $rowcount2=mysqli_num_rows($query2); 
                     ?>
                     <select name="hobbies" id="hobbies">
@@ -110,7 +134,15 @@ $(document).ready(function(){
                                </select></th>
                 <th>city <br>
                    <?php
-                    $query3=mysqli_query($conn,"SELECT distinct city FROM crud ");
+                    $admintype = $_SESSION['user']['admintype'];
+                    if($admintype == "superadmin")
+                    {
+                        $query3=mysqli_query($conn,"SELECT distinct city FROM crud ");
+                    }
+                    else
+                    {
+                        $query3=mysqli_query($conn,"SELECT distinct city FROM crud WHERE log_id = '$log_id'");
+                    }
                     $rowcount3=mysqli_num_rows($query3); 
                     ?>
                     <select name="city" id="city">
