@@ -90,7 +90,7 @@ $(document).ready(function(){
       var age = $('#age').val();
       var gender = $('#gender').val();
       var hobbies = $('#hobbies').val();
-      if(hobbies){
+      if(city){
           $.ajax({
               type:'POST',
               url:'ajax.php',
@@ -140,10 +140,17 @@ $(document).ready(function(){
                     </select></th>
                 <th>gender <br>
                    <?php
+                    error_reporting (E_ALL ^ E_NOTICE);
                    $admintype = $_SESSION['user']['admintype'];
                     if($admintype == "superadmin")
                     {
-                        $query1=mysqli_query($conn,"SELECT distinct gender FROM crud ");
+                        $age = $_GET['age'];
+                        $query1=mysqli_query($conn,"SELECT distinct gender FROM crud where age = '$age'");
+                        // if(!empty($_POST['age']))
+                        // {
+                        //     $query34="SELECT gender FROM crud where age = '$age'";
+                        // }
+                        // $result=$conn->query('$query34');
                     }
                     else
                     {
