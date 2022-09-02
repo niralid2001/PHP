@@ -17,7 +17,12 @@
     }
     if(!empty($_POST['hobbies']))
     {
-        $query.=" AND hobbies='".$_POST['hobbies']."'";
+        $query.=" OR hobbies='".$_POST['hobbies']."'";
+        for($i=1;$i<=$query;$i++)
+        {
+             echo $_POST['hobbies']; 
+        }
+
     }
     if(!empty($_POST['city']))
     {

@@ -178,17 +178,20 @@ $(document).ready(function(){
                     // }
                     //$rowcount2=mysqli_num_rows($query2); 
                     ?>
-                    <select name="hobbies" id="hobbies" multiple="multiple">
-                        <option disabled selected value="-1">choose hobbies for record</option>
+                    <select name="hobbies[]" id="hobbies" multiple>
+                        <option disabled tabindex="-1">choose hobbies for record</option>
                         <option value="playing">Playing</option>
                         <option value="singing">Singing</option>
                         <option value="dancing">Dancing</option>
                         <?php 
-                            for($i=1;$i<=$rowcount2;$i++)
-                            {
-                                $row2=mysqli_fetch_array($query2,MYSQLI_ASSOC);
+                            //for($i=1;$i<=$rowcount2;$i++)
+                            //{
+                                //$row2=mysqli_fetch_array($query2,MYSQLI_ASSOC);
+                                $row2=$_POST['hobbies'];
+                                foreach ($row2 as $r)
+                                {
                         ?>
-                        <option value="<?php echo $row2["hobbies"]; ?>"><?php echo $row2["hobbies"]; ?></option>
+                         <option value="<?php echo $r["hobbies"]; ?>"><?php echo $r["hobbies"]; ?></option> 
                         <?php 
                             }
                         ?>
