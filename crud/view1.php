@@ -144,13 +144,8 @@ $(document).ready(function(){
                    $admintype = $_SESSION['user']['admintype'];
                     if($admintype == "superadmin")
                     {
-                        $age = $_GET['age'];
-                        $query1=mysqli_query($conn,"SELECT distinct gender FROM crud where age = '$age'");
-                        // if(!empty($_POST['age']))
-                        // {
-                        //     $query34="SELECT gender FROM crud where age = '$age'";
-                        // }
-                        // $result=$conn->query('$query34');
+                        //$age = $_POST['age'];
+                        $query1=mysqli_query($conn,"SELECT distinct gender FROM crud");
                     }
                     else
                     {
@@ -172,19 +167,22 @@ $(document).ready(function(){
                                </select></th>
                 <th>hobbies<br>
                    <?php
-                    $admintype = $_SESSION['user']['admintype'];
-                    if($admintype == "superadmin")
-                    {
-                        $query2=mysqli_query($conn,"SELECT distinct hobbies FROM crud ");
-                    }
-                    else
-                    {
-                        $query2=mysqli_query($conn,"SELECT distinct hobbies FROM crud WHERE log_id = '$log_id'");
-                    }
-                    $rowcount2=mysqli_num_rows($query2); 
+                    // $admintype = $_SESSION['user']['admintype'];
+                    // if($admintype == "superadmin")
+                    // {
+                    //     $query2=mysqli_query($conn,"SELECT distinct hobbies FROM crud ");
+                    // }
+                    // else
+                    // {
+                    //     $query2=mysqli_query($conn,"SELECT distinct hobbies FROM crud WHERE log_id = '$log_id'");
+                    // }
+                    //$rowcount2=mysqli_num_rows($query2); 
                     ?>
-                    <select name="hobbies" id="hobbies">
+                    <select name="hobbies" id="hobbies" multiple="multiple">
                         <option disabled selected value="-1">choose hobbies for record</option>
+                        <option value="playing">Playing</option>
+                        <option value="singing">Singing</option>
+                        <option value="dancing">Dancing</option>
                         <?php 
                             for($i=1;$i<=$rowcount2;$i++)
                             {
