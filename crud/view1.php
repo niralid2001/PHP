@@ -265,6 +265,12 @@ $(document).ready(function(){
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
         <script>
         jQuery(document).ready(function($) {     
-            $('#tblUser').DataTable();
+            $('#tblUser').DataTable(
+    //         {
+    //     "processing": true,
+    //     "serverSide": true,
+    //     "ajax": "server_processing.php"
+    // } 
+    );
         } );
         </script>

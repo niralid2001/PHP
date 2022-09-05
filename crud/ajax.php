@@ -17,18 +17,17 @@
     }
     if(!empty($_POST['hobbies']))
     {
-        $query.=" OR hobbies='".$_POST['hobbies']."'";
-        for($i=1;$i<=$query;$i++)
-        {
-             echo $_POST['hobbies']; 
-        }
-
+         $query.= " AND (";
+         for($i=0;$i<count($_POST['hobbies']);$i++)
+         {
+             $orq[] = "hobbies LIKE '%".$_POST['hobbies'][$i]."%'";
+         }
+         $query.= implode(" OR ", $orq).")";
     }
     if(!empty($_POST['city']))
     {
         $query.=" AND city='".$_POST['city']."'";
     }
-
     $result=$conn->query($query);
     if($result->num_rows > 0)
     {
