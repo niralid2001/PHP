@@ -4,23 +4,28 @@ if(!isset($_SESSION['user']))
 {
     header('Location:login.php');
 }
+$columns = array('id','log_id','name','age','gender','hobbies','city','file');
+$column = isset($_GET['column']) && in_array($_GET['column'], $columns) ? $_GET['column'] : $columns[0];
+$sort_order = isset($_GET['order']) && strtolower($_GET['order']) == 'desc' ? 'DESC' : 'ASC';
 
             $conn=mysqli_connect('localhost','root','','db');
             $log_id = $_SESSION['user']['log_id'];
             $admintype = $_SESSION['user']['admintype'];
             if($admintype == "superadmin")
             {
-                $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id ";
+                $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id ORDER BY  $column  $sort_order ";
             }
             else
             {
-                $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' "; 
+                $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' ORDER BY  $column  $sort_order"; 
             }
             $result = $conn->query($sql);
             $arr_users = [];
             if ($result->num_rows > 0) 
             {
                     $arr_users = $result->fetch_all(MYSQLI_ASSOC);
+                    $up_or_down = str_replace(array('ASC','DESC'), array('up','down'), $sort_order); 
+                    $asc_or_desc = $sort_order == 'ASC' ? 'desc' : 'asc';
             }        
 ?>
 <!-- ajax code -->
@@ -104,15 +109,15 @@ $(document).ready(function(){
   });
 });
   </script>
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
-        <table id="tblUser">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" /> -->
+        <table id="tblUser" cellpadding="15" cellspacing="0" border="1">
             <thead>
                 
-                <th>id</th>
-                <th>log_id</th>
-                <th>name</th>
-                <th>age<br>
+                <th><a href="view1.php?column=id&order=<?php echo $asc_or_desc; ?>">id <i class="fa fa-sort" <?php echo $column == 'id' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=log_id&order=<?php echo $asc_or_desc; ?>">log_id <i class="fa fa-sort" <?php echo $column == 'log_id' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=name&order=<?php echo $asc_or_desc; ?>">name<i class="fa fa-sort" <?php echo $column == 'name' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=age&order=<?php echo $asc_or_desc; ?>">age<i class="fa fa-sort" <?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>></i></a><br>
                     <!-- Dynamic dropdown -->
                     <?php
                     $admintype = $_SESSION['user']['admintype'];
@@ -138,7 +143,7 @@ $(document).ready(function(){
                             }
                         ?>
                     </select></th>
-                <th>gender <br>
+                <th><a href="view1.php?column=gender&order=<?php echo $asc_or_desc; ?>">gender<i class="fa fa-sort" <?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>></i></a> <br>
                    <?php
                     error_reporting (E_ALL ^ E_NOTICE);
                    $admintype = $_SESSION['user']['admintype'];
@@ -165,38 +170,23 @@ $(document).ready(function(){
                             }
                         ?>
                                </select></th>
-                <th>hobbies<br>
-                   <?php
-                    // $admintype = $_SESSION['user']['admintype'];
-                    // if($admintype == "superadmin")
-                    // {
-                    //     $query2=mysqli_query($conn,"SELECT distinct hobbies FROM crud ");
-                    // }
-                    // else
-                    // {
-                    //     $query2=mysqli_query($conn,"SELECT distinct hobbies FROM crud WHERE log_id = '$log_id'");
-                    // }
-                    //$rowcount2=mysqli_num_rows($query2); 
-                    ?>
+                <th><a href="view1.php?column=hobbies&order=<?php echo $asc_or_desc; ?>">hobbies<i class="fa fa-sort" <?php echo $column == 'hobbies' ? '-' . $up_or_down : ''; ?>></i></a><br>
                     <select name="hobbies[]" id="hobbies" multiple>
                         <option disabled tabindex="-1">choose hobbies for record</option>
                         <option value="playing">Playing</option>
                         <option value="singing">Singing</option>
                         <option value="dancing">Dancing</option>
                         <?php 
-                            //for($i=1;$i<=$rowcount2;$i++)
-                            //{
-                                //$row2=mysqli_fetch_array($query2,MYSQLI_ASSOC);
-                                $row2=$_POST['hobbies'];
-                                foreach ($row2 as $r)
-                                {
+                            $row2=$_POST['hobbies'];
+                            foreach ($row2 as $r)
+                            {
                         ?>
                          <option value="<?php echo $r["hobbies"]; ?>"><?php echo $r["hobbies"]; ?></option> 
                         <?php 
                             }
                         ?>
                                </select></th>
-                <th>city <br>
+                <th><a href="view1.php?column=city&order=<?php echo $asc_or_desc; ?>">city<i class="fa fa-sort" <?php echo $column == 'city' ? '-' . $up_or_down : ''; ?>></i></a> <br>
                    <?php
                     $admintype = $_SESSION['user']['admintype'];
                     if($admintype == "superadmin")
@@ -221,7 +211,7 @@ $(document).ready(function(){
                             }
                         ?>
                             </select></th>
-                <th>file</th>
+                <th><a href="view1.php?column=file&order=<?php echo $asc_or_desc; ?>">file<i class="fa fa-sort" <?php echo $column == 'file' ? '-' . $up_or_down : ''; ?>></i></a></th>
                 <th align="center"> action </th>
             </thead>
             <tbody align="center">
@@ -254,23 +244,23 @@ $(document).ready(function(){
                 <?php } ?>  
                 <a href="logout.php"><font size="6">logout</font></a><br><br>
                     <center><a href="crud.php"><font size="4">Add new data </font></a>     
-                     <form method="post" action="search.php">
+                     <form method="post" action="ajax.php">
                         <input type="text" name="text" placeholder="Search by id">
                         <button type="submit" name="search" id="search">Search</button>
                     </form> </center>                                            
             </tbody>
         </table>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
         <script>
         jQuery(document).ready(function($) {     
             $('#tblUser').DataTable(
-    //         {
-    //     "processing": true,
-    //     "serverSide": true,
-    //     "ajax": "server_processing.php"
-    // } 
+     //         {
+     //     "processing": true,
+     //     "serverSide": true,
+     //    "ajax": "server_processing.php"
+     // } 
     );
         } );
-        </script>
+        </script> -->
