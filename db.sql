@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2022 at 02:12 PM
+-- Generation Time: Sep 06, 2022 at 01:27 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -66,17 +66,13 @@ CREATE TABLE `crud` (
 --
 
 INSERT INTO `crud` (`log_id`, `id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`) VALUES
-(1, 224, 'hello', 11, 'male', 'playing,singing', 'surat', 'Chrysanthemum.jpg'),
-(1, 225, 'hello', 11, 'male', 'playing,singing', 'surat', 'Desert.jpg'),
-(2, 226, 'hiiii', 22, 'female', 'singing,dancing', 'ahemdabad', 'Hydrangeas.jpg'),
-(2, 227, 'hiiii', 22, 'female', 'singing,dancing', 'ahemdabad', 'Jellyfish.jpg'),
-(3, 228, 'world', 33, 'female', 'playing,singing,dancing', 'vadodra', 'Koala.jpg'),
-(3, 229, 'world', 33, 'female', 'playing,singing,dancing', 'vadodra', 'Lighthouse.jpg'),
-(3, 230, 'world', 33, 'female', 'playing,singing,dancing', 'vadodra', 'Penguins.jpg'),
-(1, 231, 'haaannn', 12, 'male', 'playing,dancing', 'rajkot', 'Tulips.jpg'),
-(2, 232, 'hlloww', 66, 'male', 'singing', 'rajkot', 'images.jpg'),
-(2, 233, 'iiiiii', 24, 'male', 'playing,singing,dancing', 'ahemdabad', 'Chrysanthemum.jpg'),
-(2, 234, 'kkk', 90, 'female', 'playing', 'rajkot', 'margherita.jpg');
+(1, 236, 'hello', 10, 'male', 'playing,singing', 'rajkot', 'Chrysanthemum.jpg'),
+(1, 237, 'world', 11, 'female', 'singing,dancing', 'surat', 'Desert.jpg'),
+(1, 238, 'hiiii', 12, 'female', 'playing,singing,dancing', 'ahemdabad', 'Hydrangeas.jpg'),
+(1, 239, 'hiiii', 12, 'female', 'playing,singing,dancing', 'ahemdabad', 'Jellyfish.jpg'),
+(1, 240, 'koala', 13, 'male', 'playing,dancing', 'vadodra', 'Koala.jpg'),
+(1, 241, 'lighthouse', 14, 'male', 'playing', 'rajkot', 'Lighthouse.jpg'),
+(2, 242, 'penguin', 11, 'female', 'singing', 'vadodra', 'Penguins.jpg');
 
 -- --------------------------------------------------------
 
@@ -207,7 +203,15 @@ INSERT INTO `table_file` (`id`, `file_id`, `file`) VALUES
 (58, 231, 'Tulips.jpg'),
 (59, 232, 'images.jpg'),
 (60, 233, 'Chrysanthemum.jpg'),
-(61, 234, 'margherita.jpg');
+(61, 234, 'margherita.jpg'),
+(62, 235, 'Jellyfish.jpg'),
+(63, 236, 'Chrysanthemum.jpg'),
+(64, 237, 'Desert.jpg'),
+(65, 238, 'Hydrangeas.jpg'),
+(66, 239, 'Jellyfish.jpg'),
+(67, 240, 'Koala.jpg'),
+(68, 241, 'Lighthouse.jpg'),
+(69, 242, 'Penguins.jpg');
 
 --
 -- Indexes for dumped tables
@@ -269,7 +273,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
 -- AUTO_INCREMENT for table `form`
@@ -293,7 +297,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `table_file`
 --
 ALTER TABLE `table_file`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
