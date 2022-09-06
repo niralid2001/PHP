@@ -105,7 +105,23 @@ $(document).ready(function(){
                  
               }
           }); 
-      }
+      } 
+  });
+});
+$(document).ready(function(){
+   $('#text').on('keypress', function(){
+      var text = $(this).val();
+      if(text){
+          $.ajax({
+              type:'POST',
+              url:'ajax.php',
+              data:{'text':text},
+              success:function(html){
+                  $('#tblUser tbody').html(html);
+                 
+              }
+          }); 
+      } 
   });
 });
   </script>
@@ -243,10 +259,11 @@ $(document).ready(function(){
                     
                 <?php } ?>  
                 <a href="logout.php"><font size="6">logout</font></a><br><br>
+                <button><a href="view1.php">Clear Sorting</a></button>
                     <center><a href="crud.php"><font size="4">Add new data </font></a>     
-                     <form method="post" action="ajax.php">
-                        <input type="text" name="text" placeholder="Search by id">
-                        <button type="submit" name="search" id="search">Search</button>
+                     <form method="post">
+                        <input type="text" name="text" placeholder="Search by id" id="text">
+                        <!-- <button type="submit" name="search" id="search">Search</button> -->
                     </form> </center>                                            
             </tbody>
         </table>
