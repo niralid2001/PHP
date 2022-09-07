@@ -28,11 +28,11 @@
     {
         $query.=" AND city='".$_POST['city']."'";
     }
-     if(!empty($_POST['text']))
-    {
-        $text = $_POST['text'];
-        $query="SELECT * FROM crud WHERE id='$text'";
-    }
+    //  if(!empty($_POST['text']))
+    // {
+    //     $text = $_POST['text'];
+    //     $query="SELECT * FROM crud WHERE id='$text'";
+    // }
     $result=$conn->query($query);
     if($result->num_rows > 0)
     {
