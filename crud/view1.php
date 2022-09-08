@@ -7,11 +7,11 @@ if(!isset($_SESSION['user']))
 $columns = array('id','log_id','name','age','gender','hobbies','city','file');
 $column = isset($_GET['column']) && in_array($_GET['column'], $columns) ? $_GET['column'] : $columns[0];
 $sort_order = isset($_GET['order']) && strtolower($_GET['order']) == 'desc' ? 'DESC' : 'ASC';
-$search=isset($_POST['text']) && $_POST['text']!= "" ? $_POST['text'] : "";
-$age=isset($_POST['age']) && $_POST['age']!= "" ? $_POST['age'] : "";
-$gender=isset($_POST['gender']) && $_POST['gender']!= "" ? $_POST['gender'] : "";
-$hobbies=isset($_POST['hobbies']) && $_POST['hobbies']!= "" ? $_POST['hobbies'] : "";
-$city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
+$search=isset($_GET['text']) && $_GET['text']!= "" ? $_GET['text'] : "";
+$age=isset($_GET['age']) && $_GET['age']!= "" ? $_GET['age'] : "";
+$gender=isset($_GET['gender']) && $_GET['gender']!= "" ? $_GET['gender'] : "";
+$hobbies=isset($_GET['hobbies']) && $_GET['hobbies']!= "" ? $_GET['hobbies'] : "";
+$city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
      
             $conn=mysqli_connect('localhost','root','','db');
              $limit = 3;    
@@ -43,13 +43,13 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
                 } 
                 if(!empty($age)) 
                 {
-                    $sql.=" AND age=$age ";
+                    $sql.=" AND age=$age";
                 }
                 if(!empty($column))
                 {
-                    $sql.="ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
+                    $sql.=" ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
                 }
-                //print_r($sql);
+                print_r($sql);
             }
             else
             {
@@ -60,7 +60,7 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
                 } 
                 if(!empty($column))
                 {
-                    $sql.="ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
+                    $sql.=" ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
                 }
             }
             $result = $conn->query($sql);
@@ -169,16 +169,25 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
 //       } 
 //   });
 // });
+function selectredirect()
+{
+    var age = document.getElementById("age").value;
+    window.location.href = 'view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age='+age;
+}
   </script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!--         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" /> -->
 
         <table id="tblUser" cellpadding="15" cellspacing="0" border="1">
             <thead>
                 
                 <th><a href="view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">id <i class="fa fa-sort" <?php echo $column == 'id' ? '-' . $up_or_down : ''; ?>></i></a></th>
-                <th><a href="view1.php?column=log_id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">log_id <i class="fa fa-sort" <?php echo $column == 'log_id' ? '-' . $up_or_down : ''; ?>></i></a></th>
-                <th><a href="view1.php?column=name&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">name<i class="fa fa-sort" <?php echo $column == 'name' ? '-' . $up_or_down : ''; ?>></i></a></th>
+
+                <th><a href="view1.php?column=log_id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">log_id <i class="fa fa-sort" <?php echo $column == 'log_id' ? '-' . $up_or_down : ''; ?>></i></a></th>
+
+                <th><a href="view1.php?column=name&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">name<i class="fa fa-sort" <?php echo $column == 'name' ? '-' . $up_or_down : ''; ?>></i></a></th>
+
                 <th><a href="view1.php?column=age&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">age<i class="fa fa-sort" <?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>></i></a><br>
                     <!-- Dynamic dropdown -->
                     <?php
@@ -193,7 +202,7 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
                     }
                     $rowcount=mysqli_num_rows($query); 
                     ?>
-                    <select name="age" id="age">
+                    <select name="age" id="age" onchange="selectredirect()">
                         <option disabled selected value="-1">choose age for record</option>
                         <?php 
                             for($i=1;$i<=$rowcount;$i++)
@@ -205,7 +214,8 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
                             }
                         ?>
                     </select></th>
-                <th><a href="view1.php?column=gender&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">gender<i class="fa fa-sort" <?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>></i></a> <br>
+
+                <th><a href="view1.php?column=gender&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">gender<i class="fa fa-sort" <?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>></i></a> <br>
                    <?php
                     error_reporting (E_ALL ^ E_NOTICE);
                    $admintype = $_SESSION['user']['admintype'];
@@ -232,7 +242,8 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
                             }
                         ?>
                                </select></th>
-                <th><a href="view1.php?column=hobbies&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">hobbies<i class="fa fa-sort" <?php echo $column == 'hobbies' ? '-' . $up_or_down : ''; ?>></i></a><br>
+
+                <th><a href="view1.php?column=hobbies&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">hobbies<i class="fa fa-sort" <?php echo $column == 'hobbies' ? '-' . $up_or_down : ''; ?>></i></a><br>
                     <select name="hobbies[]" id="hobbies" multiple>
                         <option disabled tabindex="-1">choose hobbies for record</option>
                         <option value="playing">Playing</option>
@@ -248,7 +259,8 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
                             }
                         ?>
                                </select></th>
-                <th><a href="view1.php?column=city&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">city<i class="fa fa-sort" <?php echo $column == 'city' ? '-' . $up_or_down : ''; ?>></i></a> <br>
+
+                <th><a href="view1.php?column=city&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age;?>">city<i class="fa fa-sort" <?php echo $column == 'city' ? '-' . $up_or_down : ''; ?>></i></a> <br>
                    <?php
                     $admintype = $_SESSION['user']['admintype'];
                     if($admintype == "superadmin")
@@ -273,7 +285,8 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
                             }
                         ?>
                             </select></th>
-                <th><a href="view1.php?column=file&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">file<i class="fa fa-sort" <?php echo $column == 'file' ? '-' . $up_or_down : ''; ?>></i></a></th>
+
+                <th><a href="view1.php?column=file&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">file<i class="fa fa-sort" <?php echo $column == 'file' ? '-' . $up_or_down : ''; ?>></i></a></th>
                 <th align="center"> action </th>
             </thead>
             <tbody align="center">
@@ -352,7 +365,7 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
 
             if($page_number>=2){   
 
-                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&page=".($page_number-1)."&search=$search '>  Prev </a>";   
+                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&page=".($page_number-1)."&search=$search '>  Prev </a>";   
 
             }                          
 
@@ -360,7 +373,7 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
 
               if ($i == $page_number) {   
 
-                  $pageURL .= "<a class = 'active' href='view1.php?colum=$colums&order=$asc_or_desc&page="  
+                  $pageURL .= "<a class = 'active' href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&page="  
 
                                                     .$i."&search=$search'>".$i." </a>";   
 
@@ -368,7 +381,7 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
 
               else  {   
 
-                  $pageURL .= "<a href='view1.php?colum=$colums&order=$asc_or_desc&page=".$i."&search=$search'>   
+                  $pageURL .= "<a href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&page=".$i."&search=$search'>   
 
                                                     ".$i." </a>";     
 
@@ -380,7 +393,7 @@ $city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
 
             if($page_number<$total_pages){   
 
-                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&page=".($page_number+1)."&search=$search'>  Next </a>";   
+                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&page=".($page_number+1)."&search=$search'>  Next </a>";   
 
             }     
         }
