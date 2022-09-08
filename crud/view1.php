@@ -7,7 +7,11 @@ if(!isset($_SESSION['user']))
 $columns = array('id','log_id','name','age','gender','hobbies','city','file');
 $column = isset($_GET['column']) && in_array($_GET['column'], $columns) ? $_GET['column'] : $columns[0];
 $sort_order = isset($_GET['order']) && strtolower($_GET['order']) == 'desc' ? 'DESC' : 'ASC';
- 
+$search=isset($_POST['text']) && $_POST['text']!= "" ? $_POST['text'] : "";
+$age=isset($_POST['age']) && $_POST['age']!= "" ? $_POST['age'] : "";
+$gender=isset($_POST['gender']) && $_POST['gender']!= "" ? $_POST['gender'] : "";
+$hobbies=isset($_POST['hobbies']) && $_POST['hobbies']!= "" ? $_POST['hobbies'] : "";
+$city=isset($_POST['city']) && $_POST['city']!= "" ? $_POST['city'] : "";
      
             $conn=mysqli_connect('localhost','root','','db');
              $limit = 3;    
@@ -27,17 +31,37 @@ $sort_order = isset($_GET['order']) && strtolower($_GET['order']) == 'desc' ? 'D
             }       
 
             // get the initial page number
-
             $initial_page = ($page_number-1) * $limit;
             $log_id = $_SESSION['user']['log_id'];
             $admintype = $_SESSION['user']['admintype'];
             if($admintype == "superadmin")
             {
-                $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
+                $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id where 1=1 ";
+                if(!empty($search)) 
+                {
+                    $sql.=" AND crud.id=$search ";
+                } 
+                if(!empty($age)) 
+                {
+                    $sql.=" AND age=$age ";
+                }
+                if(!empty($column))
+                {
+                    $sql.="ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
+                }
+                //print_r($sql);
             }
             else
             {
-                $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' ORDER BY  $column  $sort_order LIMIT $initial_page, $limit"; 
+                $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' "; 
+                if(!empty($search)) 
+                {
+                    $sql.=" AND crud.id=$search ";
+                } 
+                if(!empty($column))
+                {
+                    $sql.="ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
+                }
             }
             $result = $conn->query($sql);
             $arr_users = [];
@@ -52,82 +76,83 @@ $sort_order = isset($_GET['order']) && strtolower($_GET['order']) == 'desc' ? 'D
     <script src="http://localhost/PHP-Training/crud/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 // ajax script for getting state data
-$(document).ready(function(){
-   $('#age').on('change', function(){
-      var age = $(this).val();
-      var gender = $('#gender').val();
-      var hobbies = $('#hobbies').val();
-      var city = $('#city').val();
-      if(age){
-          $.ajax({
-              type:'POST',
-              url:'ajax.php',
-              data:{'age':age,'gender':gender,'hobbies':hobbies,'city':city},
-              success:function(html){
-                  $('#tblUser tbody').html(html);
+// $(document).ready(function(){
+//    $('#age').on('change', function(){
+//       var age = $(this).val();
+//       var gender = $('#gender').val();
+//       var hobbies = $('#hobbies').val();
+//       var city = $('#city').val();
+//       if(age){
+//           $.ajax({
+//               type:'POST',
+//               url:'ajax.php',
+//               data:{'age':age,'gender':gender,'hobbies':hobbies,'city':city},
+//               success:function(html){
+//                   $('#tblUser tbody').html(html);
                  
-              }
-          }); 
-      }
-  });
-});
-$(document).ready(function(){
-   $('#gender').on('change', function(){
-      var gender = $(this).val();
-      var age = $('#age').val();
-      var hobbies = $('#hobbies').val();
-      var city = $('#city').val();
-      if(gender){
-          $.ajax({
-              type:'POST',
-              url:'ajax.php',
-              data:{'gender':gender,'age':age,'hobbies':hobbies,'city':city},
-              success:function(html){
-                  $('#tblUser tbody').html(html);
+//               }
+//           }); 
+//       }
+//   });
+// });
+// $(document).ready(function(){
+//    $('#gender').on('change', function(){
+//       var gender = $(this).val();
+//       var age = $('#age').val();
+//       var hobbies = $('#hobbies').val();
+//       var city = $('#city').val();
+//       if(gender){
+//           $.ajax({
+//               type:'POST',
+//               url:'ajax.php',
+//               data:{'gender':gender,'age':age,'hobbies':hobbies,'city':city},
+//               success:function(html){
+//                   $('#tblUser tbody').html(html);
                  
-              }
-          }); 
-      }
-  });
-});
-$(document).ready(function(){
-   $('#hobbies').on('change', function(){
-      var hobbies = $(this).val();
-      var age = $('#age').val();
-      var gender = $('#gender').val();
-      var city = $('#city').val();
-      if(hobbies){
-          $.ajax({
-              type:'POST',
-              url:'ajax.php',
-              data:{'hobbies':hobbies,'age':age,'gender':gender,'city':city},
-              success:function(html){
-                  $('#tblUser tbody').html(html);
+//               }
+//           }); 
+//       }
+//   });
+// });
+// $(document).ready(function(){
+//    $('#hobbies').on('change', function(){
+//       var hobbies = $(this).val();
+//       var age = $('#age').val();
+//       var gender = $('#gender').val();
+//       var city = $('#city').val();
+//       if(hobbies){
+//           $.ajax({
+//               type:'POST',
+//               url:'ajax.php',
+//               data:{'hobbies':hobbies,'age':age,'gender':gender,'city':city},
+//               success:function(html){
+//                   $('#tblUser tbody').html(html);
                  
-              }
-          }); 
-      }
-  });
-});
-$(document).ready(function(){
-   $('#city').on('change', function(){
-      var city = $(this).val();
-      var age = $('#age').val();
-      var gender = $('#gender').val();
-      var hobbies = $('#hobbies').val();
-      if(city){
-          $.ajax({
-              type:'POST',
-              url:'ajax.php',
-              data:{'city':city,'age':age,'gender':gender,'hobbies':hobbies},
-              success:function(html){
-                  $('#tblUser tbody').html(html);
+//               }
+//           }); 
+//       }
+//   });
+// });
+// $(document).ready(function(){
+//    $('#city').on('change', function(){
+//       var city = $(this).val();
+//       var age = $('#age').val();
+//       var gender = $('#gender').val();
+//       var hobbies = $('#hobbies').val();
+//       if(city){
+//           $.ajax({
+//               type:'POST',
+//               url:'ajax.php',
+//               data:{'city':city,'age':age,'gender':gender,'hobbies':hobbies},
+//               success:function(html){
+//                   $('#tblUser tbody').html(html);
                  
-              }
-          }); 
-      } 
-  });
-});
+//               }
+//           }); 
+//       } 
+//   });
+// });
+            // search by ajax
 // $(document).ready(function(){
 //    $('#text').keyup( function(){
 //       var text = $(this).val();
@@ -151,10 +176,10 @@ $(document).ready(function(){
         <table id="tblUser" cellpadding="15" cellspacing="0" border="1">
             <thead>
                 
-                <th><a href="view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>">id <i class="fa fa-sort" <?php echo $column == 'id' ? '-' . $up_or_down : ''; ?>></i></a></th>
-                <th><a href="view1.php?column=log_id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>">log_id <i class="fa fa-sort" <?php echo $column == 'log_id' ? '-' . $up_or_down : ''; ?>></i></a></th>
-                <th><a href="view1.php?column=name&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>">name<i class="fa fa-sort" <?php echo $column == 'name' ? '-' . $up_or_down : ''; ?>></i></a></th>
-                <th><a href="view1.php?column=age&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>">age<i class="fa fa-sort" <?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>></i></a><br>
+                <th><a href="view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">id <i class="fa fa-sort" <?php echo $column == 'id' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=log_id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">log_id <i class="fa fa-sort" <?php echo $column == 'log_id' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=name&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">name<i class="fa fa-sort" <?php echo $column == 'name' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=age&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">age<i class="fa fa-sort" <?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>></i></a><br>
                     <!-- Dynamic dropdown -->
                     <?php
                     $admintype = $_SESSION['user']['admintype'];
@@ -180,7 +205,7 @@ $(document).ready(function(){
                             }
                         ?>
                     </select></th>
-                <th><a href="view1.php?column=gender&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>">gender<i class="fa fa-sort" <?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>></i></a> <br>
+                <th><a href="view1.php?column=gender&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">gender<i class="fa fa-sort" <?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>></i></a> <br>
                    <?php
                     error_reporting (E_ALL ^ E_NOTICE);
                    $admintype = $_SESSION['user']['admintype'];
@@ -207,7 +232,7 @@ $(document).ready(function(){
                             }
                         ?>
                                </select></th>
-                <th><a href="view1.php?column=hobbies&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>">hobbies<i class="fa fa-sort" <?php echo $column == 'hobbies' ? '-' . $up_or_down : ''; ?>></i></a><br>
+                <th><a href="view1.php?column=hobbies&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">hobbies<i class="fa fa-sort" <?php echo $column == 'hobbies' ? '-' . $up_or_down : ''; ?>></i></a><br>
                     <select name="hobbies[]" id="hobbies" multiple>
                         <option disabled tabindex="-1">choose hobbies for record</option>
                         <option value="playing">Playing</option>
@@ -223,7 +248,7 @@ $(document).ready(function(){
                             }
                         ?>
                                </select></th>
-                <th><a href="view1.php?column=city&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>">city<i class="fa fa-sort" <?php echo $column == 'city' ? '-' . $up_or_down : ''; ?>></i></a> <br>
+                <th><a href="view1.php?column=city&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">city<i class="fa fa-sort" <?php echo $column == 'city' ? '-' . $up_or_down : ''; ?>></i></a> <br>
                    <?php
                     $admintype = $_SESSION['user']['admintype'];
                     if($admintype == "superadmin")
@@ -248,7 +273,7 @@ $(document).ready(function(){
                             }
                         ?>
                             </select></th>
-                <th><a href="view1.php?column=file&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>">file<i class="fa fa-sort" <?php echo $column == 'file' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=file&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>">file<i class="fa fa-sort" <?php echo $column == 'file' ? '-' . $up_or_down : ''; ?>></i></a></th>
                 <th align="center"> action </th>
             </thead>
             <tbody align="center">
@@ -282,7 +307,7 @@ $(document).ready(function(){
                 <a href="logout.php"><font size="6">logout</font></a><br><br>
                 <button><a href="view1.php">Clear Sorting</a></button>
                     <center><a href="crud.php"><font size="4">Add new data </font></a>     
-                     <form method="post" id="search_form" action="search.php">
+                     <form method="POST" id="search_form" action="view1.php">
                         <input type="text" name="text" placeholder="Search by id" id="text">
                         <button type="submit" name="search" id="search">Search</button>
                     </form> </center>                                            
@@ -327,7 +352,7 @@ $(document).ready(function(){
 
             if($page_number>=2){   
 
-                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&page=".($page_number-1)." '>  Prev </a>";   
+                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&page=".($page_number-1)."&search=$search '>  Prev </a>";   
 
             }                          
 
@@ -337,13 +362,13 @@ $(document).ready(function(){
 
                   $pageURL .= "<a class = 'active' href='view1.php?colum=$colums&order=$asc_or_desc&page="  
 
-                                                    .$i."'>".$i." </a>";   
+                                                    .$i."&search=$search'>".$i." </a>";   
 
               }               
 
               else  {   
 
-                  $pageURL .= "<a href='view1.php?colum=$colums&order=$asc_or_desc&page=".$i."'>   
+                  $pageURL .= "<a href='view1.php?colum=$colums&order=$asc_or_desc&page=".$i."&search=$search'>   
 
                                                     ".$i." </a>";     
 
@@ -355,24 +380,9 @@ $(document).ready(function(){
 
             if($page_number<$total_pages){   
 
-                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&page=".($page_number+1)."'>  Next </a>";   
+                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&page=".($page_number+1)."&search=$search'>  Next </a>";   
 
             }     
         }
           ?>    
     </center>   
-      <script>   
-
-        // function go2Page()   
-
-        // {   
-
-        //     var page = document.getElementById("page").value;   
-
-        //     page = ((page><?php echo $total_pages; ?>)?<?php echo $total_pages; ?>:((page<1)?1:page));   
-
-        //     window.location.href = 'view1.php?page='+page;   
-
-        // }   
-
-      </script>  
