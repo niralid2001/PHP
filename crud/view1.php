@@ -39,7 +39,7 @@ $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
                 $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id where 1=1 ";
                 if(!empty($search)) 
                 {
-                    $sql.=" AND crud.id='$search'";
+                    $sql.=" AND crud.id Like '%$search%' (OR crud.log_id Like '%$search%' OR crud.name Like '%$search%' OR crud.age Like '%$search%' OR crud.gender Like '%$search%' OR crud.hobbies  Like '%$search%' OR crud.city Like '%$search%')=$search ";
                 } 
                 if(!empty($age)) 
                 {
@@ -72,10 +72,10 @@ $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
             else
             {
                 $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' "; 
-                if(!empty($search)) 
-                {
-                    $sql.=" AND crud.id=$search ";
-                } 
+                // if(!empty($search)) 
+                // {
+                //     $sql.=" AND crud.id Like '%$search%' (OR crud.log_id Like '%$search%' OR crud.name Like '%$search%' OR crud.age Like '%$search%' OR crud.gender Like '%$search%' OR crud.hobbies  Like '%$search%' OR crud.city Like '%$search%')=$search ";
+                // } 
                 if(!empty($column))
                 {
                     $sql.=" ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
@@ -191,9 +191,16 @@ function selectredirect()
 {
     var age = document.getElementById("age").value;
     var gender = document.getElementById("gender").value;
+
     var hobbies = document.getElementById("hobbies").value;
+    // document.getElementById('hobbies').onclick = function() {
+    // var select = document.getElementById('hobbies');
+    // var selected = [...select.selectedOptions]
+    //                 .map(option => option.value);
+    // alert(selected);
+
     var city = document.getElementById("city").value;
-    window.location.href = 'view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age='+age+'&gender='+gender+'&hobbies='+hobbies+'&city='+city;
+     window.location.href = 'view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age='+age+'&gender='+gender+'&hobbies='+hobbies+'&city='+city;
     
 }
   </script>
@@ -231,7 +238,7 @@ function selectredirect()
                             {
                                 $row=mysqli_fetch_array($query,MYSQLI_ASSOC);
                         ?>
-                        <option value="<?php echo $row["age"];?>"><?php echo $row["age"]; ?></option>
+                        <option value="<?php echo $row["age"];?>" <?php if($age==$row["age"]) {echo "selected";}?> > <?php echo $row["age"]; ?> </option>
                         <?php 
                             }
                         ?>
@@ -259,7 +266,7 @@ function selectredirect()
                             {
                                 $row1=mysqli_fetch_array($query1,MYSQLI_ASSOC);
                         ?>
-                        <option value="<?php echo $row1["gender"]; ?>"><?php echo $row1["gender"]; ?></option>
+                        <option value="<?php echo $row1["gender"]; ?>" <?php if($gender==$row1["gender"]) {echo "selected";}?> ><?php echo $row1["gender"]; ?></option>
                         <?php 
                             }
                         ?>
@@ -268,18 +275,18 @@ function selectredirect()
                 <th><a href="view1.php?column=hobbies&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">hobbies<i class="fa fa-sort" <?php echo $column == 'hobbies' ? '-' . $up_or_down : ''; ?>></i></a><br>
                     <select name="hobbies[]" id="hobbies" multiple="multiple" onchange="selectredirect()">
                         <option disabled selected value="" >choose hobbies for record</option>
-                        <option value="playing">Playing</option>
-                        <option value="singing">Singing</option>
-                        <option value="dancing">Dancing</option>
-                         <?php 
+                        <option value="playing" <?php if( $hobbies == "playing" ) {echo "selected";}?>>Playing</option>
+                        <option value="singing" <?php if( $hobbies == "singing" ) {echo "selected";}?>>Singing</option>
+                        <option value="dancing" <?php if( $hobbies == "dancing" ) {echo "selected";}?>>Dancing</option>
+                         <!-- <?php 
                             $row2=$_POST['hobbies'];
                             foreach ($row2 as $r)
                             {
                         ?>
-                         <option value="<?php echo $r["hobbies"]; ?>"><?php echo $r["hobbies"]; ?></option>  
+                         <option value="<?php echo $r["hobbies"]; ?>" <?php if($hobbies==$r["hobbies"]) {echo "selected";}?>><?php echo $r["hobbies"]; ?></option>  
                         <?php 
                             }
-                        ?>
+                        ?> -->
                                </select></th>
 
                 <th><a href="view1.php?column=city&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age;?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">city<i class="fa fa-sort" <?php echo $column == 'city' ? '-' . $up_or_down : ''; ?>></i></a> <br>
@@ -302,7 +309,7 @@ function selectredirect()
                             {
                                 $row3=mysqli_fetch_array($query3,MYSQLI_ASSOC);
                         ?>
-                        <option value="<?php echo $row3["city"]; ?>"><?php echo $row3["city"]; ?></option>
+                        <option value="<?php echo $row3["city"]; ?>" <?php if($city==$row3["city"]) {echo "selected";}?> ><?php echo $row3["city"]; ?></option>
                         <?php 
                             }
                         ?>
@@ -343,7 +350,7 @@ function selectredirect()
                 <button><a href="view1.php">Clear Sorting</a></button>
                     <center><a href="crud.php"><font size="4">Add new data </font></a>     
                      <form method="POST" id="search_form" action="view1.php">
-                        <input type="text" name="text" placeholder="Search by id" id="text">
+                        <input type="text" name="text" placeholder="Search by id" id="text" value="<?php echo $text ; ?>">
                         <button type="submit" name="search" id="search">Search</button>
                     </form> </center>                                            
             </tbody>
