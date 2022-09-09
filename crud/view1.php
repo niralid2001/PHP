@@ -39,17 +39,35 @@ $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
                 $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id where 1=1 ";
                 if(!empty($search)) 
                 {
-                    $sql.=" AND crud.id=$search ";
+                    $sql.=" AND crud.id='$search'";
                 } 
                 if(!empty($age)) 
                 {
-                    $sql.=" AND age=$age";
+                    $sql.=" AND age='$age'";
+                }
+                if(!empty($gender)) 
+                {
+                    $sql.=" AND gender='$gender'";
+                }
+                if(!empty($hobbies))
+                {
+                    $sql.=" AND hobbies='$hobbies'";
+                    // $sql.= " AND (";
+                    //  for($i=0;$i<count($hobbies);$i++)
+                    //  {
+                    //      $orq[] = "hobbies LIKE '%".$hobbies[$i]."%'";
+                    //  }
+                    //  $sql.= implode(" OR ", $orq).")";
+                }
+                if(!empty($city)) 
+                {
+                    $sql.=" AND city='$city'";
                 }
                 if(!empty($column))
                 {
                     $sql.=" ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
                 }
-                print_r($sql);
+                  print_r($sql);
             }
             else
             {
@@ -172,7 +190,11 @@ $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
 function selectredirect()
 {
     var age = document.getElementById("age").value;
-    window.location.href = 'view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age='+age;
+    var gender = document.getElementById("gender").value;
+    var hobbies = document.getElementById("hobbies").value;
+    var city = document.getElementById("city").value;
+    window.location.href = 'view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age='+age+'&gender='+gender+'&hobbies='+hobbies+'&city='+city;
+    
 }
   </script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -182,13 +204,13 @@ function selectredirect()
         <table id="tblUser" cellpadding="15" cellspacing="0" border="1">
             <thead>
                 
-                <th><a href="view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">id <i class="fa fa-sort" <?php echo $column == 'id' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">id <i class="fa fa-sort" <?php echo $column == 'id' ? '-' . $up_or_down : ''; ?>></i></a></th>
 
-                <th><a href="view1.php?column=log_id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">log_id <i class="fa fa-sort" <?php echo $column == 'log_id' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=log_id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">log_id <i class="fa fa-sort" <?php echo $column == 'log_id' ? '-' . $up_or_down : ''; ?>></i></a></th>
 
-                <th><a href="view1.php?column=name&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">name<i class="fa fa-sort" <?php echo $column == 'name' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=name&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">name<i class="fa fa-sort" <?php echo $column == 'name' ? '-' . $up_or_down : ''; ?>></i></a></th>
 
-                <th><a href="view1.php?column=age&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">age<i class="fa fa-sort" <?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>></i></a><br>
+                <th><a href="view1.php?column=age&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">age<i class="fa fa-sort" <?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>></i></a><br>
                     <!-- Dynamic dropdown -->
                     <?php
                     $admintype = $_SESSION['user']['admintype'];
@@ -203,19 +225,19 @@ function selectredirect()
                     $rowcount=mysqli_num_rows($query); 
                     ?>
                     <select name="age" id="age" onchange="selectredirect()">
-                        <option disabled selected value="-1">choose age for record</option>
+                        <option disabled selected value="">choose age for record</option>
                         <?php 
                             for($i=1;$i<=$rowcount;$i++)
                             {
                                 $row=mysqli_fetch_array($query,MYSQLI_ASSOC);
                         ?>
-                        <option value="<?php echo $row["age"]; ?>"><?php echo $row["age"]; ?></option>
+                        <option value="<?php echo $row["age"];?>"><?php echo $row["age"]; ?></option>
                         <?php 
                             }
                         ?>
                     </select></th>
 
-                <th><a href="view1.php?column=gender&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">gender<i class="fa fa-sort" <?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>></i></a> <br>
+                <th><a href="view1.php?column=gender&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">gender<i class="fa fa-sort" <?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>></i></a> <br>
                    <?php
                     error_reporting (E_ALL ^ E_NOTICE);
                    $admintype = $_SESSION['user']['admintype'];
@@ -230,8 +252,8 @@ function selectredirect()
                     }
                     $rowcount1=mysqli_num_rows($query1); 
                     ?>
-                    <select name="gender" id="gender">
-                        <option disabled selected value="-1">choose gender for record</option>
+                    <select name="gender" id="gender" onchange="selectredirect()" >
+                        <option disabled selected value="">choose gender for record</option>
                         <?php 
                             for($i=1;$i<=$rowcount1;$i++)
                             {
@@ -243,24 +265,24 @@ function selectredirect()
                         ?>
                                </select></th>
 
-                <th><a href="view1.php?column=hobbies&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">hobbies<i class="fa fa-sort" <?php echo $column == 'hobbies' ? '-' . $up_or_down : ''; ?>></i></a><br>
-                    <select name="hobbies[]" id="hobbies" multiple>
-                        <option disabled tabindex="-1">choose hobbies for record</option>
+                <th><a href="view1.php?column=hobbies&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">hobbies<i class="fa fa-sort" <?php echo $column == 'hobbies' ? '-' . $up_or_down : ''; ?>></i></a><br>
+                    <select name="hobbies[]" id="hobbies" multiple="multiple" onchange="selectredirect()">
+                        <option disabled selected value="" >choose hobbies for record</option>
                         <option value="playing">Playing</option>
                         <option value="singing">Singing</option>
                         <option value="dancing">Dancing</option>
-                        <?php 
+                         <?php 
                             $row2=$_POST['hobbies'];
                             foreach ($row2 as $r)
                             {
                         ?>
-                         <option value="<?php echo $r["hobbies"]; ?>"><?php echo $r["hobbies"]; ?></option> 
+                         <option value="<?php echo $r["hobbies"]; ?>"><?php echo $r["hobbies"]; ?></option>  
                         <?php 
                             }
                         ?>
                                </select></th>
 
-                <th><a href="view1.php?column=city&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age;?>">city<i class="fa fa-sort" <?php echo $column == 'city' ? '-' . $up_or_down : ''; ?>></i></a> <br>
+                <th><a href="view1.php?column=city&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age;?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">city<i class="fa fa-sort" <?php echo $column == 'city' ? '-' . $up_or_down : ''; ?>></i></a> <br>
                    <?php
                     $admintype = $_SESSION['user']['admintype'];
                     if($admintype == "superadmin")
@@ -273,8 +295,8 @@ function selectredirect()
                     }
                     $rowcount3=mysqli_num_rows($query3); 
                     ?>
-                    <select name="city" id="city">
-                        <option disabled selected value="-1">choose city for record</option>
+                    <select name="city" id="city" onchange="selectredirect()">
+                        <option disabled selected value="">choose city for record</option>
                         <?php 
                             for($i=1;$i<=$rowcount3;$i++)
                             {
@@ -286,7 +308,7 @@ function selectredirect()
                         ?>
                             </select></th>
 
-                <th><a href="view1.php?column=file&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>">file<i class="fa fa-sort" <?php echo $column == 'file' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=file&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">file<i class="fa fa-sort" <?php echo $column == 'file' ? '-' . $up_or_down : ''; ?>></i></a></th>
                 <th align="center"> action </th>
             </thead>
             <tbody align="center">
@@ -365,7 +387,7 @@ function selectredirect()
 
             if($page_number>=2){   
 
-                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&page=".($page_number-1)."&search=$search '>  Prev </a>";   
+                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&gender=$gender&hobbies=$hobbies&city=$city&page=".($page_number-1)."&search=$search '>  Prev </a>";   
 
             }                          
 
@@ -373,7 +395,7 @@ function selectredirect()
 
               if ($i == $page_number) {   
 
-                  $pageURL .= "<a class = 'active' href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&page="  
+                  $pageURL .= "<a class = 'active' href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&gender=$gender&hobbies=$hobbies&city=$city&page="  
 
                                                     .$i."&search=$search'>".$i." </a>";   
 
@@ -381,7 +403,7 @@ function selectredirect()
 
               else  {   
 
-                  $pageURL .= "<a href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&page=".$i."&search=$search'>   
+                  $pageURL .= "<a href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&gender=$gender&hobbies=$hobbies&city=$city&page=".$i."&search=$search'>   
 
                                                     ".$i." </a>";     
 
@@ -393,7 +415,7 @@ function selectredirect()
 
             if($page_number<$total_pages){   
 
-                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&page=".($page_number+1)."&search=$search'>  Next </a>";   
+                echo "<a href='view1.php?colum=$colums&order=$asc_or_desc&age=$age&gender=$gender&hobbies=$hobbies&city=$city&page=".($page_number+1)."&search=$search' >  Next </a>";   
 
             }     
         }
