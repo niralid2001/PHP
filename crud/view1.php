@@ -4,17 +4,52 @@ if(!isset($_SESSION['user']))
 {
     header('Location:login.php');
 }
+$conn=mysqli_connect('localhost','root','','db');
+
 $columns = array('id','log_id','name','age','gender','hobbies','city','file');
 $column = isset($_GET['column']) && in_array($_GET['column'], $columns) ? $_GET['column'] : $columns[0];
 $sort_order = isset($_GET['order']) && strtolower($_GET['order']) == 'desc' ? 'DESC' : 'ASC';
+$up_or_down="";
 $search=isset($_GET['text']) && $_GET['text']!= "" ? $_GET['text'] : "";
 $age=isset($_GET['age']) && $_GET['age']!= "" ? $_GET['age'] : "";
 $gender=isset($_GET['gender']) && $_GET['gender']!= "" ? $_GET['gender'] : "";
 $hobbies=isset($_GET['hobbies']) && $_GET['hobbies']!= "" ? $_GET['hobbies'] : "";
 $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
-     
-            $conn=mysqli_connect('localhost','root','','db');
-             $limit = 3;    
+     $ss="";
+
+                if(!empty($search)) 
+                {
+                    $ss.=" AND ((crud.id LIKE '%".$search."%') OR (crud.log_id LIKE '%".$search."%') OR (crud.name LIKE '%".$search."%') OR (crud.age LIKE '%".$search."%') OR (crud.gender LIKE '%".$search."%') OR (crud.hobbies LIKE '%".$search."%') OR (crud.city LIKE '%".$search."%'))";
+                } 
+     if(!empty($age)) 
+                {
+                    $ss.=" AND age='$age'";
+                }
+                if(!empty($gender)) 
+                {
+                    $ss.=" AND gender='$gender'";
+                }
+                if(!empty($hobbies))
+                {
+                    $ss.=" AND hobbies='$hobbies'";
+                    // $sql.= " AND (";
+                    //  for($i=0;$i<count($hobbies);$i++)
+                    //  {
+                    //      $orq[] = "hobbies LIKE '%".$hobbies[$i]."%'";
+                    //  }
+                    //  $sql.= implode(" OR ", $orq).")";
+                }
+                if(!empty($city)) 
+                {
+                    $ss.=" AND city='$city'";
+                }
+     //total record in database
+     $sql="SELECT count(*) FROM crud where 1=1 $ss";
+     $result = mysqli_query($conn, $sql);     
+     $row =mysqli_fetch_array($result);
+     $total_rows = $row[0]; 
+     $limit = 3; 
+     $total_pages = ceil($total_rows / $limit);   
 
             // update the active page number
 
@@ -36,46 +71,16 @@ $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
             $admintype = $_SESSION['user']['admintype'];
             if($admintype == "superadmin")
             {
-                $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id where 1=1 ";
-                if(!empty($search)) 
-                {
-                    $sql.=" AND ((crud.id LIKE '%".$search."%') OR (crud.log_id LIKE '%".$search."%') OR (crud.name LIKE '%".$search."%') OR (crud.age LIKE '%".$search."%') OR (crud.gender LIKE '%".$search."%') OR (crud.hobbies LIKE '%".$search."%') OR (crud.city LIKE '%".$search."%'))";
-                } 
-                if(!empty($age)) 
-                {
-                    $sql.=" AND age='$age'";
-                }
-                if(!empty($gender)) 
-                {
-                    $sql.=" AND gender='$gender'";
-                }
-                if(!empty($hobbies))
-                {
-                    $sql.=" AND hobbies='$hobbies'";
-                    // $sql.= " AND (";
-                    //  for($i=0;$i<count($hobbies);$i++)
-                    //  {
-                    //      $orq[] = "hobbies LIKE '%".$hobbies[$i]."%'";
-                    //  }
-                    //  $sql.= implode(" OR ", $orq).")";
-                }
-                if(!empty($city)) 
-                {
-                    $sql.=" AND city='$city'";
-                }
+                $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id where 1=1 $ss";
+                
                 if(!empty($column))
                 {
                     $sql.=" ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
                 }
-                  print_r($sql);
             }
             else
             {
-                $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' "; 
-                if(!empty($search)) 
-                {
-                    $sql.=" AND (crud.id LIKE '%".$search."%') OR (crud.log_id LIKE '%".$search."%') OR (crud.name LIKE '%".$search."%') OR (crud.age LIKE '%".$search."%') OR (crud.gender LIKE '%".$search."%') OR (crud.hobbies LIKE '%".$search."%') OR (crud.city LIKE '%".$search."%') = '$search'";
-                } 
+                $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' $ss";  
                 if(!empty($column))
                 {
                     $sql.=" ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
@@ -193,7 +198,7 @@ function selectredirect()
     var gender = document.getElementById("gender").value;
     var hobbies = document.getElementById("hobbies").value;
     var city = document.getElementById("city").value;
-    window.location.href = 'view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age='+age+'&gender='+gender+'&hobbies='+hobbies+'&city='+city;
+    window.location.href = 'view1.php?column=id&order=<?php echo '$asc_or_desc'; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age='+age+'&gender='+gender+'&hobbies='+hobbies+'&city='+city;
     
 }
   </script>
@@ -204,7 +209,7 @@ function selectredirect()
         <table id="tblUser" cellpadding="15" cellspacing="0" border="1">
             <thead>
                 
-                <th><a href="view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">id <i class="fa fa-sort" <?php echo $column == 'id' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th><a href="view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">id <i class="fa fa-sort" <?php echo $column == 'id' ? '-' . $up_or_down :''; ?>></i></a></th>
 
                 <th><a href="view1.php?column=log_id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">log_id <i class="fa fa-sort" <?php echo $column == 'log_id' ? '-' . $up_or_down : ''; ?>></i></a></th>
 
@@ -369,19 +374,19 @@ function selectredirect()
         <center><?php  
         if(empty($_GET['search']))
         {
-            $sql = "SELECT COUNT(*) FROM crud";     
+            //$sql = "SELECT COUNT(*) FROM crud";     
 
-            $result = mysqli_query($conn, $sql);     
+           // $result = mysqli_query($conn, $sql);     
 
-            $row = mysqli_fetch_row($result);     
+           // $row = mysqli_fetch_row($result);     
 
-            $total_rows = $row[0];              
+            //$total_rows = $row[0];              
 
         echo "<br>";            
 
             // get the required number of pages
 
-            $total_pages = ceil($total_rows / $limit);     
+            //$total_pages = ceil($total_rows / $limit);     
 
             $pageURL = "";             
 
