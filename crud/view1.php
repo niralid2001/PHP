@@ -39,7 +39,7 @@ $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
                 $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id where 1=1 ";
                 if(!empty($search)) 
                 {
-                    $sql.=" AND crud.id Like '%$search%' (OR crud.log_id Like '%$search%' OR crud.name Like '%$search%' OR crud.age Like '%$search%' OR crud.gender Like '%$search%' OR crud.hobbies  Like '%$search%' OR crud.city Like '%$search%')=$search ";
+                    $sql.=" AND ((crud.id LIKE '%".$search."%') OR (crud.log_id LIKE '%".$search."%') OR (crud.name LIKE '%".$search."%') OR (crud.age LIKE '%".$search."%') OR (crud.gender LIKE '%".$search."%') OR (crud.hobbies LIKE '%".$search."%') OR (crud.city LIKE '%".$search."%'))";
                 } 
                 if(!empty($age)) 
                 {
@@ -72,10 +72,10 @@ $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
             else
             {
                 $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' "; 
-                // if(!empty($search)) 
-                // {
-                //     $sql.=" AND crud.id Like '%$search%' (OR crud.log_id Like '%$search%' OR crud.name Like '%$search%' OR crud.age Like '%$search%' OR crud.gender Like '%$search%' OR crud.hobbies  Like '%$search%' OR crud.city Like '%$search%')=$search ";
-                // } 
+                if(!empty($search)) 
+                {
+                    $sql.=" AND (crud.id LIKE '%".$search."%') OR (crud.log_id LIKE '%".$search."%') OR (crud.name LIKE '%".$search."%') OR (crud.age LIKE '%".$search."%') OR (crud.gender LIKE '%".$search."%') OR (crud.hobbies LIKE '%".$search."%') OR (crud.city LIKE '%".$search."%') = '$search'";
+                } 
                 if(!empty($column))
                 {
                     $sql.=" ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
@@ -191,16 +191,9 @@ function selectredirect()
 {
     var age = document.getElementById("age").value;
     var gender = document.getElementById("gender").value;
-
     var hobbies = document.getElementById("hobbies").value;
-    // document.getElementById('hobbies').onclick = function() {
-    // var select = document.getElementById('hobbies');
-    // var selected = [...select.selectedOptions]
-    //                 .map(option => option.value);
-    // alert(selected);
-
     var city = document.getElementById("city").value;
-     window.location.href = 'view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age='+age+'&gender='+gender+'&hobbies='+hobbies+'&city='+city;
+    window.location.href = 'view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age='+age+'&gender='+gender+'&hobbies='+hobbies+'&city='+city;
     
 }
   </script>
@@ -349,8 +342,8 @@ function selectredirect()
                 <a href="logout.php"><font size="6">logout</font></a><br><br>
                 <button><a href="view1.php">Clear Sorting</a></button>
                     <center><a href="crud.php"><font size="4">Add new data </font></a>     
-                     <form method="POST" id="search_form" action="view1.php">
-                        <input type="text" name="text" placeholder="Search by id" id="text" value="<?php echo $text ; ?>">
+                     <form method="GET" id="search_form" action="view1.php">
+                        <input type="text" name="text" placeholder="Search by id" id="text" value="<?php echo $search; ?>">
                         <button type="submit" name="search" id="search">Search</button>
                     </form> </center>                                            
             </tbody>
@@ -374,7 +367,7 @@ function selectredirect()
 <!-- Pagination -->
 
         <center><?php  
-        if(empty($_POST['search']))
+        if(empty($_GET['search']))
         {
             $sql = "SELECT COUNT(*) FROM crud";     
 
