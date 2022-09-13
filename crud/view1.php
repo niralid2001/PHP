@@ -17,32 +17,26 @@ $hobbies=isset($_GET['hobbies']) && $_GET['hobbies']!= "" ? $_GET['hobbies'] : "
 $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
      $ss="";
 
-                if(!empty($search)) 
-                {
-                    $ss.=" AND ((crud.id LIKE '%".$search."%') OR (crud.log_id LIKE '%".$search."%') OR (crud.name LIKE '%".$search."%') OR (crud.age LIKE '%".$search."%') OR (crud.gender LIKE '%".$search."%') OR (crud.hobbies LIKE '%".$search."%') OR (crud.city LIKE '%".$search."%'))";
-                } 
+    if(!empty($search)) 
+    {
+        $ss.=" AND ((crud.id LIKE '%".$search."%') OR (crud.log_id LIKE '%".$search."%') OR (crud.name LIKE '%".$search."%') OR (crud.age LIKE '%".$search."%') OR (crud.gender LIKE '%".$search."%') OR (crud.hobbies LIKE '%".$search."%') OR (crud.city LIKE '%".$search."%'))";
+    } 
      if(!empty($age)) 
-                {
-                    $ss.=" AND age='$age'";
-                }
-                if(!empty($gender)) 
-                {
-                    $ss.=" AND gender='$gender'";
-                }
-                if(!empty($hobbies))
-                {
-                    $ss.=" AND hobbies='$hobbies'";
-                    // $sql.= " AND (";
-                    //  for($i=0;$i<count($hobbies);$i++)
-                    //  {
-                    //      $orq[] = "hobbies LIKE '%".$hobbies[$i]."%'";
-                    //  }
-                    //  $sql.= implode(" OR ", $orq).")";
-                }
-                if(!empty($city)) 
-                {
-                    $ss.=" AND city='$city'";
-                }
+    {
+        $ss.=" AND age='$age'";
+    }
+    if(!empty($gender)) 
+    {
+        $ss.=" AND gender='$gender'";
+    }
+    if(!empty($hobbies))
+    {
+        $ss.=" AND hobbies='$hobbies'";
+    }
+    if(!empty($city)) 
+    {
+        $ss.=" AND city='$city'";
+    }
      //total record in database
      $sql="SELECT count(*) FROM crud where 1=1 $ss";
      $result = mysqli_query($conn, $sql);     
@@ -71,16 +65,18 @@ $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
             $admintype = $_SESSION['user']['admintype'];
             if($admintype == "superadmin")
             {
-                $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id where 1=1 $ss";
+                $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id,crud.status FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id where 1=1 $ss";
                 
                 if(!empty($column))
                 {
                     $sql.=" ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
                 }
+                print_r($sql);
             }
             else
             {
-                $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' $ss";  
+                $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id,crud.status FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' $ss";
+
                 if(!empty($column))
                 {
                     $sql.=" ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
@@ -314,6 +310,7 @@ function selectredirect()
                             </select></th>
 
                 <th><a href="view1.php?column=file&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">file<i class="fa fa-sort" <?php echo $column == 'file' ? '-' . $up_or_down : ''; ?>></i></a></th>
+                <th align="center"> status </th>
                 <th align="center"> action </th>
             </thead>
             <tbody align="center">
@@ -335,10 +332,24 @@ function selectredirect()
                                   <img src="<?php echo 'photo/'.$image; ?>" width="100" />
                                   <?php } ?>
                              </td>
+                             <td><?php echo $user['status'];?></td>
                              <td>
                                 <a href="update.php?id=<?php echo $user["id"]; ?>">Update</a>&nbsp;&nbsp;
-                                <a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are you sure?')">Delete</a>
+                                <a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are you sure?')">Delete</a>&nbsp;&nbsp;
+                                <a href="active.php?id=<?php echo $user["id"]; ?>">
+                                    <?php 
+                                        if($user['status']=='active')
+                                        {
+                                            echo "Inactive";
+                                        }
+                                        else
+                                        {
+                                            echo "Active";
+                                        }
+                                    ?>
+                                </a>
                             </td>
+                            
                         </tr>
 
                     <?php } ?>

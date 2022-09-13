@@ -32,7 +32,8 @@ if(!isset($_SESSION['user']))
 			
 		   	$tmp_name=$_FILES['files']['tmp_name'][$i];   
 		   	$hobbies = implode(",",$hobbies);
-				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city`, `file`) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city','$file_name') ";
+		   	$status = $_POST['status'];
+				$qry = "INSERT INTO  `crud`(`log_id`,`name` ,  `age` ,`gender` ,`hobbies` ,`city`, `file`,`status`) VALUES ('$log_id','$name','$age','$gender','$hobbies','$city','$file_name','$status') ";
 					//, `file`    ,'".implode(",",$file)."'
 				$result = $conn->query($qry);
 				if($result) 
@@ -160,6 +161,8 @@ if(!isset($_SESSION['user']))
 		  							<option value="vadodra">Vadodra</option>
 								</select></td></tr><br>
 				<tr><td>file : </td><td><input type="file" name="files[]" value="<?php echo "$file_name"?>" multiple id="files"></td></tr><br>
+				<tr><td>Status :</td><td> <input type="radio" name="status" value="active" >Active
+				<input type="radio" name="status" value="inactive" >Inactive</td></tr><br>
 				<tr><td><input type="reset" ></td><td><input type="submit" name="submit" id="button">&nbsp;<a href="logout.php">logout</a></td></tr>
 				</table>
 				 
