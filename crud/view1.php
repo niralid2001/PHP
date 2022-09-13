@@ -8,14 +8,18 @@ $conn=mysqli_connect('localhost','root','','db');
 
 $columns = array('id','log_id','name','age','gender','hobbies','city','file');
 $column = isset($_GET['column']) && in_array($_GET['column'], $columns) ? $_GET['column'] : $columns[0];
-$sort_order = isset($_GET['order']) && strtolower($_GET['order']) == 'desc' ? 'DESC' : 'ASC';
+$sort_order = isset($_GET['order']) ? (strtolower($_GET['order']) == 'desc' ? 'DESC' : 'ASC') : "";
 $up_or_down="";
 $search=isset($_GET['text']) && $_GET['text']!= "" ? $_GET['text'] : "";
 $age=isset($_GET['age']) && $_GET['age']!= "" ? $_GET['age'] : "";
 $gender=isset($_GET['gender']) && $_GET['gender']!= "" ? $_GET['gender'] : "";
 $hobbies=isset($_GET['hobbies']) && $_GET['hobbies']!= "" ? $_GET['hobbies'] : "";
 $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
-     $ss="";
+
+$log_id = $_SESSION['user']['log_id'];
+$admintype = $_SESSION['user']['admintype'];
+
+$ss="";
 
     if(!empty($search)) 
     {
@@ -38,7 +42,17 @@ $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
         $ss.=" AND city='$city'";
     }
      //total record in database
-     $sql="SELECT count(*) FROM crud where 1=1 $ss";
+    
+    if($admintype == "superadmin")
+    {
+        $var="";
+    }
+    else
+    {
+        $var= " AND log_id = '$log_id'";
+    }
+     $sql="SELECT count(*) FROM crud where 1=1 $var $ss";
+     print_r($sql);
      $result = mysqli_query($conn, $sql);     
      $row =mysqli_fetch_array($result);
      $total_rows = $row[0]; 
@@ -61,8 +75,6 @@ $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
 
             // get the initial page number
             $initial_page = ($page_number-1) * $limit;
-            $log_id = $_SESSION['user']['log_id'];
-            $admintype = $_SESSION['user']['admintype'];
             if($admintype == "superadmin")
             {
                 $sql="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id,crud.status FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id where 1=1 $ss";
@@ -71,11 +83,10 @@ $city=isset($_GET['city']) && $_GET['city']!= "" ? $_GET['city'] : "";
                 {
                     $sql.=" ORDER BY  $column  $sort_order LIMIT $initial_page, $limit";
                 }
-                print_r($sql);
             }
             else
             {
-                $sql = "SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id,crud.status FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' $ss";
+                $sql ="SELECT crud.id,crud.log_id,crud.name,crud.age,crud.gender,crud.hobbies,crud.city,table_file.file,table_file.file_id,crud.status FROM crud LEFT JOIN table_file ON crud.id=table_file.file_id WHERE log_id = '$log_id' $ss";
 
                 if(!empty($column))
                 {
@@ -336,7 +347,7 @@ function selectredirect()
                              <td>
                                 <a href="update.php?id=<?php echo $user["id"]; ?>">Update</a>&nbsp;&nbsp;
                                 <a href="delete.php?id=<?php echo $user["id"]; ?>" onclick="return confirm('Are you sure?')">Delete</a>&nbsp;&nbsp;
-                                <a href="active.php?id=<?php echo $user["id"]; ?>">
+                                <a href="active.php?id=<?php echo $user["id"]; ?>&status=<?php echo $user["status"]; ?>&page=<?php echo $page_number; ?>">
                                     <?php 
                                         if($user['status']=='active')
                                         {
