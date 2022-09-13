@@ -35,13 +35,14 @@ if(!isset($_SESSION['user']))
                 $images = implode(",",$images);
                 $tmp_name=$_FILES['files']['tmp_name'][$i];
                 $hobbies=implode(",", $hobbies);
+                $status = $_POST['status'];
                 // $chk="";  
                 // foreach($hobbies as $chk1)  
                 // {  
                 // $chk .= $chk1.",";  
                 // }  
 
-               $sql = "UPDATE `crud` SET `name`='$name',`age`='$age',`gender`='$gender',`hobbies`='$hobbies',`city`='$city' WHERE `id`='$id'"; 
+               $sql = "UPDATE `crud` SET `name`='$name',`age`='$age',`gender`='$gender',`hobbies`='$hobbies',`city`='$city',`status`='$status' WHERE `id`='$id'"; 
                             //, `file`='".$images."'
                 $result = $conn->query($sql); 
 
@@ -89,6 +90,7 @@ if(!isset($_SESSION['user']))
                     $file_name = $row['file'];
                     $id = $row['id'];
                     $hobbies = explode(",",$hobbies);
+                    $status = $row['status'];
                    
                //       print_r($hobbies);
                // exit();
@@ -138,6 +140,8 @@ if(!isset($_SESSION['user']))
                                   Click here to remove files<br>
                                    <a href="remove.php?image=<?php echo "$image"; ?>&id=<?php echo $id; ?>" onclick="return confirm('Are you sure to remove all files ?')">Remove all files</a>
                 </td></td></tr>
+                <tr><td>Status :</td><td> <input type="radio" name="status" value="active" <?php if($status == "active" ) {echo "checked";} ?>>Active
+                <input type="radio" name="status" value="inactive" <?php if($status == "inactive" ) {echo "checked";} ?>>Inactive</td></tr><br>
                 <tr><td><input type="submit" name="update" value="update">&nbsp;<a href="logout.php">logout</a></td></tr>
                 </table>
         </form>
