@@ -52,7 +52,6 @@ $ss="";
         $var= " AND log_id = '$log_id'";
     }
      $sql="SELECT count(*) FROM crud where 1=1 $var $ss";
-     print_r($sql);
      $result = mysqli_query($conn, $sql);     
      $row =mysqli_fetch_array($result);
      $total_rows = $row[0]; 

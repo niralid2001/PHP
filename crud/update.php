@@ -17,10 +17,16 @@ if(!isset($_SESSION['user']))
                 $city = $_POST['city'];
                 $totalfiles = count($_FILES['files']['name']);
                 $file = array();
-
+                $hobbies = $_POST['hobbies'];
+                $hobbies=implode(",", $hobbies);
+                $status = $_POST['status'];
+           
+               $sql = "UPDATE `crud` SET `name`='$name',`age`='$age',`gender`='$gender',`hobbies`='$hobbies',`city`='$city',`status`='$status' WHERE `id`='$id'"; 
+                            //, `file`='".$images."'
+                $result = $conn->query($sql);
             for($i=0;$i<$totalfiles;$i++)
             {
-                $hobbies = $_POST['hobbies'];
+                
                 $file_name=$_FILES['files']['name'][$i];
                 if($file_name!="")
                 {
@@ -28,41 +34,37 @@ if(!isset($_SESSION['user']))
                     $file_name[0]=$file_name[0]. time();
                     //$file_name = implode(".", $file_name);
                     $file[] = $file_name;
-                    move_uploaded_file($_FILES['files']['tmp_name'][$i],"photo/".$file_name); 
+                    move_uploaded_file($_FILES['files']['tmp_name'][$i],"photo/".$file); 
                 }
             
                 $images = array_merge($_POST['images'],$file);
                 $images = implode(",",$images);
                 $tmp_name=$_FILES['files']['tmp_name'][$i];
-                $hobbies=implode(",", $hobbies);
-                $status = $_POST['status'];
                 // $chk="";  
                 // foreach($hobbies as $chk1)  
                 // {  
                 // $chk .= $chk1.",";  
                 // }  
-
-               $sql = "UPDATE `crud` SET `name`='$name',`age`='$age',`gender`='$gender',`hobbies`='$hobbies',`city`='$city',`status`='$status' WHERE `id`='$id'"; 
-                            //, `file`='".$images."'
-                $result = $conn->query($sql); 
-
-                if ($result == TRUE) 
-                {
-                    $sql = "UPDATE `table_file` SET `file`='$file_name' WHERE `file_id`='$id' ";
+                $sql = "UPDATE `table_file` SET `file`='$file_name' WHERE `file_id`='$id' ";
                         $result = $conn->query($sql);
                     echo "Record updated successfully.";
+            } 
 
-                }
-                else
-                {
+                // if ($result == TRUE) 
+                // {
+                    
 
-                    echo "Error:" . $sql . "<br>" . $conn->error;
+                // }
+                // else
+                // {
 
-                }
+                //     echo "Error:" . $sql . "<br>" . $conn->error;
+
+                // }
 
                 header('Location:view1.php');
 
-            }
+            
         }
 
 
@@ -132,8 +134,8 @@ if(!isset($_SESSION['user']))
                                       foreach($images as $image) {
                                    ?>
                                    <input type="hidden" name="images[]" value="<?php echo $image;?>">
-                                  <img src="<?php echo 'photo/'.$image;?>" width="100" />
-                                     
+                                  <!-- <img src="<?php echo 'photo/'.$image;?>" width="100" /> -->
+                                   <img src="photo/<?php echo $image;?>" width="100">  
                                   <!-- <input type="button" name="btn" value="remove" >  -->
 
                                   <?php } ?><br> 
