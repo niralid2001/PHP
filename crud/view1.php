@@ -214,7 +214,7 @@ function selectredirect()
 
         <table id="tblUser" cellpadding="15" cellspacing="0" border="1">
             <thead>
-                
+                <th>select</th>
                 <th><a href="view1.php?column=id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">id <i class="fa fa-sort" <?php echo $column == 'id' ? '-' . $up_or_down :''; ?>></i></a></th>
 
                 <th><a href="view1.php?column=log_id&order=<?php echo $asc_or_desc; ?>&page=<?php echo $page_number; ?>&search=<?php echo $search; ?>&age=<?php echo $age; ?>&gender=<?php echo $gender; ?>&hobbies=<?php echo $hobbies; ?>&city=<?php echo $city; ?>">log_id <i class="fa fa-sort" <?php echo $column == 'log_id' ? '-' . $up_or_down : ''; ?>></i></a></th>
@@ -327,7 +327,7 @@ function selectredirect()
                 <?php if(!empty($arr_users)) { ?>
                     <?php foreach($arr_users as $user) { ?>
                         <tr>
-                            
+                            <td><input name="checkbox[]" type="checkbox" value="<?php echo $user['id']; ?>"></td>
                             <td><?php echo $user['id']; ?></td>
                             <td><?php echo $user['log_id']; ?></td>
                             <td><?php echo $user['name']; ?></td>
@@ -391,7 +391,7 @@ function selectredirect()
 <!-- over datatable -->
 
 <!-- Pagination -->
-
+    <br><form method="POST"><button type="submit" name="delete">DELETE</button></form>
         <center><?php  
         if(empty($_GET['search']))
         {
@@ -446,4 +446,27 @@ function selectredirect()
             }     
         }
           ?>    
-    </center>   
+    </center> 
+    <?php
+
+// Check if delete button active, start this 
+
+if(isset($_POST['delete']))
+{
+    $checkbox = $_POST['checkbox'];
+
+    for($i=0;$i<count(array($checkbox));$i++)
+    {
+
+    $del_id = $_POST['checkbox'][$i];
+    $sql = "DELETE FROM crud WHERE id='$del_id'";
+    //$sql.= "('".implode("','",array_values($_POST['checkbox']))."')";
+    $result = mysqli_query($conn,$sql);
+    print_r($sql);
+    } 
+
+    if($result){
+    echo "recorde deleted";
+    }
+}
+?>  
