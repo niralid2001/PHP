@@ -16,8 +16,9 @@
 	Dynamic dropdown ------(UTUBE video) https://www.youtube.com/watch?v=XVRA4XyN-m0
 
 	Select distinct category from books-------this distinct word use for prevent duplicate value (remove repeated value) in dropdown
-	
-	
+
+	(delete multiple record by chechbox)
+	https://webscodex.com/delete-multiple-record-with-checkboxes-in-php-mysqli-using-jquery-ajax/
 	
 </body>
 </html>
