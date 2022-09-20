@@ -208,13 +208,31 @@ function selectredirect()
     
 }
 function deleteConfirm(){
-    var result = confirm("Do you really want to delete records?");
+     var result = confirm("Do you really want to delete records?");
     if(result){
         return true;
     }else{
         return false;
     }
-}
+     $('#checkbox').on('click',function(){
+        var checkbox = '#checkbox';
+        for (var i = checkbox.length; i >= 0; i++) 
+        {
+            checkbox[i]
+        }
+        // if(this.checked){
+        //     $('.checkbox').each(function(){
+        //         this.checked = true;
+        //     });
+        // }else{
+        //      $('.checkbox').each(function(){
+        //         this.checked = false;
+        //     });
+        // }
+
+   
+})
+ }
 // $(document).ready(function(){
 //     $('#form2').on('click',function(){
 //         if(this.checked){
@@ -350,7 +368,7 @@ function deleteConfirm(){
                 <?php if(!empty($arr_users)) { ?>
                     <?php foreach($arr_users as $user) { ?>
                         <tr>
-                            <td><form method="POST" id="form2" enctype="multipart/form-data"><input name="checkbox[]" type="checkbox" value="<?php echo $user['id']; ?>" class="checkbox"></form></td>
+                            <td><form method="POST" id="form2" enctype="multipart/form-data"><input name="checkbox[]" type="checkbox" value="<?php echo $user['id']; ?>" id="checkbox"></form></td>
                             <td><?php echo $user['id']; ?></td>
                             <td><?php echo $user['log_id']; ?></td>
                             <td><?php echo $user['name']; ?></td>
