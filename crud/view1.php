@@ -210,28 +210,47 @@ function selectredirect()
 function deleteConfirm(){
      var result = confirm("Do you really want to delete records?");
     if(result){
+        var checkbox = '#checkbox';
+        console.log(checkbox);
+        return false;
+         for (var i =0; i <= checkbox.length ; i++) 
+        {
+            if(this.checked){
+            $('.checkbox').each(function(){
+                this.checked = true;
+            });
+            }
+            else
+            {
+             $('.checkbox').each(function(){
+                this.checked = false;
+            });
+            }
+
+        }  
         return true;
     }else{
         return false;
     }
-     $('#checkbox').on('click',function(){
-        var checkbox = '#checkbox';
-        for (var i = checkbox.length; i >= 0; i++) 
-        {
-            checkbox[i]
-        }
-        // if(this.checked){
-        //     $('.checkbox').each(function(){
-        //         this.checked = true;
-        //     });
-        // }else{
-        //      $('.checkbox').each(function(){
-        //         this.checked = false;
-        //     });
-        // }
 
-   
-})
+//      $('#checkbox').on('click',function(){
+//         var checkbox = '#checkbox';
+//         for (var i =0; i <= checkbox.length ; i++) 
+//         {
+//             if(this.checked){
+//             $('.checkbox').each(function(){
+//                 this.checked = true;
+//             });
+//             }
+//             else
+//             {
+//              $('.checkbox').each(function(){
+//                 this.checked = false;
+//             });
+//             }
+
+//         }  
+// })
  }
 // $(document).ready(function(){
 //     $('#form2').on('click',function(){
@@ -506,7 +525,7 @@ if(isset($_POST['delete']))
         $del_id = $_POST['checkbox'][$i];
         $sql1 = "DELETE FROM crud WHERE id=".$del_id;
         //$sql1.= "('".implode("','",array_values($_POST['checkbox']))."')";
-        $result = mysqli_query($conn,$sql1);
+        //$result = mysqli_query($conn,$sql1);
         print_r($sql1);
     } 
    
