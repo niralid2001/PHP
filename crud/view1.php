@@ -215,18 +215,20 @@ function deleteConfirm(){
         return false;
     }
 }
-$(document).ready(function(){
-    $('#form2').on('click',function(){
-        if(this.checked){
-            $('.checkbox').each(function(){
-                this.checked = true;
-            });
-        }else{
-             $('.checkbox').each(function(){
-                this.checked = false;
-            });
-        }
-    });
+// $(document).ready(function(){
+//     $('#form2').on('click',function(){
+//         if(this.checked){
+//             $('.checkbox').each(function(){
+//                 this.checked = true;
+//             });
+//         }else{
+//              $('.checkbox').each(function(){
+//                 this.checked = false;
+//             });
+//         }
+//     });
+
+
 
   </script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -348,7 +350,7 @@ $(document).ready(function(){
                 <?php if(!empty($arr_users)) { ?>
                     <?php foreach($arr_users as $user) { ?>
                         <tr>
-                            <td><form method="POST" id="form2"><input name="checkbox[]" type="checkbox" values="<?php echo $user['id']; ?>" class="checkbox" onclick="deleteConfirm()"></form></td>
+                            <td><form method="POST" id="form2" enctype="multipart/form-data"><input name="checkbox[]" type="checkbox" value="<?php echo $user['id']; ?>" class="checkbox"></form></td>
                             <td><?php echo $user['id']; ?></td>
                             <td><?php echo $user['log_id']; ?></td>
                             <td><?php echo $user['name']; ?></td>
@@ -412,7 +414,9 @@ $(document).ready(function(){
 <!-- over datatable -->
 
 <!-- Pagination -->
-    <br><form method="POST"><input type="submit" name="delete" value="DELETE" onsubmit="deleteConfirm()"></form>
+    <br><form method="POST" enctype="multipart/form-data"><input type="submit" name="delete" value="DELETE" onclick="deleteConfirm()">
+        <input type="hidden" name="checkbox[]" value="<?php echo $user['id']; ?>" id="hidden">
+    </form>
         <center><?php  
         if(empty($_GET['search']))
         {
@@ -475,19 +479,23 @@ $(document).ready(function(){
 if(isset($_POST['delete']))
 {
     $checkbox = $_POST['checkbox'];
+    //  foreach ( $checkbox as $id ) {
+    //     $sql1 = "DELETE FROM crud WHERE id=".$id;
+    // }
     for($i=0;$i<count(array($checkbox));$i++)
     {
 
         $del_id = $_POST['checkbox'][$i];
-        $sql = "DELETE FROM crud WHERE id='$del_id'";
-        //$sql.= "('".implode("','",array_values($_POST['checkbox']))."')";
-        $result = mysqli_query($conn,$sql);
-        print_r($sql);
+        $sql1 = "DELETE FROM crud WHERE id=".$del_id;
+        //$sql1.= "('".implode("','",array_values($_POST['checkbox']))."')";
+        $result = mysqli_query($conn,$sql1);
+        print_r($sql1);
     } 
+   
 
     if($result)
     {
         echo "recorde deleted";
     }
 }
-?>  
+?> 
