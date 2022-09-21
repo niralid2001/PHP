@@ -6,6 +6,49 @@ if(!isset($_SESSION['user']))
 }
 $conn=mysqli_connect('localhost','root','','db');
 
+// Check if delete button active, start this 
+
+if(isset($_POST['delete']))
+{
+    $checkbox = $_POST['checkbox'];
+    for($i=0;$i<count($checkbox);$i++)
+    {
+
+        $del_id = $_POST['checkbox'][$i];
+        $sql1 = "DELETE FROM crud WHERE id=".$del_id;
+        //$sql1.= "('".implode("','",array_values($_POST['checkbox']))."')";
+        $result = mysqli_query($conn,$sql1);
+        // print_r($sql1);
+    } 
+   if($result)
+    {
+        header('Location:view1.php');
+    }
+}
+
+if(isset($_POST['active']))
+{
+    $checkbox = $_POST['checkbox'];
+    for($i=0;$i<count($checkbox);$i++)
+    {
+
+        $act = $_POST['checkbox'][$i];
+        $sql2 = "UPDATE `crud` SET `status` = 'active' where `id`=$act ";
+        $result = mysqli_query($conn,$sql2);
+    } 
+}
+if(isset($_POST['inactive']))
+{
+    $checkbox = $_POST['checkbox'];
+    for($i=0;$i<count($checkbox);$i++)
+    {
+
+        $act = $_POST['checkbox'][$i];
+        $sql3 = "UPDATE `crud` SET `status` = 'inactive' where `id`=$act ";
+        $result = mysqli_query($conn,$sql3);
+    } 
+}
+
 $columns = array('id','log_id','name','age','gender','hobbies','city','file');
 $column = isset($_GET['column']) && in_array($_GET['column'], $columns) ? $_GET['column'] : $columns[0];
 $sort_order = isset($_GET['order']) ? (strtolower($_GET['order']) == 'desc' ? 'DESC' : 'ASC') : "";
@@ -100,7 +143,7 @@ $ss="";
                     $up_or_down = str_replace(array('ASC','DESC'), array('up','down'), $sort_order); 
                     $asc_or_desc = $sort_order == 'ASC' ? 'desc' : 'asc';
             }        
-?>
+?> 
 <!-- ajax code -->
     <script src="http://localhost/PHP-Training/crud/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -353,10 +396,11 @@ function deleteConfirm(){
                 <th align="center"> action </th>
             </thead>
             <tbody align="center">
+                <form method="POST" id="form2" enctype="multipart/form-data">
                 <?php if(!empty($arr_users)) { ?>
                     <?php foreach($arr_users as $user) { ?>
                         <tr>
-                            <td><form method="POST" id="form2" enctype="multipart/form-data"><input name="checkbox[]" type="checkbox" value="<?php echo $user['id']; ?>" id="checkbox"></td>
+                            <td><input name="checkbox[]" type="checkbox" value="<?php echo $user['id']; ?>" id="checkbox"></td>
                             <td><?php echo $user['id']; ?></td>
                             <td><?php echo $user['log_id']; ?></td>
                             <td><?php echo $user['name']; ?></td>
@@ -394,11 +438,15 @@ function deleteConfirm(){
                     <?php } ?>
                     
                 <?php } ?>  
-                <input type="submit" name="delete" value="DELETE" onclick="deleteConfirm()"></form><br>
+                
                 <a href="logout.php"><font size="6">logout</font></a><br><br>
                 <button><a href="view1.php">Clear Sorting</a></button>
-                    <center><a href="crud.php"><font size="4">Add new data </font></a>     
-                     <form method="GET" id="search_form" action="view1.php">
+                    <center><a href="crud.php"><font size="4">Add new data </font></a></center><br> 
+                    <input type="submit" name="delete" value="DELETE" onclick="deleteConfirm()">&nbsp;
+                    <input type="submit" name="active" value="Active">&nbsp;
+                    <input type="submit" name="inactive" value="Inactive">
+                </form>
+                     <center><form method="GET" id="search_form" action="view1.php">
                         <input type="text" name="text" placeholder="Search by id" id="text" value="<?php echo $search; ?>">
                         <button type="submit" name="search" id="search">Search</button>
                     </form> </center>                                            
@@ -479,25 +527,3 @@ function deleteConfirm(){
         }
           ?>    
     </center> 
-    <?php
-
-// Check if delete button active, start this 
-
-if(isset($_POST['delete']))
-{
-    $checkbox = $_POST['checkbox'];
-    for($i=0;$i<count($checkbox);$i++)
-    {
-
-        $del_id = $_POST['checkbox'][$i];
-        $sql1 = "DELETE FROM crud WHERE id=".$del_id;
-        //$sql1.= "('".implode("','",array_values($_POST['checkbox']))."')";
-        $result = mysqli_query($conn,$sql1);
-        // print_r($sql1);
-    } 
-   if($result)
-    {
-        echo "recorde deleted";
-    }
-}
-?> 
