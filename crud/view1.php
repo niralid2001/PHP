@@ -209,64 +209,33 @@ function selectredirect()
 }
 function deleteConfirm(){
      var result = confirm("Do you really want to delete records?");
-    if(result){
-        var checkbox = '#checkbox';
-        console.log(checkbox);
-        return false;
-         for (var i =0; i <= checkbox.length ; i++) 
-        {
-            if(this.checked){
-            $('.checkbox').each(function(){
-                this.checked = true;
-            });
-            }
-            else
-            {
-             $('.checkbox').each(function(){
-                this.checked = false;
-            });
-            }
+    if(result)
+    {
+        //var checkbox = '#checkbox';
+        // console.log(checkbox);
+        // return false;
+        //  for (var i=checkbox.length; i>0  ; i++) 
+        // {
+        //     if(this.checked){
+        //     $('.checkbox').each(function(){
+        //         this.checked = true;
+        //     });
+        //     }
+        //     else
+        //     {
+        //      $('.checkbox').each(function(){
+        //         this.checked = false;
+        //     });
+        //     }
 
-        }  
+        // }  
         return true;
-    }else{
+    }
+    else
+    {
         return false;
     }
-
-//      $('#checkbox').on('click',function(){
-//         var checkbox = '#checkbox';
-//         for (var i =0; i <= checkbox.length ; i++) 
-//         {
-//             if(this.checked){
-//             $('.checkbox').each(function(){
-//                 this.checked = true;
-//             });
-//             }
-//             else
-//             {
-//              $('.checkbox').each(function(){
-//                 this.checked = false;
-//             });
-//             }
-
-//         }  
-// })
- }
-// $(document).ready(function(){
-//     $('#form2').on('click',function(){
-//         if(this.checked){
-//             $('.checkbox').each(function(){
-//                 this.checked = true;
-//             });
-//         }else{
-//              $('.checkbox').each(function(){
-//                 this.checked = false;
-//             });
-//         }
-//     });
-
-
-
+}
   </script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -387,7 +356,7 @@ function deleteConfirm(){
                 <?php if(!empty($arr_users)) { ?>
                     <?php foreach($arr_users as $user) { ?>
                         <tr>
-                            <td><form method="POST" id="form2" enctype="multipart/form-data"><input name="checkbox[]" type="checkbox" value="<?php echo $user['id']; ?>" id="checkbox"></form></td>
+                            <td><form method="POST" id="form2" enctype="multipart/form-data"><input name="checkbox[]" type="checkbox" value="<?php echo $user['id']; ?>" id="checkbox"></td>
                             <td><?php echo $user['id']; ?></td>
                             <td><?php echo $user['log_id']; ?></td>
                             <td><?php echo $user['name']; ?></td>
@@ -425,6 +394,7 @@ function deleteConfirm(){
                     <?php } ?>
                     
                 <?php } ?>  
+                <input type="submit" name="delete" value="DELETE" onclick="deleteConfirm()"></form><br>
                 <a href="logout.php"><font size="6">logout</font></a><br><br>
                 <button><a href="view1.php">Clear Sorting</a></button>
                     <center><a href="crud.php"><font size="4">Add new data </font></a>     
@@ -451,9 +421,9 @@ function deleteConfirm(){
 <!-- over datatable -->
 
 <!-- Pagination -->
-    <br><form method="POST" enctype="multipart/form-data"><input type="submit" name="delete" value="DELETE" onclick="deleteConfirm()">
+    <!-- <br><form method="POST" enctype="multipart/form-data">
         <input type="hidden" name="checkbox[]" value="<?php echo $user['id']; ?>" id="hidden">
-    </form>
+    </form> -->
         <center><?php  
         if(empty($_GET['search']))
         {
@@ -516,21 +486,16 @@ function deleteConfirm(){
 if(isset($_POST['delete']))
 {
     $checkbox = $_POST['checkbox'];
-    //  foreach ( $checkbox as $id ) {
-    //     $sql1 = "DELETE FROM crud WHERE id=".$id;
-    // }
-    for($i=0;$i<count(array($checkbox));$i++)
+    for($i=0;$i<count($checkbox);$i++)
     {
 
         $del_id = $_POST['checkbox'][$i];
         $sql1 = "DELETE FROM crud WHERE id=".$del_id;
         //$sql1.= "('".implode("','",array_values($_POST['checkbox']))."')";
-        //$result = mysqli_query($conn,$sql1);
-        print_r($sql1);
+        $result = mysqli_query($conn,$sql1);
+        // print_r($sql1);
     } 
-   
-
-    if($result)
+   if($result)
     {
         echo "recorde deleted";
     }
