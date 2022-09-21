@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2022 at 03:03 PM
+-- Generation Time: Sep 21, 2022 at 02:29 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -67,15 +67,13 @@ CREATE TABLE `crud` (
 --
 
 INSERT INTO `crud` (`log_id`, `id`, `name`, `age`, `gender`, `hobbies`, `city`, `file`, `status`) VALUES
-(1, 236, 'hello', 10, 'male', 'playing,singing', 'rajkot', 'Chrysanthemum.jpg', 'inactive'),
-(1, 237, 'world', 11, 'female', 'singing,dancing', 'surat', 'Desert.jpg', 'inactive'),
-(1, 238, 'hiiii', 12, 'female', 'playing,singing,dancing', 'ahemdabad', 'Hydrangeas.jpg', 'inactive'),
-(1, 239, 'hiiii', 12, 'female', 'playing,singing,dancing', 'ahemdabad', 'Jellyfish.jpg', 'active'),
-(1, 240, 'koala', 13, 'male', 'playing,dancing', 'vadodra', 'Koala.jpg', 'inactive'),
-(1, 241, 'lighthouse', 14, 'male', 'playing', 'rajkot', 'Lighthouse.jpg', 'inactive'),
-(2, 242, 'penguin', 11, 'female', 'singing', 'vadodra', 'Penguins.jpg', 'active'),
-(3, 244, 'sita', 12, 'female', 'dancing', 'surat', 'Penguins.jpg', 'active'),
-(3, 246, 'ram', 13, 'male', 'singing,dancing', 'surat', 'Koala.jpg', 'active');
+(1, 286, 'ram', 12, 'male', 'singing', 'ahemdabad', 'Desert.jpg', 'active'),
+(1, 287, 'ram', 12, 'male', 'singing', 'ahemdabad', 'Hydrangeas.jpg', 'active'),
+(1, 288, 'ram', 12, 'male', 'singing', 'ahemdabad', 'Jellyfish.jpg', 'inactive'),
+(1, 289, 'ram', 12, 'male', 'singing', 'ahemdabad', 'Koala.jpg', 'active'),
+(1, 290, 'ram', 12, 'male', 'singing', 'ahemdabad', 'Lighthouse.jpg', 'active'),
+(1, 291, 'ram', 12, 'male', 'singing', 'ahemdabad', 'Penguins.jpg', 'active'),
+(1, 292, 'ram', 12, 'male', 'singing', 'ahemdabad', 'Tulips.jpg', 'active');
 
 -- --------------------------------------------------------
 
@@ -196,19 +194,6 @@ CREATE TABLE `table_file` (
 --
 
 INSERT INTO `table_file` (`id`, `file_id`, `file`) VALUES
-(51, 224, 'Chrysanthemum.jpg'),
-(52, 225, 'Desert.jpg'),
-(53, 226, 'Hydrangeas.jpg'),
-(54, 227, 'Jellyfish.jpg'),
-(55, 228, 'Koala.jpg'),
-(56, 229, 'Lighthouse.jpg'),
-(57, 230, 'Penguins.jpg'),
-(58, 231, 'Tulips.jpg'),
-(59, 232, 'images.jpg'),
-(60, 233, 'Chrysanthemum.jpg'),
-(61, 234, 'margherita.jpg'),
-(62, 235, 'Jellyfish.jpg'),
-(63, 236, 'Chrysanthemum.jpg'),
 (64, 237, 'Desert.jpg'),
 (65, 238, 'Hydrangeas.jpg'),
 (66, 239, 'Jellyfish.jpg'),
@@ -218,7 +203,53 @@ INSERT INTO `table_file` (`id`, `file_id`, `file`) VALUES
 (70, 243, 'Koala.jpg'),
 (71, 244, 'Penguins.jpg'),
 (72, 245, 'Koala.jpg'),
-(73, 246, 'Koala.jpg');
+(73, 246, 'Koala.jpg'),
+(77, 247, 'Chrysanthemum.jpg'),
+(78, 248, 'Desert.jpg'),
+(79, 249, 'Hydrangeas.jpg'),
+(80, 250, 'Hydrangeas.jpg'),
+(81, 251, 'Jellyfish.jpg'),
+(82, 252, 'Koala.jpg'),
+(83, 253, 'Chrysanthemum.jpg'),
+(84, 254, 'Desert.jpg'),
+(85, 255, 'Hydrangeas.jpg'),
+(86, 256, 'Jellyfish.jpg'),
+(87, 257, 'Koala.jpg'),
+(88, 258, 'Lighthouse.jpg'),
+(89, 259, 'Penguins.jpg'),
+(90, 260, 'Tulips.jpg'),
+(91, 261, 'Chrysanthemum.jpg'),
+(92, 262, 'Desert.jpg'),
+(93, 263, 'Hydrangeas.jpg'),
+(94, 264, 'Jellyfish.jpg'),
+(95, 265, 'Koala.jpg'),
+(96, 266, 'Lighthouse.jpg'),
+(97, 267, 'Penguins.jpg'),
+(98, 268, 'Tulips.jpg'),
+(99, 269, 'Chrysanthemum.jpg'),
+(100, 270, 'Desert.jpg'),
+(101, 271, 'Hydrangeas.jpg'),
+(102, 272, 'Jellyfish.jpg'),
+(103, 273, 'Koala.jpg'),
+(104, 274, 'Lighthouse.jpg'),
+(105, 275, 'Penguins.jpg'),
+(106, 276, 'Tulips.jpg'),
+(107, 277, 'Chrysanthemum.jpg'),
+(108, 278, 'Desert.jpg'),
+(109, 279, 'Hydrangeas.jpg'),
+(110, 280, 'Jellyfish.jpg'),
+(111, 281, 'Koala.jpg'),
+(112, 282, 'Lighthouse.jpg'),
+(113, 283, 'Penguins.jpg'),
+(114, 284, 'Tulips.jpg'),
+(115, 285, 'Chrysanthemum.jpg'),
+(116, 286, 'Desert.jpg'),
+(117, 287, 'Hydrangeas.jpg'),
+(118, 288, 'Jellyfish.jpg'),
+(119, 289, 'Koala.jpg'),
+(120, 290, 'Lighthouse.jpg'),
+(121, 291, 'Penguins.jpg'),
+(122, 292, 'Tulips.jpg');
 
 --
 -- Indexes for dumped tables
@@ -280,7 +311,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `crud`
 --
 ALTER TABLE `crud`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
 
 --
 -- AUTO_INCREMENT for table `form`
@@ -304,7 +335,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `table_file`
 --
 ALTER TABLE `table_file`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

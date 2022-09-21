@@ -412,7 +412,7 @@ function deleteConfirm(){
                                    <?php  $images=explode(',',$user["file"]); 
                                       foreach($images as $image) {
                                    ?>
-                                  <img src="<?php echo 'photo/'.$image; ?>" width="100" />
+                                  <a href="'.$image.'" target="_blank"><img src="<?php echo 'photo/'.$image; ?>" width="100" /></a>
                                   <?php } ?>
                              </td>
                              <td><?php echo $user['status'];?></td>
