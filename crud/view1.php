@@ -141,7 +141,7 @@ $ss="";
             {
                     $arr_users = $result->fetch_all(MYSQLI_ASSOC);
                     $up_or_down = str_replace(array('ASC','DESC'), array('up','down'), $sort_order); 
-                    $asc_or_desc = $sort_order == 'ASC' ? 'desc' : 'asc';
+                    $asc_or_desc = $sort_order == 'DESC' ? 'asc' : 'desc';
             }        
 ?> 
 <!-- ajax code -->
