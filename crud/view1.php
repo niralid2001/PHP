@@ -253,25 +253,7 @@ function selectredirect()
 function deleteConfirm(){
      var result = confirm("Do you really want to delete records?");
     if(result)
-    {
-        //var checkbox = '#checkbox';
-        // console.log(checkbox);
-        // return false;
-        //  for (var i=checkbox.length; i>0  ; i++) 
-        // {
-        //     if(this.checked){
-        //     $('.checkbox').each(function(){
-        //         this.checked = true;
-        //     });
-        //     }
-        //     else
-        //     {
-        //      $('.checkbox').each(function(){
-        //         this.checked = false;
-        //     });
-        //     }
-
-        // }  
+    {  
         return true;
     }
     else
@@ -412,7 +394,7 @@ function deleteConfirm(){
                                    <?php  $images=explode(',',$user["file"]); 
                                       foreach($images as $image) {
                                    ?>
-                                  <a href="'.$image.'" target="_blank"><img src="<?php echo 'photo/'.$image; ?>" width="100" /></a>
+                                  <a href="http://localhost/PHP-TRaining/crud/photo/.$user['file_name']"  target="_blank"><img src="<?php echo 'photo/'.$image; ?>" width="100" /></a>
                                   <?php } ?>
                              </td>
                              <td><?php echo $user['status'];?></td>
