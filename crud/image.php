@@ -15,19 +15,28 @@ $conn=mysqli_connect('localhost','root','','db');
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js">
+  	function before(){
+             document.getElementById('imggg')
+             .src="photo/Desert.jpg";
+         }
+          
+         function after(){
+             document.getElementById('imggg')
+             .src="photo/Desert.jpg";
+         }
   </script>
 <body>
-<center >
+<center>
 	<div class="container">
 <div class="row">
 	<div>
-		<button class="left-arrow" id="left-arrow">Left</button>
-	<img src="photo/<?php echo $r['file'];?>" width="850">
-	<button class="right-arrow" id="right-arrow">Right</button>
+		<button onclick="before();"><----</button>
+	<img src="photo/<?php echo $r['file'];?>" width="800" id="imggg">
+	<button onclick="after();">----></button>
 	</div>
 </div>
 </div>
-</center> 
+</center>
 </body>
 <?php 
 }
