@@ -16,17 +16,14 @@ $conn=mysqli_connect('localhost','root','','db');
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js">
   </script>
-  <style type="text/css">
-  	.imgg{
-  		background-attachment:fixed;
-  	}
-  </style>
 <body>
 <center >
 	<div class="container">
 <div class="row">
-	<div id="imgg">
-	<img src="photo/<?php echo $r['file'];?>">
+	<div>
+		<button class="left-arrow" id="left-arrow">Left</button>
+	<img src="photo/<?php echo $r['file'];?>" width="850">
+	<button class="right-arrow" id="right-arrow">Right</button>
 	</div>
 </div>
 </div>
