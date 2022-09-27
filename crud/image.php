@@ -14,30 +14,47 @@ $conn=mysqli_connect('localhost','root','','db');
 	{
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js">
-  	function before(){
-             document.getElementById('imggg')
-             .src="photo/Desert.jpg";
-         }
-          
-         function after(){
-             document.getElementById('imggg')
-             .src="photo/Desert.jpg";
-         }
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script >
+var image= ['jellyfish.jpg','koala.jpg'];
+var i=0;
+
+function prev(){
+	if(i<=0) i=image.length;
+	i--;
+	var slider = document.getElementById("slider");
+	slider.setAttribute('src','photo/'+image[i]);
+}
+function next(){
+	if(i>=image.length-1) i=-1;
+	i++;
+	var slider = document.getElementById("slider");
+	slider.setAttribute('src','photo/'+image[i]);
+}
+</script>
 <body>
 <center>
 	<div class="container">
 <div class="row">
 	<div>
-		<button onclick="before();"><----</button>
-	<img src="photo/<?php echo $r['file'];?>" width="800" id="imggg">
-	<button onclick="after();">----></button>
+	 <button class="btn btn-dark" onclick="prev()">LEFT</button> 
+	<img alt="slideshow" src="photo/<?php echo $r['file'];?>" width="800" class="slider" id="slider">
+ <button class="btn btn-dark" onclick="next()">RIGHT</button>
 	</div>
+	<!-- <?php $sql="SELECT * FROM crud"; 
+	?> -->
 </div>
 </div>
 </center>
 </body>
 <?php 
 }
+// $page = $_GET['id'];    
+// $sql = "select * from crud LIMIT $page,1";
+// while($sql){
+//   $next_page = $page+1;
+//   $prev_page = $page-1;
+
+//   $next_btn = "<a href='script.php?page=".$next_page."'>Next</a>";
+// }
 ?> 
