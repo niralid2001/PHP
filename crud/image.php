@@ -7,6 +7,17 @@ if(!isset($_SESSION['user']))
 }
 $conn=mysqli_connect('localhost','root','','db');
 
+// SLIDER IMAGE
+ $sql="SELECT * FROM crud ";
+	 $result1= mysqli_query($conn,$sql);
+	  
+	 // while($r1 = mysqli_fetch_array($result1))
+		// {
+		// 	print_r($r1);
+	 //  exit;
+		// }
+	
+
 	$query = "select * from crud where id =".$_REQUEST["id"];
 	$result= mysqli_query($conn,$query);
 	//print_r($query);
@@ -37,18 +48,17 @@ function next(){
 	<div class="container">
 <div class="row">
 	<div>
-	 <button class="btn btn-dark" onclick="prev()">LEFT</button> 
+	 <button class="btn btn-dark" onclick="prev()" name="left">LEFT</button> 
 	<img alt="slideshow" src="photo/<?php echo $r['file'];?>" width="800" class="slider" id="slider">
- <button class="btn btn-dark" onclick="next()">RIGHT</button>
-	</div>
-	<!-- <?php $sql="SELECT * FROM crud"; 
-	?> -->
+ <button class="btn btn-dark" onclick="next()" name="right">RIGHT</button>
+	</div> 
 </div>
 </div>
 </center>
 </body>
 <?php 
 }
+//header('location:image.php');
 // $page = $_GET['id'];    
 // $sql = "select * from crud LIMIT $page,1";
 // while($sql){
