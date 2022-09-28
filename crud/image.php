@@ -8,13 +8,18 @@ if(!isset($_SESSION['user']))
 $conn=mysqli_connect('localhost','root','','db');
 
 // SLIDER IMAGE
- $sql="SELECT * FROM crud ";
+ $sql="SELECT file FROM crud ";
 	 $result1= mysqli_query($conn,$sql);
+	// $row = mysqli_fetch_assoc($result1);
+$row ="";
+	 //$row=mysqli_fetch_row($result1);
+
+	 //$final1 = json_encode($row);
+	 //var_dump($result1);
 	  
-	 // while($r1 = mysqli_fetch_array($result1))
+	 // while($row = mysqli_fetch_row ($result1))
 		// {
-		// 	print_r($r1);
-	 //  exit;
+		// 	//print_r($row);
 		// }
 	
 
@@ -26,8 +31,11 @@ $conn=mysqli_connect('localhost','root','','db');
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-<script >
-var image= ['jellyfish.jpg','koala.jpg'];
+<script  src="http://localhost/PHP-Training/crud/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	let image = [<?php echo $row; ?>];
+	
+//var image= ['Jellyfish.jpg','koala.jpg','Tulips.jpg','Penguins.jpg','Desert>jpg'];
 var i=0;
 
 function prev(){
@@ -45,26 +53,32 @@ function next(){
 </script>
 <body>
 <center>
+	<form method="POST">
 	<div class="container">
 <div class="row">
 	<div>
 	 <button class="btn btn-dark" onclick="prev()" name="left">LEFT</button> 
 	<img alt="slideshow" src="photo/<?php echo $r['file'];?>" width="800" class="slider" id="slider">
+	
+	<?php 
+		 // if(isset($_POST['left']) && isset($_POST['right']))
+		//if(!empty('left') && !empty('right'))
+		 // {
+		 	while($row = mysqli_fetch_row($result1))
+			{ 
+				?>
+				<img src="photo/<?php echo implode(',',$row);?>" width="800" class="slider" id="slider">
+				<?php
+		 	} 
+		 // }
+	 ?>
  <button class="btn btn-dark" onclick="next()" name="right">RIGHT</button>
 	</div> 
 </div>
 </div>
+</form>
 </center>
 </body>
 <?php 
 }
-//header('location:image.php');
-// $page = $_GET['id'];    
-// $sql = "select * from crud LIMIT $page,1";
-// while($sql){
-//   $next_page = $page+1;
-//   $prev_page = $page-1;
-
-//   $next_btn = "<a href='script.php?page=".$next_page."'>Next</a>";
-// }
 ?> 
