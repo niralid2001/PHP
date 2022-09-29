@@ -39,8 +39,12 @@ function make_slides($conn){
 		{
 			$output.= '<div class="item active">';
 		}
+		else
+		{
+			$output.= '<div class="item">';
+		}
 		$output .='
-		<img src="photo/'.$row["file"].'" width="800">';
+		<img src="photo/'.$row["file"].'" width="800" height="500"/></div>';
 		$count = $count +1;
 	}
 	return $output;
