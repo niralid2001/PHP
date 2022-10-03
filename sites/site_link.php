@@ -19,6 +19,15 @@
 
 	(delete multiple record by chechbox)
 	https://webscodex.com/delete-multiple-record-with-checkboxes-in-php-mysqli-using-jquery-ajax/
-	
+
+
+
+	<!-- laravel tutorial sites -->
+
+	https://www.itsolutionstuff.com/post/laravel-8-crud-application-tutorial-for-beginnersexample.html ----(itsolutiob)
+
+	tuts make laravel
+
+	adddividend laravel
 </body>
 </html>
